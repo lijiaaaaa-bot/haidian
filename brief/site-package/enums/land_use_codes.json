@@ -49,9 +49,66 @@
       "level": 2
     },
     {
-      "code": "05",
+      "code": "09",
       "label_zh": "商业服务业用地",
+      "level": 1,
+      "_fix": "2026-08-07: corrected from 05 (湿地) to 09 per 自然资发〔2023〕234号"
+    },
+    {
+      "code": "0901",
+      "label_zh": "商业用地",
+      "level": 2
+    },
+    {
+      "code": "0902",
+      "label_zh": "商务金融用地",
+      "level": 2
+    },
+    {
+      "code": "10",
+      "label_zh": "工矿用地",
       "level": 1
+    },
+    {
+      "code": "1001",
+      "label_zh": "工业用地",
+      "level": 2
+    },
+    {
+      "code": "100104",
+      "label_zh": "新型产业用地",
+      "level": 3,
+      "_note": "M0 — AI产业空间核心分类"
+    },
+    {
+      "code": "1201",
+      "label_zh": "铁路用地",
+      "level": 2
+    },
+    {
+      "code": "1206",
+      "label_zh": "轨道交通用地",
+      "level": 2
+    },
+    {
+      "code": "13",
+      "label_zh": "公用设施用地",
+      "level": 1
+    },
+    {
+      "code": "1301",
+      "label_zh": "供水用地",
+      "level": 2
+    },
+    {
+      "code": "1303",
+      "label_zh": "供电用地",
+      "level": 2
+    },
+    {
+      "code": "1305",
+      "label_zh": "通信用地",
+      "level": 2
     },
     {
       "code": "1207",
