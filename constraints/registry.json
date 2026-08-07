@@ -1,0 +1,936 @@
+{
+  "schema_version": "1.0",
+  "generated_from": "repo physical data files",
+  "generation_note": "此文件由 constraints/extractors.py 从 repo 数据文件自动生成。手动添加的约束应在 manual_overrides 中。",
+  "total_constraints": 43,
+  "constraints": [
+    {
+      "constraint_id": "C-COORD-001",
+      "name": "area_calculation_crs",
+      "description": "面积复算必须使用 EPSG:4548 投影坐标系",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "coordinate_policy.area_calculation_crs",
+      "check_type": "CODE",
+      "check_function": "verify_crs_used",
+      "params": {
+        "required_epsg": 4548,
+        "check_metric_formulas": true
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-coordinated_research_area",
+      "name": "area_tolerance_coordinated_research_area",
+      "description": "统筹研究范围 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "official_scope_levels.coordinated_research_area.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 43600000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001",
+        "scope_label": "统筹研究范围",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-overall_design_area",
+      "name": "area_tolerance_overall_design_area",
+      "description": "总体设计范围 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "official_scope_levels.overall_design_area.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 11400000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001",
+        "scope_label": "总体设计范围",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-key_detailed_design_area",
+      "name": "area_tolerance_key_detailed_design_area",
+      "description": "重点区域范围 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "official_scope_levels.key_detailed_design_area.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 3684000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-SCOPE-001",
+        "scope_label": "重点区域范围",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-KEY-zhongzhiyuan_ai_acceleration_area",
+      "name": "area_tolerance_zhongzhiyuan_ai_acceleration_area",
+      "description": "众智园AI自主创新加速区 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "key_areas.zhongzhiyuan_ai_acceleration_area.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 1921000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-001",
+        "scope_label": "众智园AI自主创新加速区",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-KEY-beijing_ai_origin_community",
+      "name": "area_tolerance_beijing_ai_origin_community",
+      "description": "北京AI原点社区 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "key_areas.beijing_ai_origin_community.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 1043000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-002",
+        "scope_label": "北京AI原点社区",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-AREA-KEY-dazhongsi_ai_industry_cluster",
+      "name": "area_tolerance_dazhongsi_ai_industry_cluster",
+      "description": "大钟寺AI产业聚集区 面积容差检查 (±5%)",
+      "source_file": "brief/site-package/design_brief.json",
+      "source_field": "key_areas.dazhongsi_ai_industry_cluster.area_sqm",
+      "check_type": "CODE",
+      "check_function": "verify_area_tolerance",
+      "params": {
+        "declared_area_sqm": 720000,
+        "tolerance_pct": 5.0,
+        "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-003",
+        "scope_label": "大钟寺AI产业聚集区",
+        "geometry_status": "exact_polygon_missing_provisional_available"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-LAYER-001",
+      "name": "required_layers_present",
+      "description": "必交 GeoJSON 图层必须全部存在",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "required_submission_layers",
+      "check_type": "CODE",
+      "check_function": "verify_required_layers",
+      "params": {
+        "required_layers": [
+          "SITE_BOUNDARY",
+          "KEY_AREA",
+          "LAND_USE",
+          "BUILDING_FOOTPRINT",
+          "ROAD_CENTERLINE",
+          "GREEN_SPACE",
+          "PUBLIC_SPACE",
+          "PHASE"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-LAYER-002",
+      "name": "locked_layers_untouched",
+      "description": "锁定图层不得被修改",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "locked_layers",
+      "check_type": "CODE",
+      "check_function": "verify_locked_layers",
+      "params": {
+        "locked_layers": [
+          "SITE_BOUNDARY",
+          "EXISTING_PRIMARY_ROAD",
+          "EXISTING_RAIL",
+          "EXISTING_WATER",
+          "HERITAGE_PROTECTION",
+          "REGULATORY_CONTROL"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-LAYER-003",
+      "name": "all_features_in_known_layers",
+      "description": "所有 feature 的 layer 属性必须在已知图层列表中",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "editable_layers + locked_layers",
+      "check_type": "CODE",
+      "check_function": "verify_layer_names",
+      "params": {
+        "valid_layers": [
+          "AI_SERVICE_ZONE",
+          "BUILDING_FOOTPRINT",
+          "EXISTING_PRIMARY_ROAD",
+          "EXISTING_RAIL",
+          "EXISTING_WATER",
+          "GREEN_SPACE",
+          "HERITAGE_PROTECTION",
+          "LAND_USE",
+          "PARCEL",
+          "PHASE",
+          "PUBLIC_SPACE",
+          "REGULATORY_CONTROL",
+          "ROAD_AREA",
+          "ROAD_CENTERLINE",
+          "SCENARIO_NODE",
+          "SITE_BOUNDARY"
+        ]
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-GEO-001",
+      "name": "features_within_boundary",
+      "description": "所有生成 feature 必须在 site_boundary 内",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "geometry_policy.generated_features_must_be_inside",
+      "check_type": "CODE",
+      "check_function": "verify_features_within_boundary",
+      "params": {
+        "generated_layers": [
+          "LAND_USE",
+          "PARCEL",
+          "BUILDING_FOOTPRINT",
+          "ROAD_CENTERLINE",
+          "ROAD_AREA",
+          "GREEN_SPACE",
+          "PUBLIC_SPACE",
+          "PHASE",
+          "AI_SERVICE_ZONE",
+          "SCENARIO_NODE"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-GEO-002",
+      "name": "no_gaps_in_land_use",
+      "description": "land_use polygon 并集必须完全覆盖 site_boundary",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "geometry_policy",
+      "check_type": "CODE",
+      "check_function": "verify_land_use_coverage",
+      "params": {},
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-GEO-003",
+      "name": "no_land_use_overlap",
+      "description": "相邻 land_use polygon 不得重叠",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "geometry_policy",
+      "check_type": "CODE",
+      "check_function": "verify_no_land_use_overlap",
+      "params": {},
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-TEXT-FORBIDDEN",
+      "name": "no_forbidden_claims",
+      "description": "proposal.md 不得包含禁止性声明",
+      "source_file": "brief/site-package/allowed_design_space.json",
+      "source_field": "forbidden_claims",
+      "check_type": "CODE",
+      "check_function": "grep_forbidden_patterns",
+      "params": {
+        "forbidden_patterns": [
+          "official approval",
+          "approved regulatory plan",
+          "final land ownership",
+          "confirmed construction scale",
+          "guaranteed implementation",
+          "exact heritage control without source",
+          "exact road redline without source"
+        ],
+        "target_file": "proposal.md"
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-1",
+      "name": "task_coverage_agent.1",
+      "description": "compliance_matrix 必须覆盖 一带总体概念与功能统筹方案设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.1",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.1",
+        "title_zh": "一带总体概念与功能统筹方案设计",
+        "must_address": [
+          "总体概念、主名称、英文名称和命名体系",
+          "视觉识别与Logo方向",
+          "三大定位、五大功能和三区两翼协同回路",
+          "总体空间结构图和区域创新协同关系",
+          "综合规划、空间产业融合与国土空间规划创新思路"
+        ],
+        "forbidden_claims": [
+          "只提交口号式命名",
+          "照搬城市、园区或企业名称",
+          "未经授权使用字体、图片、商标、人物或企业标识",
+          "给出容积率、建筑高度、具体拆改留、道路红线或工程实施结论"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-2",
+      "name": "task_coverage_agent.2",
+      "description": "compliance_matrix 必须覆盖 AI全栈自主创新体系与世界级AI创新生态设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.2",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.2",
+        "title_zh": "AI全栈自主创新体系与世界级AI创新生态设计",
+        "must_address": [
+          "5-8个全球AI创新生态案例",
+          "AI创新生态图谱",
+          "众智园全栈自主体系",
+          "AI原点社区创新生态",
+          "中关村科技服务翼支撑机制",
+          "土地、空间、产业、资金、人才、算力、数据、场景机制"
+        ],
+        "forbidden_claims": [
+          "编造企业名单、投资额、产值或财政承诺",
+          "把内部数据或未经核实政策写成事实",
+          "把产业招商、资金支持或政策安排写成已确定事项"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-3",
+      "name": "task_coverage_agent.3",
+      "description": "compliance_matrix 必须覆盖 AI+场景赋能新范式与智能化AI活力城市设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.3",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.3",
+        "title_zh": "AI+场景赋能新范式与智能化AI活力城市设计",
+        "must_address": [
+          "不少于10张AI场景卡",
+          "不少于3个AI产业测试验证场景",
+          "不少于5类用户画像",
+          "场景-空间-运营映射",
+          "小月河场景赋能翼和公共体验路径"
+        ],
+        "forbidden_claims": [
+          "隐私侵害、过度监控或无法人工复核的场景",
+          "把未成熟技术写成已可全面部署",
+          "使用非公开数据、个人隐私或指定供应商作为必要条件",
+          "把测试场景写成已批准运营"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-4",
+      "name": "task_coverage_agent.4",
+      "description": "compliance_matrix 必须覆盖 AI公共空间、智能原生新业态与朝圣地标设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.4",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.4",
+        "title_zh": "AI公共空间、智能原生新业态与朝圣地标设计",
+        "must_address": [
+          "京张遗址公园AI公共空间",
+          "东西缝合与南北贯通概念策略",
+          "大钟寺智能原生消费与商务场景",
+          "不少于3个AI朝圣地标",
+          "荣誉展示体系和公共空间组件库"
+        ],
+        "forbidden_claims": [
+          "违反文保、绿地、蓝线或交通安全约束",
+          "给出桥隧、地下空间或工程可行性结论",
+          "擅自改造企业建筑或权属空间",
+          "过度娱乐化、网红化或低俗化地标"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-5",
+      "name": "task_coverage_agent.5",
+      "description": "compliance_matrix 必须覆盖 百年京张文化、中关村文化与AI新文化融合叙事设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.5",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.5",
+        "title_zh": "百年京张文化、中关村文化与AI新文化融合叙事设计",
+        "must_address": [
+          "京张铁路历史文化资源系统",
+          "中关村创新文化与AI新文化叙事",
+          "空间文化系统和表达载体",
+          "导视、标识、符号系统",
+          "城市气质和国际传播叙事"
+        ],
+        "forbidden_claims": [
+          "歪曲历史事实",
+          "把文化只当作科技装饰或口号",
+          "未经授权使用肖像、商标、论文图像或版权材料",
+          "混淆文化标识系统与一带整体Logo系统"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TASK-agent-6",
+      "name": "task_coverage_agent.6",
+      "description": "compliance_matrix 必须覆盖 一带全球AI创新活动体系与长期运营设计",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "required_agent_tasks.agent.6",
+      "check_type": "CODE",
+      "check_function": "verify_task_coverage",
+      "params": {
+        "requirement_id": "agent.6",
+        "title_zh": "一带全球AI创新活动体系与长期运营设计",
+        "must_address": [
+          "年度活动体系",
+          "活动品牌与传播视觉系统",
+          "开发者社区运营机制",
+          "AI场景开放运营机制",
+          "公共体验和城市地标运营",
+          "国际传播和招引转化机制"
+        ],
+        "forbidden_claims": [
+          "夸大政府承诺或活动效果",
+          "把设想活动写成已确定安排",
+          "只写宣传口号而没有运营机制",
+          "缺少人才、企业、开发者后续转化路径",
+          "把招商、政策、资金写成确定承诺"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TEXT-BOUNDARY-001",
+      "name": "no_forbidden_final_conclusions",
+      "description": "proposal.md 不得出现 boundary_clause 禁止的法定结论",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "boundary_clause.forbidden_final_conclusions_zh",
+      "check_type": "CODE",
+      "check_function": "grep_forbidden_patterns",
+      "params": {
+        "forbidden_patterns": [
+          "控规调整、容积率、建筑高度、建筑强度等法定规划判断",
+          "具体地块拆改留方案",
+          "道路线形、轨道线位、桥隧工程、市政管线等工程方案",
+          "地下空间工程可行性、能源负荷、市政容量等专业测算",
+          "土地权属、投资测算、开发时序和审批判断",
+          "非公开政府数据、企业内部数据、个人隐私数据",
+          "不符合公共安全、伦理合规、文物保护、生态管控要求的内容",
+          "未经授权使用的商标、字体、图片、人物肖像、论文图像和版权材料",
+          "将概念建议、活动设想、政策机制建议表述为已确定政府决策或实施安排"
+        ],
+        "target_file": "proposal.md"
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-TEXT-BOUNDARY-002",
+      "name": "required_wording_present",
+      "description": "proposal.md 必须包含强制措辞",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "boundary_clause.required_wording_zh",
+      "check_type": "CODE",
+      "check_function": "verify_required_wording",
+      "params": {
+        "required_phrases": [
+          "概念建议",
+          "参考方案",
+          "可供专业团队深化研究"
+        ],
+        "target_file": "proposal.md"
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-1",
+      "name": "charter_charter.1",
+      "description": "共创原则: 公共利益优先 — 智能体服务城市公共利益和项目目标，不以个人名利或商业推广为中心。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.1",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.1",
+        "title_zh": "公共利益优先",
+        "requirement_zh": "智能体服务城市公共利益和项目目标，不以个人名利或商业推广为中心。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-2",
+      "name": "charter_charter.2",
+      "description": "共创原则: 公开资料边界 — 资料必须来自公开或清权来源，不得使用秘密地图、非公开表格、伪造官方背书或伪造规划结论。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.2",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.2",
+        "title_zh": "公开资料边界",
+        "requirement_zh": "资料必须来自公开或清权来源，不得使用秘密地图、非公开表格、伪造官方背书或伪造规划结论。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-3",
+      "name": "charter_charter.3",
+      "description": "共创原则: 概念建议属性 — 智能体成果是开放共创建议，不替代专业规划，不越过政府审定和法定审批。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.3",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.3",
+        "title_zh": "概念建议属性",
+        "requirement_zh": "智能体成果是开放共创建议，不替代专业规划，不越过政府审定和法定审批。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-4",
+      "name": "charter_charter.4",
+      "description": "共创原则: AI原生创新 — 鼓励AI原生场景和多智能体协作，不接受只给传统方案贴AI标签。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.4",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.4",
+        "title_zh": "AI原生创新",
+        "requirement_zh": "鼓励AI原生场景和多智能体协作，不接受只给传统方案贴AI标签。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-5",
+      "name": "charter_charter.5",
+      "description": "共创原则: 结构化与可读并重 — 成果必须结构化、来源可追溯、版权可追溯，并同时可被智能体和人类阅读。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.5",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.5",
+        "title_zh": "结构化与可读并重",
+        "requirement_zh": "成果必须结构化、来源可追溯、版权可追溯，并同时可被智能体和人类阅读。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-6",
+      "name": "charter_charter.6",
+      "description": "共创原则: 生成方法披露 — 引用和生成内容必须说明来源、生成方式、授权和限制。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.6",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.6",
+        "title_zh": "生成方法披露",
+        "requirement_zh": "引用和生成内容必须说明来源、生成方式、授权和限制。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-7",
+      "name": "charter_charter.7",
+      "description": "共创原则: 人类最终判断 — 智能体方案可以被筛选和排序，但最终判断由人类和专业团队完成。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.7",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.7",
+        "title_zh": "人类最终判断",
+        "requirement_zh": "智能体方案可以被筛选和排序，但最终判断由人类和专业团队完成。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-8",
+      "name": "charter_charter.8",
+      "description": "共创原则: 公共知识沉淀 — 输出进入公共知识库，供后续智能体、专业团队和公众继续使用。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.8",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.8",
+        "title_zh": "公共知识沉淀",
+        "requirement_zh": "输出进入公共知识库，供后续智能体、专业团队和公众继续使用。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-9",
+      "name": "charter_charter.9",
+      "description": "共创原则: 贡献可记忆 — 贡献者名称、方案记录和知识资产应可持续保存。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.9",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.9",
+        "title_zh": "贡献可记忆",
+        "requirement_zh": "贡献者名称、方案记录和知识资产应可持续保存。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-CHARTER-charter-10",
+      "name": "charter_charter.10",
+      "description": "共创原则: 人本治理 — 城市治理以人的尊严与公共福祉为基础，智能体用于增强人的能力。",
+      "source_file": "brief/site-package/agent_taskbook.json",
+      "source_field": "co_creation_charter.charter.10",
+      "check_type": "LLM",
+      "check_function": "llm_charter_check",
+      "params": {
+        "principle_id": "charter.10",
+        "title_zh": "人本治理",
+        "requirement_zh": "城市治理以人的尊严与公共福祉为基础，智能体用于增强人的能力。"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-SANITY-ratio",
+      "name": "sanity_bound_ratio",
+      "description": "ratio 必须在合理范围内 [0, 1]",
+      "source_file": "brief/site-package/ranges/planning_limits.json",
+      "source_field": "schema_sanity_bounds_not_planning_approval.ratio",
+      "check_type": "CODE",
+      "check_function": "verify_sanity_bounds",
+      "params": {
+        "metric_key": "ratio",
+        "min_val": 0,
+        "max_val": 1
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "metric"
+    },
+    {
+      "constraint_id": "C-SANITY-floor_area_ratio",
+      "name": "sanity_bound_floor_area_ratio",
+      "description": "floor_area_ratio 必须在合理范围内 [0, 12]",
+      "source_file": "brief/site-package/ranges/planning_limits.json",
+      "source_field": "schema_sanity_bounds_not_planning_approval.floor_area_ratio",
+      "check_type": "CODE",
+      "check_function": "verify_sanity_bounds",
+      "params": {
+        "metric_key": "floor_area_ratio",
+        "min_val": 0,
+        "max_val": 12
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "metric"
+    },
+    {
+      "constraint_id": "C-SANITY-height_m",
+      "name": "sanity_bound_height_m",
+      "description": "height_m 必须在合理范围内 [0, 300]",
+      "source_file": "brief/site-package/ranges/planning_limits.json",
+      "source_field": "schema_sanity_bounds_not_planning_approval.height_m",
+      "check_type": "CODE",
+      "check_function": "verify_sanity_bounds",
+      "params": {
+        "metric_key": "height_m",
+        "min_val": 0,
+        "max_val": 300
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "metric"
+    },
+    {
+      "constraint_id": "C-ASSUMPTIONS-001",
+      "name": "missing_controls_documented",
+      "description": "缺失的控规条件必须在 assumptions.json 中记录",
+      "source_file": "brief/site-package/ranges/planning_limits.json",
+      "source_field": "official_planning_controls",
+      "check_type": "CODE",
+      "check_function": "verify_missing_controls_documented",
+      "params": {
+        "missing_controls": [
+          "floor_area_ratio",
+          "building_height_m",
+          "building_density",
+          "green_ratio",
+          "setback_m"
+        ]
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-SOURCE-001",
+      "name": "no_provisional_source_upgrade",
+      "description": "provisional_only 来源不得被当作 formal 依据使用",
+      "source_file": "data/source_registry.json",
+      "source_field": "sources[*].usable_for_formal",
+      "check_type": "CODE",
+      "check_function": "verify_source_authority",
+      "params": {
+        "provisional_source_ids": [
+          "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+        ],
+        "formal_required_fields": [
+          "official_boundary",
+          "statutory_control",
+          "engineering_conclusion"
+        ]
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "compliance"
+    },
+    {
+      "constraint_id": "C-ENUM-land_use_codes",
+      "name": "valid_land_use_codes",
+      "description": "land_use_codes 值必须在合法枚举范围内",
+      "source_file": "brief/site-package/enums/land_use_codes.json",
+      "source_field": "enum values",
+      "check_type": "CODE",
+      "check_function": "verify_enum_values",
+      "params": {
+        "enum_name": "land_use_codes",
+        "valid_codes": [
+          "07",
+          "0701",
+          "0702",
+          "08",
+          "0802",
+          "0803",
+          "0804",
+          "0805",
+          "0806",
+          "09",
+          "0901",
+          "0902",
+          "10",
+          "1001",
+          "100104",
+          "1201",
+          "1206",
+          "13",
+          "1301",
+          "1303",
+          "1305",
+          "1207",
+          "14",
+          "1401",
+          "1402",
+          "1403",
+          "16"
+        ],
+        "target_geojson_field": "land_use_code"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-ENUM-building_types",
+      "name": "valid_building_types",
+      "description": "building_types 值必须在合法枚举范围内",
+      "source_file": "brief/site-package/enums/building_types.json",
+      "source_field": "enum values",
+      "check_type": "CODE",
+      "check_function": "verify_enum_values",
+      "params": {
+        "enum_name": "building_types",
+        "valid_codes": [
+          "ai_r_and_d",
+          "lab",
+          "incubator",
+          "office",
+          "mixed_use",
+          "education",
+          "residential",
+          "talent_apartment",
+          "community_service",
+          "retail",
+          "cultural",
+          "mobility_hub",
+          "existing_retained"
+        ],
+        "target_geojson_field": "building_types"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-ENUM-road_classes",
+      "name": "valid_road_classes",
+      "description": "road_classes 值必须在合法枚举范围内",
+      "source_file": "brief/site-package/enums/road_classes.json",
+      "source_field": "enum values",
+      "check_type": "CODE",
+      "check_function": "verify_enum_values",
+      "params": {
+        "enum_name": "road_classes",
+        "valid_codes": [
+          "expressway",
+          "arterial",
+          "secondary",
+          "branch",
+          "local_access",
+          "pedestrian",
+          "cycleway",
+          "greenway",
+          "transit_connection"
+        ],
+        "target_geojson_field": "road_classes"
+      },
+      "severity": "high",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-BOUNDARY-PROV-PROV-SITE-001",
+      "name": "provisional_boundary_marked_PROV-SITE-001",
+      "description": "提交的 site_boundary 如使用 总体设计范围粗略替代边界 必须标记为 provisional_constraint",
+      "source_file": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_field": "features.PROV-SITE-001",
+      "check_type": "CODE",
+      "check_function": "verify_provisional_marking",
+      "params": {
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision_required": true,
+        "usage_note_required": true
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-BOUNDARY-PROV-PROV-RESEARCH-001",
+      "name": "provisional_boundary_marked_PROV-RESEARCH-001",
+      "description": "提交的 site_boundary 如使用 统筹研究范围粗略替代边界 必须标记为 provisional_constraint",
+      "source_file": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_field": "features.PROV-RESEARCH-001",
+      "check_type": "CODE",
+      "check_function": "verify_provisional_marking",
+      "params": {
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision_required": true,
+        "usage_note_required": true
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    },
+    {
+      "constraint_id": "C-BOUNDARY-PROV-PROV-KEY-SCOPE-001",
+      "name": "provisional_boundary_marked_PROV-KEY-SCOPE-001",
+      "description": "提交的 site_boundary 如使用 重点区域范围粗略替代边界 必须标记为 provisional_constraint",
+      "source_file": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_field": "features.PROV-KEY-SCOPE-001",
+      "check_type": "CODE",
+      "check_function": "verify_provisional_marking",
+      "params": {
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision_required": true,
+        "usage_note_required": true
+      },
+      "severity": "critical",
+      "enabled": true,
+      "category": "spatial"
+    }
+  ],
+  "manual_overrides": []
+}

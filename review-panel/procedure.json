@@ -1,0 +1,83 @@
+{
+  "name": "haidian_submission_review",
+  "description": "百年京张AI创新带方案提交审查流程 — 二层门禁：格式自检 + 质量审查",
+  "initial_step": "scaffold",
+  "max_rounds": 10,
+  "stall_threshold": 2,
+  "steps": [
+    {
+      "name": "scaffold",
+      "kind": "CODE",
+      "description": "运行 scaffold_ai_submission.py 创建目录结构",
+      "transitions": { "done": "generate" }
+    },
+    {
+      "name": "generate",
+      "kind": "CODE",
+      "description": "Generator Subagent 生成方案包全部内容（proposal.md + GeoJSON + 图纸 + matrices + HTML + PDF）",
+      "transitions": { "done": "self_check" }
+    },
+    {
+      "name": "self_check",
+      "kind": "CODE",
+      "description": "运行 self_check_submission.py → 全部 PASS 则进入 finalize，否则回到 generate",
+      "transitions": { "done": "finalize", "failed": "repair_format" }
+    },
+    {
+      "name": "repair_format",
+      "kind": "CODE",
+      "description": "修复格式错误（missing files / topology / hash mismatch）→ 重新 self_check",
+      "transitions": { "done": "self_check" }
+    },
+    {
+      "name": "finalize",
+      "kind": "CODE",
+      "description": "运行 finalize_submission.py 锁包（刷新 manifest hashes、设置 package_state=ready_for_review）",
+      "transitions": { "done": "panel_review" }
+    },
+    {
+      "name": "panel_review",
+      "kind": "JUDGMENT",
+      "statutes": [
+        "package_integrity",
+        "spatial_quality",
+        "proposal_depth",
+        "task_coverage",
+        "figure_quality",
+        "metric_verifiability",
+        "compliance_and_boundaries"
+      ],
+      "description": "7 法官并行审查 → 统计 verdict → 路由决策",
+      "transitions": {
+        "approved": "completed",
+        "minor_fixes": "repair_content",
+        "major_fixes": "generate",
+        "blocking": "human_escalation"
+      }
+    },
+    {
+      "name": "repair_content",
+      "kind": "CODE",
+      "description": "Generator 按 findings 增量修复内容（不改结构）→ 重新 finalize + panel_review",
+      "transitions": { "done": "finalize" }
+    },
+    {
+      "name": "completed",
+      "kind": "CODE",
+      "description": "方案通过！输出最终评审报告，准备 PR",
+      "transitions": {}
+    },
+    {
+      "name": "human_escalation",
+      "kind": "CODE",
+      "description": "存在 blocking 违规或连续 stall，需要人工决策",
+      "transitions": {}
+    }
+  ],
+  "routing_rules": {
+    "panel_review → approved": "≥5/7 Not Refuted + 0 blocking",
+    "panel_review → minor_fixes": "≥5/7 Not Refuted 但有 non-blocking 的 Refuted（通常 figure_quality）",
+    "panel_review → major_fixes": "<5/7 Not Refuted 且无 blocking",
+    "panel_review → blocking": "任何 blocking=true 的 Refuted（compliance 底线或 package_integrity 不通过）"
+  }
+}

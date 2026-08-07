@@ -1,0 +1,163 @@
+{
+  "description": "7 部质量法规 — 每一条评审依据都必须来自物理可验证的产出物（文件、图层、指标、图纸），不得基于抽象概念判断。",
+  "statutes": [
+    {
+      "name": "package_integrity",
+      "title_zh": "格式完整性",
+      "description": "提交包的文件结构、路径、哈希值是否完整且自检通过。这是形式门槛——不通过则后续审查无意义。",
+      "physical_evidence": [
+        "self_check.json: 全部项 status=PASS",
+        "manifest.json: package_state=ready_for_review",
+        "submissions/<login>/<slug>/: 所有必交文件存在",
+        "manifest.json: file_hashes 与实际文件 SHA-256 一致"
+      ],
+      "violations": [
+        {"name": "self_check_failed", "severity": "critical", "description": "self_check 有 FAIL 项——格式完整性不满足", "detection": "读取 self_check.json，检查所有项的 status"},
+        {"name": "missing_required_file", "severity": "critical", "description": "必交文件不存在——proposal.md / geometry/* / metrics.json 等缺失", "detection": "对照 SKILL.md 的 Output Package 清单逐项检查"},
+        {"name": "hash_mismatch", "severity": "critical", "description": "manifest.json 中的哈希值与实际文件不符——方案可能被手动修改但未重新 finalize", "detection": "对比 manifest.file_hashes 与实际 SHA-256"},
+        {"name": "wrong_package_state", "severity": "critical", "description": "package_state 不是 ready_for_review，仍是 scaffold 或中间状态", "detection": "读取 manifest.json 的 package_state 字段"}
+      ],
+      "pass_condition": "self_check 全部 PASS + 所有必交文件存在 + 哈希一致 + package_state=ready_for_review",
+      "default_to_reject": true
+    },
+    {
+      "name": "spatial_quality",
+      "title_zh": "空间数据质量",
+      "description": "GeoJSON 图层是否拓扑正确、属性完整、在边界范围内。这是方案的空间物理基础——图层有问题则图纸和指标都不可信。",
+      "physical_evidence": [
+        "geometry/site_boundary.geojson: boundary_role、official_boundary 标记",
+        "geometry/key_areas.geojson: 三个重点区域 feature 均存在",
+        "geometry/land_use.geojson: 无间隙、无重叠覆盖整个 site_boundary",
+        "geometry/buildings.geojson: 建筑 footprint 在 site_boundary 内",
+        "geometry/roads.geojson: 道路在 site_boundary 内",
+        "geometry/green_space.geojson + public_space.geojson: 绿地与公共空间",
+        "geometry/phasing.geojson: 分期图层",
+        "每个 feature 必填属性: id, layer, source_type, confidence, geometry_role"
+      ],
+      "violations": [
+        {"name": "provisional_as_official", "severity": "critical", "description": "provisional boundary 被标记为 official_boundary=true 或 geometry_role=official_constraint", "detection": "检查 site_boundary 和 key_areas 的 official_boundary 字段"},
+        {"name": "land_use_gaps", "severity": "critical", "description": "land_use.geojson 的 polygon 未完全覆盖 site_boundary——存在未分配的「真空」区域", "detection": "用 shapely 做 site_boundary.difference(land_use_union)，检查是否为空"},
+        {"name": "land_use_overlaps", "severity": "high", "description": "相邻用地 polygon 重叠——不满足「相邻 polygon 共享边界坐标」规则", "detection": "对 land_use features 两两做 intersection 检查"},
+        {"name": "features_outside_boundary", "severity": "high", "description": "建筑/道路/绿地 feature 超出 site_boundary", "detection": "用 shapely 检查每个 feature 是否 within(site_boundary)"},
+        {"name": "missing_required_layer", "severity": "critical", "description": "required_submission_layers 中的图层缺失", "detection": "对照 allowed_design_space.json 的 required_submission_layers"},
+        {"name": "missing_required_attributes", "severity": "high", "description": "feature 缺少必填属性 (id/layer/source_type/confidence/geometry_role)", "detection": "遍历每个 feature 的 properties"}
+      ],
+      "pass_condition": "所有必填图层存在 + site_boundary 覆盖完整 + 无 gap/overlap + official_boundary 标记正确 + 属性完整",
+      "default_to_reject": true
+    },
+    {
+      "name": "proposal_depth",
+      "title_zh": "方案文本深度",
+      "description": "proposal.md 是否每个必写章节都有实质性内容（非口号、非模板占位符），且每章包含可校验引用。这是人类评审者唯一阅读的主体文本。",
+      "physical_evidence": [
+        "proposal.md: 12 个必写章节均存在",
+        "proposal.md: 每章 ≥500 字实质性内容（非标题/表格/引用块）",
+        "proposal.md: 每章至少出现 1 条 [source:...] [standard:...] [data:...] [metric:...] 引用",
+        "proposal.md: 5 张必交图均已 Markdown 本地引用嵌入",
+        "proposal.md: 六项 agent 任务均在正文展开（不只在 compliance_matrix 打勾）",
+        "proposal.md: 明确说明了 provisional boundary 的限制和替换后需重算的内容"
+      ],
+      "violations": [
+        {"name": "missing_required_section", "severity": "critical", "description": "必写章节缺失——对照 templates/proposal.md 检查", "detection": "按 ## 标题逐一匹配"},
+        {"name": "shallow_section", "severity": "high", "description": "章节内容不足 500 字或仅为占位符/口号式文本", "detection": "统计每章正文字数（排除标题、代码块、引用块）"},
+        {"name": "no_evidence_citations", "severity": "high", "description": "章节未使用 [source:...] / [data:...] / [metric:...] 引用格式", "detection": "正则搜索各引用模式"},
+        {"name": "missing_figure_embed", "severity": "high", "description": "5 张必交图未在正文中以 Markdown 语法嵌入", "detection": "搜索 ![...](assets/figures/...) 模式"},
+        {"name": "agent_task_only_in_matrix", "severity": "high", "description": "六项 agent 任务仅在 compliance_matrix 中标记完成，正文未实际展开", "detection": "在 proposal.md 中搜索任务关键词（命名体系/场景卡/朝圣地标/文化叙事/长期运营）"},
+        {"name": "provisional_not_explained", "severity": "medium", "description": "使用了 provisional boundary 但未在正文说明其限制和替换后的重算计划", "detection": "搜索 provisional/临时/粗略 关键词"}
+      ],
+      "pass_condition": "12 章全在 + 每章 ≥500 字 + 每章有证据引用 + 5 图嵌入 + 6 任务展开 + provisional 已说明",
+      "default_to_reject": true
+    },
+    {
+      "name": "task_coverage",
+      "title_zh": "任务覆盖完整性",
+      "description": "compliance_matrix.json 是否覆盖了全部 20+ 条必答 requirement，且每条都有对应的 proposal section、GeoJSON layer、metric 和 self_check 条目。矩阵中的 evidence 引用必须能在物理文件中找到。",
+      "physical_evidence": [
+        "compliance_matrix.json: 覆盖全部 requirement_id",
+        "每条 requirement 至少有: report_sections, geojson_layers, metrics, drawings, visual_sections, source_ids, self_check_ids",
+        "引用的 report_sections 在 proposal.md 中确实存在",
+        "引用的 geojson_layers 在 geometry/ 目录中确实存在",
+        "引用的 metrics 在 metrics.json 中确实存在"
+      ],
+      "violations": [
+        {"name": "missing_requirement", "severity": "critical", "description": "必答 requirement_id 在 compliance_matrix 中缺失", "detection": "对照 docs/formal-submission-guide.md 的 20+ 条 ID 逐一核对"},
+        {"name": "empty_evidence_slots", "severity": "high", "description": "requirement 的 report_sections/geojson_layers/metrics 字段为空——只声明覆盖但无证据", "detection": "检查每条 entry 的必填字段"},
+        {"name": "phantom_reference", "severity": "high", "description": "compliance_matrix 引用的 section/layer/metric 在物理文件中不存在", "detection": "交叉验证：section→proposal.md 搜索，layer→geometry/ 文件检查，metric→metrics.json 搜索"}
+      ],
+      "pass_condition": "20+ requirement 全覆盖 + 每条有非空 evidence + 所有引用可在物理文件中找到",
+      "default_to_reject": true
+    },
+    {
+      "name": "figure_quality",
+      "title_zh": "图纸质量",
+      "description": "5 张必交 PNG 图纸是否达到专业城市设计图标准，而非 raw GeoJSON debug map、纯色块填色图或无标注截图。",
+      "physical_evidence": [
+        "assets/figures/site-overview.png: 文件存在、尺寸 ≥1200px、非纯矩形色块",
+        "assets/figures/land-use-structure.png: 有空间结构标注",
+        "assets/figures/key-areas.png: 三处重点区有差异化表达",
+        "assets/figures/mobility-bluegreen.png: 交通+蓝绿系统复合表达",
+        "assets/figures/metrics-evidence.png: 指标证据链可视化",
+        "每张图: 有标题、图例、来源说明、official/provisional 状态标注",
+        "provisional boundary 以虚线/淡色/注释表达，不作为主视觉构图"
+      ],
+      "violations": [
+        {"name": "missing_figure_file", "severity": "critical", "description": "必交图纸文件不存在", "detection": "检查 5 个 PNG 路径"},
+        {"name": "raw_debug_map", "severity": "high", "description": "图面呈现为 raw GeoJSON/GIS debug map——无标题、无图例、无线条样式、直接 polygon 填色", "detection": "检查图面是否有标题/图例/标注等设计元素"},
+        {"name": "provisional_dominates_composition", "severity": "high", "description": "provisional boundary 的矩形/粗略 polygon 占据图面主体", "detection": "检查 provisional boundary 是否以虚线/低对比度/淡色表达"},
+        {"name": "no_hierarchy", "severity": "medium", "description": "所有图层等权重堆叠，无视觉层级、无重点标注", "detection": "检查图面是否有明确的视觉主次关系"},
+        {"name": "no_source_note", "severity": "medium", "description": "图面未标注 official/provisional 状态和资料来源", "detection": "检查图面是否有来源说明文字"},
+        {"name": "wrong_story", "severity": "medium", "description": "图纸主叙事与指定功能不匹配（如 site-overview 变成了用地色块图）", "detection": "对照 docs/formal-submission-guide.md 的每张图叙事要求"}
+      ],
+      "pass_condition": "5 张图存在 + 非 raw debug map 风格 + 每张有标题/图例/来源 + provisional 正确淡化 + 符合叙事要求",
+      "default_to_reject": false,
+      "note": "图面质量判断有主观成分，default_to_reject=false 表示不确定时给通过，由人类最终判断"
+    },
+    {
+      "name": "metric_verifiability",
+      "title_zh": "指标可复算性",
+      "description": "metrics.json 中的每个核心指标是否可从 GeoJSON 几何数据中复算，公式是否明确，不能是凭空编造的数字。",
+      "physical_evidence": [
+        "metrics.json: 每个 core metric status=known",
+        "metrics.json: 每个 metric 有 formula、source_files、value、unit",
+        "metrics.json: site_area_sqm 与 site_boundary.geojson 面积一致（EPSG:4548 投影后）",
+        "metrics.json: green_ratio 与 green_space.geojson 面积/site_area 一致",
+        "metrics.json: public_space_ratio 与 public_space.geojson 面积/site_area 一致",
+        "visual/index.html: data-metric 标记值与 metrics.json 一致"
+      ],
+      "violations": [
+        {"name": "missing_core_metric", "severity": "critical", "description": "核心指标 (site_area_sqm/green_ratio/public_space_ratio) 在 metrics.json 中缺失", "detection": "检查三个核心 metric key 存在"},
+        {"name": "metric_not_recalculable", "severity": "critical", "description": "指标值无法从 source_files 中复算——公式缺失或引用文件不存在", "detection": "检查 metric.formula 非空且 metric.source_files 指向存在的文件"},
+        {"name": "area_mismatch", "severity": "high", "description": "site_area_sqm 与 site_boundary.geojson 投影面积不一致（容差 >1%）", "detection": "计算 site_boundary 在 EPSG:4548 下的面积与 metrics 中的值对比"},
+        {"name": "ratio_inconsistent", "severity": "high", "description": "green_ratio 或 public_space_ratio 与对应 GeoJSON 面积/总面积不一致", "detection": "从 GeoJSON 重新计算比率并与 metrics 值对比"},
+        {"name": "html_value_mismatch", "severity": "high", "description": "visual/index.html 中 data-metric 值与 metrics.json 不一致", "detection": "提取 HTML 中 data-metric 标签值与 metrics.json 对比"},
+        {"name": "missing_assumptions", "severity": "medium", "description": "使用 provisional boundary 时未在 assumptions.json 中说明面积误差", "detection": "检查 assumptions.json 是否有 boundary/area 相关条目"}
+      ],
+      "pass_condition": "核心指标在 + 可复算 + 面积一致 + HTML 一致 + assumptions 记录误差",
+      "default_to_reject": true
+    },
+    {
+      "name": "compliance_and_boundaries",
+      "title_zh": "合规与边界条款",
+      "description": "方案是否遵守了 boundary_clause 的核心约束——概念建议不被写成法定结论、不得有禁止性声明、来源可追溯、版权清晰。这是法律风险的底线。",
+      "physical_evidence": [
+        "proposal.md: 搜索 forbidden_final_conclusions 关键词（容积率/控规调整/工程方案/投资测算等）",
+        "proposal.md: 是否出现了 required_wording（「概念建议」「参考方案」「可供专业团队深化研究」）",
+        "sources.json: 每个使用的资料是否登记了 source_id/authority/license",
+        "sources.json: 是否有 usable_for_formal=provisional_only 的资料被升级使用",
+        "assumptions.json: 是否记录了资料缺口和待确认控规条件",
+        "report/copyright_statement.md: 存在且内容完整"
+      ],
+      "violations": [
+        {"name": "forbidden_claim_found", "severity": "critical", "description": "方案中将概念建议写成了法定规划结论——出现控规调整/容积率/具体拆改留/工程可行性等禁止性声明", "detection": "在 proposal.md 中搜索 prohibited 关键词列表"},
+        {"name": "missing_disclaimer", "severity": "critical", "description": "方案未出现强制措辞——「概念建议」「参考方案」「可供专业团队深化研究」", "detection": "搜索 required_wording 各短语"},
+        {"name": "source_upgraded", "severity": "high", "description": "provisional_only 资料被当作 formal 依据使用——来源的 usable_for_formal 等级被升级", "detection": "交叉对比 sources.json 中的 source 与 source_registry.json 的 usable_for_formal 等级"},
+        {"name": "unregistered_source", "severity": "high", "description": "方案使用了未在 sources.json 中登记的资料", "detection": "搜索 proposal.md 中的来源引用，逐一在 sources.json 中核对"},
+        {"name": "missing_copyright", "severity": "medium", "description": "report/copyright_statement.md 缺失或内容为模板占位符", "detection": "检查文件存在且内容非 scaffold 模板"},
+        {"name": "missing_assumptions", "severity": "medium", "description": "assumptions.json 未记录已知的资料缺口和待确认控规条件", "detection": "检查 assumptions.json 条目是否覆盖了 planning_limits.json 中 status=missing 的项"}
+      ],
+      "pass_condition": "无禁止性声明 + 强制措辞存在 + 来源未越级使用 + copyright 完整 + assumptions 覆盖已知缺口",
+      "default_to_reject": true,
+      "blocking": true
+    }
+  ]
+}
