@@ -936,6 +936,28 @@
       "severity": "critical",
       "enabled": true,
       "category": "spatial"
+    },
+    {
+      "constraint_id": "C-SM-LANDUSE",
+      "name": "state_machine_land_use_classification",
+      "category": "spatial",
+      "severity": "critical",
+      "description": "用地分类状态机校验: 每个 land_use feature 的地类代码符合国土空间规划分类标准",
+      "check_function": "check_land_use_classification",
+      "enabled": true,
+      "params": {},
+      "check_type": "CODE"
+    },
+    {
+      "constraint_id": "C-SM-THREELINES",
+      "name": "three_lines_awareness",
+      "category": "compliance",
+      "severity": "high",
+      "description": "三区三线概念校验: proposal 必须提及生态保护红线/永久基本农田/城镇开发边界",
+      "check_function": "check_three_lines_awareness",
+      "enabled": true,
+      "params": {},
+      "check_type": "CODE"
     }
   ],
   "manual_overrides": []

@@ -209,6 +209,9 @@ class ConstraintEngine:
             "verify_crs_used": _check_crs_used,
             "verify_locked_layers": _check_locked_layers,
             "verify_layer_names": _check_layer_names,
+            # state-machine backed checks (urban-design-knowledge integration)
+            "check_land_use_classification": _check_sm_landuse,
+            "check_three_lines_awareness": _check_sm_threelines,
         })
 
     # ── Reporting ───────────────────────────────────────────────────
@@ -864,3 +867,15 @@ def _check_layer_names(sub_path: Path, params: dict) -> tuple[CheckOutcome, str,
             "\n".join(violations[:5]),
         )
     return (CheckOutcome.PASS, "所有图层名合法", "")
+
+
+# ── State-machine-backed check wrappers ───────────────────────────────
+
+def _check_sm_landuse(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_land_use_classification
+    return check_land_use_classification(sub_path, _params)
+
+
+def _check_sm_threelines(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_three_lines_awareness
+    return check_three_lines_awareness(sub_path, _params)
