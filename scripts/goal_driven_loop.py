@@ -192,75 +192,111 @@ TOOL_HANDLERS = {
 }
 
 
-# --- DeepSeek subagent ---
+# --- Ollama subagent ---
 
-def _deepseek_client():
-    import anthropic
-    return anthropic.Anthropic(
-        base_url=os.environ.get("ANTHROPIC_BASE_URL", "https://api.deepseek.com/anthropic"),
-        api_key=os.environ.get("ANTHROPIC_API_KEY", ""),
-    )
-
-
-MODEL = os.environ.get("HAIDIAN_GEN_MODEL", "deepseek-v4-pro")
+# Dual-model: writer (Chinese prose) + coder (JSON/GeoJSON/code)
+MODELS = {
+    "writer": os.environ.get("HAIDIAN_WRITER_MODEL", "qwen3.6:35b-a3b"),
+    "coder": os.environ.get("HAIDIAN_CODER_MODEL", "qwen3-coder:30b"),
+}
+OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
 MAX_TOOL_TURNS = 40
-MAX_HOURS = 12                               # subagent cannot run forever
-SANDBOX_BLOCKED_WRITES = (                    # subagent must not touch the judge
+MAX_HOURS = 12
+SANDBOX_BLOCKED_WRITES = (
     "constraints/", "scripts/", "review-panel/", ".git/", ".goal-driven/",
 )
 
 
-def spawn_subagent(submission: Path, round_memory: str = "") -> None:
-    """Run a DeepSeek tool-use session. Blocks until subagent claims done."""
+def _ollama_chat(messages: list, tools: list, model: str) -> dict:
+    """Single Ollama chat call with retry on timeout."""
+    import httpx
+    payload = {
+        "model": model, "messages": messages, "tools": tools,
+        "stream": False,
+        "options": {"temperature": 0.2, "num_ctx": 32768},
+    }
+    for attempt in range(3):
+        try:
+            r = httpx.post(OLLAMA_URL, json=payload, timeout=600.0)
+            r.raise_for_status()
+            return r.json()
+        except httpx.ReadTimeout:
+            if attempt < 2:
+                log(f"  ollama timeout, retry {attempt+2}/3...")
+                continue
+            raise
+
+
+def _pick_model(failures: list | None, last_model: str) -> str:
+    """Route: coder for code/JSON failures, writer for text/compliance."""
+    if not failures:
+        return MODELS["coder"]
+    cats = {r.category for r in failures}
+    code_cats = {"spatial", "metric", "attributes", "package"}
+    text_cats = {"compliance"}
+    if cats & code_cats and not cats & text_cats:
+        return MODELS["coder"]
+    if cats & text_cats and not cats & code_cats:
+        return MODELS["writer"]
+    # mixed: alternate
+    return MODELS["writer"] if last_model == MODELS["coder"] else MODELS["coder"]
+
+
+def spawn_subagent(submission: Path, round_memory: str = "",
+                   model: str | None = None) -> None:
+    """Run an Ollama tool-use session. Blocks until subagent claims done."""
     slug = submission.relative_to(ROOT)
-    log(f"spawning DeepSeek subagent for {slug}")
+    model = model or MODELS["coder"]
+    log(f"spawning {model.split(':')[0]} subagent for {slug}")
 
-    client = _deepseek_client()
-    system = SYSTEM_PROMPT.format(submission_path=str(slug), slug=submission.name)
-
+    system_msg = SYSTEM_PROMPT.format(submission_path=str(slug), slug=submission.name)
     first_msg = "开始工作。先读 brief/site-package/design_brief.json 了解任务。"
     if round_memory:
         first_msg = round_memory + first_msg
 
-    for turn in range(MAX_TOOL_TURNS):
-        resp = client.messages.create(
-            model=MODEL,
-            max_tokens=4096,
-            system=system,
-            messages=messages,
-            tools=SUBMISSION_TOOLS,
-        )
+    messages = [
+        {"role": "system", "content": system_msg},
+        {"role": "user", "content": first_msg},
+    ]
 
-        # collect tool calls
-        tool_calls = [b for b in resp.content if b.type == "tool_use"]
+    for turn in range(MAX_TOOL_TURNS):
+        resp = _ollama_chat(messages, SUBMISSION_TOOLS, model)
+        msg = resp.get("message", {})
+        content = msg.get("content", "")
+
+        # check for tool calls (Ollama format)
+        tool_calls = msg.get("tool_calls", [])
         if not tool_calls:
-            log(f"  subagent finished after {turn + 1} turns (no tool calls)")
+            log(f"  subagent finished after {turn+1}t (no tool calls): {content[:100]}")
             break
 
         # append assistant message
-        messages.append({"role": "assistant", "content": resp.content})
+        messages.append({"role": "assistant", "content": content, "tool_calls": tool_calls})
 
         # execute tools
-        tool_results = []
         for tc in tool_calls:
-            handler = TOOL_HANDLERS.get(tc.name)
-            if handler:
-                result = handler(tc.input)
-                log(f"  {tc.name}({list(tc.input.values())[0][:60] if tc.input.values() else ''}...) → "
-                    f"{result[:80].split(chr(10))[0]}")
-                tool_results.append({
-                    "type": "tool_result",
-                    "tool_use_id": tc.id,
-                    "content": result,
-                })
-            else:
-                tool_results.append({
-                    "type": "tool_result",
-                    "tool_use_id": tc.id,
-                    "content": f"未知工具: {tc.name}",
-                })
+            fn = tc.get("function", {})
+            name = fn.get("name", "")
+            args = fn.get("arguments", {})
+            if isinstance(args, str):
+                try:
+                    args = json.loads(args)
+                except json.JSONDecodeError:
+                    args = {}
 
-        messages.append({"role": "user", "content": tool_results})
+            handler = TOOL_HANDLERS.get(name)
+            if handler:
+                result = handler(args)
+                arg_preview = str(list(args.values())[0])[:60] if args else ""
+                log(f"  {name}({arg_preview}...) → {result[:80].split(chr(10))[0]}")
+            else:
+                result = f"未知工具: {name}"
+
+            messages.append({
+                "role": "tool",
+                "content": result,
+                "tool_call_id": tc.get("id", ""),
+            })
     else:
         log(f"  subagent hit max {MAX_TOOL_TURNS} turns")
 
@@ -354,6 +390,7 @@ def main():
     # --- lidangzzz loop ---
     started_at = time.time()
     last_failures = None
+    last_model = MODELS["coder"]
 
     while True:
         # 1. check time
@@ -364,33 +401,38 @@ def main():
         # 2. criteria check — Gate 1 (CODE)
         ok, failures = criteria_met(engine, submission)
         if ok:
-            log("Gate 1 PASS — running Gate 2 (7-judge panel)")
+            log("Gate 1 PASS — running Gate 2")
             ok2, findings = gate2_review(submission)
             if ok2:
                 log("Gate 2 PASS — criteria met, DONE")
                 return 0
-            log(f"Gate 2: {findings} — subagent needs to fix content quality")
-            spawn_subagent(submission, round_memory=f"Gate 1 全部通过但 Gate 2 审查发现以下问题：\n{findings}\n\n请修复这些问题。")
-            last_failures = None  # reset — Gate 1 was clean, new issues from Gate 2
+            log(f"Gate 2: {findings} — fixing with writer model")
+            spawn_subagent(submission, model=MODELS["writer"],
+                           round_memory=f"Gate 1 全部通过但 Gate 2 审查发现：\n{findings}\n\n请修复。")
+            last_failures = None
             continue
 
-        # 3. round memory — pass last failures so subagent doesn't start from zero
+        # 3. pick model + round memory
+        model = _pick_model(failures, last_model)
         memory = ""
         if last_failures:
             ids = {r.constraint_id for r in last_failures}
             mem_ids = {r.constraint_id for r in failures}
-            still_failing = ids & mem_ids
             fixed = ids - mem_ids
-            memory = f"上一轮你修复后：已解决 {len(fixed)} 条，仍失败 {len(still_failing)} 条。"
+            still = ids & mem_ids
+            memory = f"上一轮({last_model.split(':')[0]})你修复后：已解决 {len(fixed)} 条，仍失败 {len(still)} 条。"
             if fixed:
                 memory += f" 已修复: {', '.join(sorted(fixed)[:5])}."
-            if still_failing:
-                memory += f" 仍失败: {', '.join(sorted(still_failing)[:5])}."
+            if still:
+                memory += f" 仍失败: {', '.join(sorted(still)[:5])}."
             memory += "\n\n"
 
         # 4. spawn subagent
-        log(f"criteria not met ({len(failures)} failures){' — previous round fixed '+str(len(fixed)) if last_failures and fixed else ''} — spawning subagent")
-        spawn_subagent(submission, round_memory=memory)
+        log(f"criteria not met ({len(failures)} failures){' — fixed '+str(len(fixed)) if last_failures and fixed else ''}, "
+            f"model={model.split(':')[0]}")
+        spawn_subagent(submission, round_memory=memory, model=model)
+        last_failures = failures
+        last_model = model
         last_failures = failures
 
 

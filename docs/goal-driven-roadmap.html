@@ -1,0 +1,308 @@
+<title>haidian Goal-Driven 路线图</title>
+<style>
+:root {
+  --bg: #0b0b0b; --fg: #e8e6e1; --muted: #8a8780; --dim: #5c5a55;
+  --accent: #ffb84d; --tech: #5dabff; --green: #6dbe82; --red: #e0556a;
+  --line: #ffffff14; --card: #131313; --card-hover: #1a1a1a;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{
+  background:radial-gradient(circle at 50% 0%,rgba(255,184,77,.04),transparent 50rem) var(--bg);
+  color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.7;
+  max-width:960px;margin:0 auto;padding:48px 24px 96px;
+}
+::selection{background:var(--accent);color:#0b0b0b}
+h1{font-size:28px;font-weight:700;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:18px;font-weight:600;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+h3{font-size:14px;font-weight:600;margin:24px 0 8px;color:var(--accent)}
+.subtitle{color:var(--muted);font-size:15px;margin-bottom:40px}
+.tag{
+  display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.tag-core{background:rgba(255,184,77,.15);color:var(--accent)}
+.tag-sub{background:rgba(93,171,255,.12);color:var(--tech)}
+.tag-done{background:rgba(109,190,130,.12);color:var(--green)}
+.tag-todo{background:rgba(255,255,255,.06);color:var(--dim)}
+/* Flow diagram */
+.flow{display:flex;align-items:center;gap:0;margin:32px 0;flex-wrap:wrap;justify-content:center}
+.flow-node{
+  background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:16px 20px;text-align:center;min-width:100px;
+}
+.flow-node.core{border-color:rgba(255,184,77,.25)}
+.flow-node.sub{border-color:rgba(93,171,255,.2)}
+.flow-node.gate{border-color:rgba(109,190,130,.25)}
+.flow-arrow{color:var(--dim);font-size:20px;padding:0 8px;flex-shrink:0}
+.flow-label{font-size:11px;color:var(--dim);text-align:center;margin-top:4px}
+/* Lane layout */
+.lane{display:grid;grid-template-columns:120px 1fr;gap:16px;margin:24px 0;align-items:start}
+.lane-label{font-size:12px;font-weight:600;color:var(--muted);text-align:right;padding-top:4px;text-transform:uppercase;letter-spacing:.06em}
+.lane-content{display:flex;flex-wrap:wrap;gap:8px}
+/* Card */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:12px 16px;flex:1;min-width:200px;max-width:300px;
+}
+.card h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.card p{font-size:12px;color:var(--muted);line-height:1.5}
+.card .status{font-size:11px;margin-top:6px}
+/* Decision points */
+.decision{
+  background:var(--card);border:1px dashed var(--line);border-radius:6px;
+  padding:10px 14px;margin:20px 0;display:flex;align-items:center;gap:12px;
+}
+.decision-icon{font-size:24px;flex-shrink:0}
+.decision-text{font-size:12px;color:var(--muted)}
+.decision-text strong{color:var(--accent)}
+/* Timeline phases */
+.phase{display:flex;gap:16px;margin:20px 0;align-items:flex-start}
+.phase-marker{
+  width:12px;height:12px;border-radius:50%;margin-top:4px;flex-shrink:0;
+  background:var(--dim);
+}
+.phase-marker.now{background:var(--accent);box-shadow:0 0 8px rgba(255,184,77,.4)}
+.phase-marker.done{background:var(--green)}
+.phase-body{flex:1}
+.phase-body h4{font-size:14px;font-weight:600;margin-bottom:4px}
+.phase-body p{font-size:12px;color:var(--muted)}
+/* Loop viz */
+.loop-box{
+  border:2px solid var(--accent);border-radius:10px;padding:20px 24px;
+  margin:24px 0;position:relative;
+}
+.loop-box::before{
+  content:"MASTER LOOP";position:absolute;top:-10px;left:16px;
+  background:var(--bg);padding:0 8px;font-size:11px;font-weight:700;
+  color:var(--accent);letter-spacing:.06em;
+}
+.loop-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.loop-step{
+  background:rgba(255,184,77,.06);border:1px solid rgba(255,184,77,.15);
+  border-radius:6px;padding:10px 14px;text-align:center;
+}
+.loop-step h5{font-size:12px;font-weight:600;color:var(--accent)}
+.loop-step p{font-size:11px;color:var(--muted);margin-top:2px}
+.loop-arrow{color:var(--accent);font-size:18px}
+/* Code block */
+pre{
+  background:#0f0f0f;border:1px solid var(--line);border-radius:6px;
+  padding:14px 18px;overflow-x:auto;font-family:var(--mono);font-size:12px;
+  line-height:1.6;color:var(--muted);margin:12px 0;
+}
+pre .kw{color:var(--accent)}
+pre .str{color:var(--green)}
+pre .cmt{color:var(--dim)}
+/* Grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.footnote{font-size:11px;color:var(--dim);margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
+</style>
+
+<h1>百年京张AI创新带 — Goal-Driven 路线图</h1>
+<p class="subtitle">基于 lidangzzz Goal-Driven 模式 · Master 只做三件事：创建 subagent · 检查活性 · 验证 criteria</p>
+
+<!-- ==================== MASTER LOOP ==================== -->
+<h2>1. 核心循环</h2>
+
+<div class="loop-box">
+<div class="loop-inner">
+  <div class="loop-step">
+    <h5>检查活性</h5>
+    <p>subagent 还活着？</p>
+  </div>
+  <span class="loop-arrow">→</span>
+  <div class="loop-step">
+    <h5>验证 criteria</h5>
+    <p>ConstraintEngine<br>33 条 CODE 约束</p>
+  </div>
+  <span class="loop-arrow">→</span>
+  <div class="loop-step">
+    <h5>达标？</h5>
+    <p>零 FAIL → DONE<br>有失败 → 继续</p>
+  </div>
+  <span class="loop-arrow">→</span>
+  <div class="loop-step">
+    <h5>重启 subagent</h5>
+    <p>新 DeepSeek 会话<br>自己读 repo 状态</p>
+  </div>
+  <span class="loop-arrow">↻</span>
+</div>
+</div>
+
+<p style="font-size:12px;color:var(--dim);text-align:center">
+Master 不给 subagent 传反馈。Subagent 自己读 brief/site-package/、当前 submission、验证失败原文，自己决定改什么。
+</p>
+
+<!-- ==================== DATA FLOW ==================== -->
+<h2>2. 数据流</h2>
+
+<div class="flow">
+  <div class="flow-node core">
+    <strong>Master</strong><br>
+    <span style="font-size:11px;color:var(--muted)">goal_driven_loop.py</span>
+  </div>
+  <span class="flow-arrow">spawn</span>
+  <div class="flow-node sub">
+    <strong>Subagent</strong><br>
+    <span style="font-size:11px;color:var(--muted)">DeepSeek v4-pro</span>
+  </div>
+  <span class="flow-arrow">读写</span>
+  <div class="flow-node">
+    <strong>Submission</strong><br>
+    <span style="font-size:11px;color:var(--muted)">submissions/&lt;slug&gt;/</span>
+  </div>
+  <span class="flow-arrow">验证</span>
+  <div class="flow-node gate">
+    <strong>Gate 1</strong><br>
+    <span style="font-size:11px;color:var(--muted)">ConstraintEngine</span>
+  </div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-node gate">
+    <strong>Gate 2</strong><br>
+    <span style="font-size:11px;color:var(--muted)">7 Judge Panel</span>
+  </div>
+</div>
+
+<!-- ==================== COMPONENT STATUS ==================== -->
+<h2>3. 组件状态</h2>
+
+<h3>Master 层</h3>
+<div class="lane">
+  <div class="lane-label">入口</div>
+  <div class="lane-content">
+    <div class="card">
+      <h4>goal_driven_loop.py <span class="tag tag-done">v1 可用</span></h4>
+      <p>lidangzzz 循环骨架。dummy subagent，只跑 Gate 1。</p>
+      <div class="status"><span class="tag tag-todo">TODO</span> 接 DeepSeek</div>
+    </div>
+  </div>
+</div>
+
+<h3>Criteria 层</h3>
+<div class="lane">
+  <div class="lane-label">Gate 1</div>
+  <div class="lane-content">
+    <div class="card">
+      <h4>ConstraintEngine <span class="tag tag-done">可用</span></h4>
+      <p>33 条 enabled CODE 约束。确定性执行，零 LLM。</p>
+    </div>
+    <div class="card">
+      <h4>三区三线状态机 <span class="tag tag-done">可用</span></h4>
+      <p>urban-design-knowledge 项目。68 测试全过。待集成到 registry。</p>
+    </div>
+  </div>
+</div>
+<div class="lane">
+  <div class="lane-label">Gate 2</div>
+  <div class="lane-content">
+    <div class="card">
+      <h4>7 Judge Panel <span class="tag tag-done">定义就绪</span></h4>
+      <p>statutes.json + 7 个 judge prompt。待接 DeepSeek 并行调用。</p>
+    </div>
+  </div>
+</div>
+
+<h3>Subagent 层</h3>
+<div class="lane">
+  <div class="lane-label">LLM</div>
+  <div class="lane-content">
+    <div class="card">
+      <h4>DeepSeek 后端 <span class="tag tag-todo">TODO</span></h4>
+      <p>Anthropic-compatible API 已配好。需要写 client 封装 + prompt。</p>
+    </div>
+  </div>
+</div>
+<div class="lane">
+  <div class="lane-label">工具</div>
+  <div class="lane-content">
+    <div class="card">
+      <h4>空间计算 <span class="tag tag-sub">urban-spatial-tooling</span></h4>
+      <p>Metal GPU 投影加速 3-4x。shapely/GEOS 做判定。subagent 可选调用。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MILESTONES ==================== -->
+<h2>4. 里程碑</h2>
+
+<div class="phase">
+  <div class="phase-marker done"></div>
+  <div class="phase-body">
+    <h4>M0：约束验证闭环 <span class="tag tag-done">完成</span></h4>
+    <p>ConstraintEngine 可用。goal_driven_loop.py v1 dummy 跑通。</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-marker now"></div>
+  <div class="phase-body">
+    <h4>M1：DeepSeek 接入 <span class="tag tag-core">当前</span></h4>
+    <p>goal_driven_loop.py 接 DeepSeek。subagent 真正读写 submission 文件。<br>
+       验收：一次 scaffold 占位包 → subagent 自主修复 → Gate 1 全 PASS。</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-marker"></div>
+  <div class="phase-body">
+    <h4>M2：Gate 2 接入</h4>
+    <p>7 judge panel 并行调 DeepSeek。verdict 聚合 + 路由。<br>
+       验收：Gate 1 全过 + Gate 2 APPROVED → 产出可提交方案包。</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-marker"></div>
+  <div class="phase-body">
+    <h4>M3：三区三线集成</h4>
+    <p>urban-design-knowledge 状态机作为新 CODE check 接入 registry。<br>
+       验收：生态红线/基本农田/城镇边界违规正确检出。</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="phase-marker"></div>
+  <div class="phase-body">
+    <h4>M4：彻夜运行</h4>
+    <p>完整循环稳定运行。stall 恢复 + 预算控制。<br>
+       验收：一次彻夜跑出 human-review-ready 方案。</p>
+  </div>
+</div>
+
+<!-- ==================== DECISIONS ==================== -->
+<h2>5. 待决策</h2>
+
+<div class="decision">
+  <div class="decision-icon">1</div>
+  <div class="decision-text">
+    <strong>Subagent 怎么调 DeepSeek？</strong><br>
+    选项 A：一次 tool-use 会话（subagent 内部循环读写文件直到自己说完成）<br>
+    选项 B：Master 每轮调一次 DeepSeek（和 hook-autoresearch 一样）
+  </div>
+</div>
+
+<div class="decision">
+  <div class="decision-icon">2</div>
+  <div class="decision-text">
+    <strong>Subagent 怎么跑验证？</strong><br>
+    选项 A：subagent 自己调 ConstraintEngine（给它 run_python 权限）<br>
+    选项 B：只靠 Master 验证（subagent 改完文件就结束，结果由 Master 告知）
+  </div>
+</div>
+
+<div class="decision">
+  <div class="decision-icon">3</div>
+  <div class="decision-text">
+    <strong>并行实验怎么设计？</strong><br>
+    跑多个 slug（如 <code>submissions/exp-a/</code>、<code>submissions/exp-b/</code>），<br>
+    不同 prompt/温度/model，对比 criteria 收敛速度。
+  </div>
+</div>
+
+<p class="footnote">
+haidian Goal-Driven Roadmap · 2026-08-08 · 基于 <a href="https://github.com/lidangzzz/goal-driven" style="color:var(--accent)">lidangzzz/goal-driven</a>
+</p>

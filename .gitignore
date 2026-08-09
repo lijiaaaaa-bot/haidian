@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .pr-worktree/
 .maintainer-review/
+.goal-driven/
 docs/reviews/
 data/source_registry.draft.json
 submissions/*/*/exhibit.json
