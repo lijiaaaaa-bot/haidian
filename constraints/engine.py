@@ -447,6 +447,7 @@ def _check_area_tolerance(sub_path: Path, params: dict) -> tuple[CheckOutcome, s
     declared = params.get("declared_area_sqm")
     tolerance_pct = params.get("tolerance_pct", 5.0)
     scope_label = params.get("scope_label", "unknown")
+    metric_key = params.get("metric_key", None)
 
     if declared is None:
         return (CheckOutcome.SKIP, "无 declared area 参数", "")
@@ -463,15 +464,41 @@ def _check_area_tolerance(sub_path: Path, params: dict) -> tuple[CheckOutcome, s
 
     # Find the matching metric
     actual = None
-    for m in metrics if isinstance(metrics, list) else [metrics]:
-        if isinstance(m, dict):
-            for key, val in m.items():
-                if isinstance(val, (int, float)) and key.endswith("_sqm"):
+    
+    # If a specific metric_key is provided, try top-level first, then nested metrics.{key}.value
+    if metric_key and isinstance(metrics, dict):
+        actual = metrics.get(metric_key)
+        # Also try nested structure: metrics.metrics.{metric_key}.value
+        if actual is None and isinstance(metrics.get("metrics"), dict):
+            metric_entry = metrics["metrics"].get(metric_key)
+            if isinstance(metric_entry, dict):
+                actual = metric_entry.get("value")
+    
+    # Fallback: scan for first _sqm key at top level
+    if actual is None:
+        for m in metrics if isinstance(metrics, list) else [metrics]:
+            if isinstance(m, dict):
+                for key, val in m.items():
+                    if isinstance(val, (int, float)) and key.endswith("_sqm"):
+                        actual = val
+                        break
+    
+    # Fallback: scan nested metrics.{key}.value for _sqm keys
+    if actual is None and isinstance(metrics, dict) and isinstance(metrics.get("metrics"), dict):
+        for key, entry in metrics["metrics"].items():
+            if isinstance(entry, dict) and key.endswith("_sqm"):
+                val = entry.get("value")
+                if isinstance(val, (int, float)):
                     actual = val
                     break
 
     if actual is None and isinstance(metrics, dict):
         actual = metrics.get("site_area_sqm")
+        # Try nested
+        if actual is None and isinstance(metrics.get("metrics"), dict):
+            entry = metrics["metrics"].get("site_area_sqm")
+            if isinstance(entry, dict):
+                actual = entry.get("value")
 
     if actual is None:
         return (CheckOutcome.FAIL, f"metrics.json 中未找到面积值", str(metrics_file))
@@ -487,7 +514,7 @@ def _check_area_tolerance(sub_path: Path, params: dict) -> tuple[CheckOutcome, s
     return (
         CheckOutcome.FAIL,
         f"{scope_label} 面积 {actual:.0f} m² 超出公告值 {declared:,} m² 的 {tolerance_pct}% 容差 (偏差 {delta_pct:.1f}%)",
-        f"metrics.json: site_area_sqm={actual}, declared={declared}, delta={delta_pct:.1f}%",
+        f"metrics.json: {metric_key or 'site_area_sqm'}={actual}, declared={declared}, delta={delta_pct:.1f}%",
     )
 
 
@@ -707,7 +734,13 @@ def _check_sanity_bounds(sub_path: Path, params: dict) -> tuple[CheckOutcome, st
     # Find the metric value
     value = None
     if isinstance(metrics, dict):
+        # Try top-level first
         value = metrics.get(metric_key)
+        # Try nested metrics.{key}.value
+        if value is None and isinstance(metrics.get("metrics"), dict):
+            entry = metrics["metrics"].get(metric_key)
+            if isinstance(entry, dict):
+                value = entry.get("value")
     elif isinstance(metrics, list):
         for m in metrics:
             if isinstance(m, dict):

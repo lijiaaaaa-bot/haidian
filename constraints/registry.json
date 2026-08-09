@@ -33,7 +33,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001",
         "scope_label": "统筹研究范围",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "coordinated_research_area_sqm"
       },
       "severity": "high",
       "enabled": true,
@@ -52,7 +53,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001",
         "scope_label": "总体设计范围",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "overall_design_area_sqm"
       },
       "severity": "high",
       "enabled": true,
@@ -71,7 +73,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-SCOPE-001",
         "scope_label": "重点区域范围",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "key_detailed_design_area_sqm"
       },
       "severity": "high",
       "enabled": true,
@@ -90,7 +93,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-001",
         "scope_label": "众智园AI自主创新加速区",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "zhongzhiyuan_ai_acceleration_area_sqm"
       },
       "severity": "high",
       "enabled": true,
@@ -109,7 +113,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-002",
         "scope_label": "北京AI原点社区",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "beijing_ai_origin_community_area_sqm"
       },
       "severity": "high",
       "enabled": true,
@@ -128,7 +133,8 @@
         "tolerance_pct": 5.0,
         "geometry_source": "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-003",
         "scope_label": "大钟寺AI产业聚集区",
-        "geometry_status": "exact_polygon_missing_provisional_available"
+        "geometry_status": "exact_polygon_missing_provisional_available",
+        "metric_key": "dazhongsi_ai_industry_cluster_area_sqm"
       },
       "severity": "high",
       "enabled": true,
