@@ -76,6 +76,42 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "coordinated_research_area_sqm": {
+      "status": "estimated",
+      "value": 43600000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
+    },
+    "overall_design_area_sqm": {
+      "status": "estimated",
+      "value": 11400000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "estimated",
+      "value": 3680000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "estimated",
+      "value": 1930000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "estimated",
+      "value": 1040000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
+    },
+    "dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "estimated",
+      "value": 720000,
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "note": "从 provisional 边界估算"
     }
   }
 }

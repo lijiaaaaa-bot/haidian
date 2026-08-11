@@ -17,14 +17,8 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            116.340948,
-            39.9845
-          ],
-          [
-            116.35374,
-            39.9845
-          ]
+          [116.340948, 39.9845],
+          [116.35374, 39.9845]
         ]
       }
     },
@@ -37,20 +31,14 @@
         "source_type": "agent_generated_design",
         "confidence": "medium",
         "geometry_role": "design_proposal",
-        "road_class": "local_artery",
-        "name_zh": "AI产业主干道"
+        "road_class": "arterial",
+        "name_zh": "学院路主干道"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            116.342,
-            39.945
-          ],
-          [
-            116.355,
-            39.945
-          ]
+          [116.342, 39.939],
+          [116.342, 40.0265]
         ]
       }
     },
@@ -63,20 +51,14 @@
         "source_type": "agent_generated_design",
         "confidence": "medium",
         "geometry_role": "design_proposal",
-        "road_class": "access_road",
+        "road_class": "secondary",
         "name_zh": "社区服务支路"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            116.343,
-            39.99
-          ],
-          [
-            116.353,
-            39.99
-          ]
+          [116.347, 39.965],
+          [116.351, 39.965]
         ]
       }
     }

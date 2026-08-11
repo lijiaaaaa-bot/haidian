@@ -8,8 +8,11 @@
 
 cd "$(dirname "$0")/.."
 
-export HAIDIAN_WRITER_MODEL="${HAIDIAN_WRITER_MODEL:-qwen3.6:35b-a3b}"
-export HAIDIAN_CODER_MODEL="${HAIDIAN_CODER_MODEL:-qwen3-coder:30b}"
+export HAIDIAN_MLX=true
+export HAIDIAN_WRITER_MODEL="${HAIDIAN_WRITER_MODEL:-mlx-community/Qwen3.5-35B-A3B-4bit}"
+export HAIDIAN_CODER_MODEL="${HAIDIAN_CODER_MODEL:-lmstudio-community/Qwen3-Coder-30B-A3B-Instruct-MLX-4bit}"
+# Ollama restart no longer needed with MLX
+OMIT_OLLAMA_RESTART=true
 
 LOG_DIR="/tmp"
 
@@ -32,15 +35,17 @@ while true; do
         echo "=== $(date) DONE — criteria met ===" >> "$LOG"
         break
     fi
-    echo "=== $(date) crashed (exit=$EXIT), restarting Ollama + loop ===" >> "$LOG"
-    # Hard-restart Ollama before relaunching the loop (hung Ollama -> HTTP 500s).
-    # `|| true`: pkill returns non-zero when no ollama process exists, which
-    # must not skip the restart.
-    pkill -9 ollama || true
-    sleep 5
-    open -a Ollama || true
-    sleep 15
-    sleep 30
+    echo "=== $(date) crashed (exit=$EXIT), restarting loop ===" >> "$LOG"
+    # With MLX: no Ollama to restart — just back off and retry
+    if [ "${OMIT_OLLAMA_RESTART:-}" = "true" ]; then
+        sleep 10
+    else
+        pkill -9 ollama || true
+        sleep 5
+        open -a Ollama || true
+        sleep 15
+        sleep 30
+    fi
 done
 
 echo "DONE. Log: $LOG"

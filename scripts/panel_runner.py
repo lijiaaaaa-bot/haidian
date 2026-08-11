@@ -27,41 +27,31 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
+JUDGE_BACKEND = os.environ.get("HAIDIAN_JUDGE_BACKEND", "ollama")  # ollama | deepseek
 JUDGE_MODEL = os.environ.get("HAIDIAN_JUDGE_MODEL", "qwen3.6:35b-a3b")
 VISUAL_JUDGE_MODEL = os.environ.get("HAIDIAN_VISUAL_JUDGE_MODEL", "qwen2.5vl:32b-q4_K_M")
-JUDGE_TIMEOUT = int(os.environ.get("HAIDIAN_JUDGE_TIMEOUT", "300"))
-NUM_CTX = int(os.environ.get("HAIDIAN_JUDGE_CTX", "16384"))
+JUDGE_TIMEOUT = int(os.environ.get("HAIDIAN_JUDGE_TIMEOUT", "480"))
+NUM_CTX = int(os.environ.get("HAIDIAN_JUDGE_CTX", "24576"))
 
-# Per-file evidence budget (chars). Files larger than this are shown as
-# head+tail excerpt — the middle is dropped rather than the whole file.
-MAX_FILE_CHARS = int(os.environ.get("HAIDIAN_EVIDENCE_CHARS", "16000"))
-
-# Total evidence budget per statute (chars). Sized so that prefill stays
-# well inside JUDGE_TIMEOUT and num_ctx (measured: qwen3.6 ~0.45 tok/char,
-# ~80-100 tok/s prefill on M5 Max; qwen2.5vl ~0.56 tok/char, ~35 tok/s).
-EVIDENCE_BUDGET: dict[str, int] = {
-    "package_integrity": 9000,
-    "spatial_quality": 10000,
-    "proposal_depth": 17000,        # full proposal ~15.6K chars
-    "task_coverage": 18000,         # compliance compact + proposal excerpt
-    "figure_quality": 1000,         # just the figure size table; images dominate
-    "metric_verifiability": 18000,  # metrics + assumptions + geometry
-    "compliance_and_boundaries": 24000,
-}
-# Judges that need a longer per-call budget (vision + big payloads).
-LONG_TIMEOUT_STATUTES = {"figure_quality"}
-
-# Which evidence each statute actually needs. Judges 2/5/6 were previously
-# pointed at geometry/figures that were never included in the prompt.
-EVIDENCE_PLAN: dict[str, list[str]] = {
-    "package_integrity": ["manifest.json", "self_check.json"],
-    "spatial_quality": ["geometry"],
-    "proposal_depth": ["proposal.md"],
-    "task_coverage": ["compliance_matrix.json", "proposal.md"],
+# Which evidence each statute needs, with a per-file char budget.
+# Sized against measured speed (qwen3.6 ~0.45 tok/char, ~80-100 tok/s
+# prefill on M5 Max; qwen2.5vl ~0.56 tok/char, ~35 tok/s) so each judge's
+# prefill stays inside its timeout. Files over budget are shown as
+# head+tail excerpt; the middle is dropped rather than the whole file.
+EVIDENCE_PLAN: dict[str, list[tuple[str, int]]] = {
+    "package_integrity": [("manifest.json", 9000), ("self_check.json", 9000)],
+    "spatial_quality": [("geometry", 10000)],
+    "proposal_depth": [("proposal.md", 17000)],  # full proposal ~15.6K chars
+    "task_coverage": [("compliance_matrix.json", 30000), ("proposal.md", 14000)],
     "figure_quality": [],  # PNG images sent separately (visual model)
-    "metric_verifiability": ["metrics.json", "assumptions.json", "geometry"],
+    "metric_verifiability": [
+        ("metrics.json", 8000), ("assumptions.json", 8000), ("geometry", 10000),
+        ("visual/index.html", 6000),
+    ],
     "compliance_and_boundaries": [
-        "proposal.md", "assumptions.json", "sources.json", "compliance_matrix.json",
+        ("proposal.md", 10000), ("assumptions.json", 8000),
+        ("sources.json", 8000), ("compliance_matrix.json", 22000),
+        ("report/copyright_statement.md", 4000),
     ],
 }
 
@@ -75,6 +65,9 @@ FIGURE_NAMES = [
     "site-overview.png", "land-use-structure.png", "key-areas.png",
     "mobility-bluegreen.png", "metrics-evidence.png",
 ]
+
+# Judges that need a longer per-call budget (vision + big payloads).
+LONG_TIMEOUT_STATUTES = {"figure_quality"}
 
 
 @dataclass
@@ -118,7 +111,7 @@ def _load_judge_prompt(statute: dict) -> str:
     return f"评审维度: {statute['title_zh']}\n{json.dumps(statute, ensure_ascii=False)}"
 
 
-def _excerpt(text: str, max_chars: int = MAX_FILE_CHARS) -> str:
+def _excerpt(text: str, max_chars: int = 16000) -> str:
     """Head+tail excerpt so the middle of big files is dropped, not the ends."""
     if len(text) <= max_chars:
         return text
@@ -127,7 +120,13 @@ def _excerpt(text: str, max_chars: int = MAX_FILE_CHARS) -> str:
 
 
 def _geometry_evidence(submission: Path) -> dict[str, str]:
-    """Compact GeoJSON features (names + attributes, coordinates clipped)."""
+    """Compact GeoJSON features (structure + attributes, coordinates clipped).
+
+    Reports per-feature geometry type, ring/point counts and a coordinate
+    sample so judges can reason about validity — never raw coordinate arrays
+    (huge) and never ambiguous counts (e.g. len(coordinates) of a Polygon
+    outer array is the number of rings, not points).
+    """
     out: dict[str, str] = {}
     gdir = submission / "geometry"
     if not gdir.is_dir():
@@ -142,10 +141,27 @@ def _geometry_evidence(submission: Path) -> dict[str, str]:
             props = feat.get("properties", {})
             geom = feat.get("geometry") or {}
             gtype = geom.get("type")
-            coords = geom.get("coordinates")
-            n_coords = len(coords) if isinstance(coords, list) else 0
+            coords = geom.get("coordinates") or []
+            if gtype == "Polygon" and isinstance(coords, list):
+                rings = [len(r) for r in coords if isinstance(r, list)]
+                total = sum(rings)
+                sample = next((r[0] for r in coords
+                               if isinstance(r, list) and r and isinstance(r[0], list)), None)
+                geom_info = {"type": gtype, "rings": len(rings),
+                             "points_per_ring": rings, "total_points": total,
+                             "closed": bool(rings and rings[0] >= 4
+                                            and coords[0][0] == coords[0][-1])}
+            elif gtype == "LineString" and isinstance(coords, list):
+                geom_info = {"type": gtype, "points": len(coords),
+                             "sample": coords[0] if coords else None}
+            elif gtype == "Point" and isinstance(coords, list):
+                geom_info = {"type": gtype, "sample": coords}
+            else:
+                geom_info = {"type": gtype, "coords_sample": coords[:2]}
+            if gtype in ("Polygon", "LineString"):
+                geom_info["sample_coord"] = sample if gtype == "Polygon" else (coords[0] if coords else None)
             features.append({
-                "type": gtype, "n_coords": n_coords,
+                "geometry": geom_info,
                 "properties": {k: props[k] for k in sorted(props)},
             })
         out[fp.name] = _excerpt(json.dumps({
@@ -157,46 +173,89 @@ def _geometry_evidence(submission: Path) -> dict[str, str]:
 
 
 def _compact_json(text: str) -> str | None:
-    """Render JSON with per-row caps so large tables stay readable.
+    """Render JSON compactly while PRESERVING structure.
 
     Returns None if the text isn't parseable JSON (caller falls back to
-    markdown excerpt). List-of-dicts (requirement tables) are kept row by
-    row, each row capped, so coverage checks see every entry.
+    markdown excerpt). List-of-dict rows (e.g. compliance_matrix.json
+    requirements) must stay objects with their key fields intact — judges
+    need requirement_id / title / status for cross-verification. Only long
+    strings and deep lists are capped; the row shape is never stringified.
     """
     try:
         obj = json.loads(text)
     except Exception:
         return None
 
-    def cap_string(v: str) -> str:
-        return v if len(v) <= 500 else v[:500] + "…"
+    def cap_string(v: str, limit: int = 200) -> str:
+        return v if len(v) <= limit else v[:limit] + "…"
+
+    def cap_list(v: list, limit: int = 3) -> list:
+        kept = [cap_string(x, 80) if isinstance(x, str) else x for x in v[:limit]]
+        if len(v) > limit:
+            kept.append(f"+{len(v) - limit} more")
+        return kept
 
     def walk(v: Any) -> Any:
         if isinstance(v, dict):
-            return {k: walk(x) for k, x in v.items()}
-        if isinstance(v, list):
-            rows = []
-            for x in v:
-                s = json.dumps(x, ensure_ascii=False)
-                rows.append(s if len(s) <= 700 else s[:700] + "…")
-            return rows
+            out = {}
+            for k, x in v.items():
+                if isinstance(x, str):
+                    out[k] = cap_string(x)
+                elif isinstance(x, list):
+                    if all(isinstance(i, str) for i in x):
+                        out[k] = cap_list(x)
+                    else:
+                        out[k] = [walk(i) for i in x[:30]]
+                elif isinstance(x, dict):
+                    out[k] = walk(x)
+                else:
+                    out[k] = x
+            return out
         if isinstance(v, str):
             return cap_string(v)
         return v
 
-    return json.dumps(walk(obj), ensure_ascii=False, indent=1)
+    compact = walk(obj)
+    # Drop exact-duplicate top-level tables (e.g. compliance_matrix.json has
+    # requirements == entries) — lossless, keeps every row under the budget.
+    if isinstance(compact, dict):
+        seen = set()
+        for k in list(compact):
+            val = compact[k]
+            if isinstance(val, list):
+                # sort_keys: same rows in different key order must dedupe
+                sig = json.dumps(val, ensure_ascii=False, sort_keys=True)
+                if sig in seen:
+                    compact.pop(k)
+                else:
+                    seen.add(sig)
+    return json.dumps(compact, ensure_ascii=False, indent=1)
+
+
+def _md_excerpt(text: str, max_chars: int) -> str:
+    """Markdown excerpt that keeps the full heading outline (## sections)."""
+    if len(text) <= max_chars:
+        return text
+    headings = [l for l in text.split("\n") if l.startswith("## ")]
+    hblock = "\n".join(headings) + "\n---"
+    budget = max_chars - len(hblock) - 80
+    if budget < 2000:  # headings would eat everything; fall back to plain excerpt
+        return _excerpt(text, max_chars)
+    head = text[: budget // 2]
+    tail = text[-(budget // 2):]
+    return f"{hblock}\n{head}\n...<内容过长已省略 {len(text) - budget} 字符>...\n{tail}"
 
 
 def _build_evidence(submission: Path, statute_name: str) -> dict[str, str]:
-    """Collect the files this statute's judge actually needs, budget-capped."""
-    wanted = set(EVIDENCE_PLAN.get(statute_name, TEXT_FILES))
-    budget = EVIDENCE_BUDGET.get(statute_name, 16000)
+    """Collect the files this statute's judge needs, per-file budget capped."""
+    plan = EVIDENCE_PLAN.get(statute_name)
+    if plan is None:
+        plan = [(name, 16000) for name in TEXT_FILES]
     evidence: dict[str, str] = {}
 
-    if "geometry" in wanted:
-        evidence.update(_geometry_evidence(submission))
-    for name in TEXT_FILES:
-        if name not in wanted:
+    for name, cap in plan:
+        if name == "geometry":
+            evidence.update(_geometry_evidence(submission))
             continue
         fp = submission / name
         if not fp.exists():
@@ -206,16 +265,11 @@ def _build_evidence(submission: Path, statute_name: str) -> dict[str, str]:
             compact = _compact_json(text)
             if compact is not None and len(compact) < len(text):
                 text = compact
-        evidence[name] = _excerpt(text, MAX_FILE_CHARS)
-
-    # Enforce the statute budget: drop whole files (smallest last) until under.
-    total = sum(len(v) for v in evidence.values())
-    if total > budget:
-        for name in sorted(evidence, key=lambda n: -len(evidence[n])):
-            evidence[name] = _excerpt(evidence[name], max(budget // max(len(evidence), 1), 500))
-            total = sum(len(v) for v in evidence.values())
-            if total <= budget:
-                break
+            evidence[name] = _excerpt(text, cap)
+        elif name.endswith(".md"):
+            evidence[name] = _md_excerpt(text, cap)
+        else:
+            evidence[name] = _excerpt(text, cap)
     return evidence
 
 
@@ -232,6 +286,31 @@ def _figure_images(submission: Path) -> tuple[list[str], dict[str, str]]:
     return images, {"figure_files": json.dumps(sizes, ensure_ascii=False, indent=1)}
 
 
+def _call_deepseek(system: str, evidence: dict, statute: dict,
+                    images: list[str] | None = None, timeout: int = 120) -> dict:
+    """Judge via DeepSeek API — fast for long evidence packets."""
+    import anthropic
+    key = open("/tmp/.hdk").read().strip() if os.path.exists("/tmp/.hdk") else os.environ.get("ANTHROPIC_API_KEY", "")
+    client = anthropic.Anthropic(
+        base_url=os.environ.get("ANTHROPIC_BASE_URL", "https://api.deepseek.com/anthropic"),
+        api_key=key)
+    parts = [f"## 评审维度: {statute['title_zh']}"]
+    for name, content in evidence.items():
+        parts.append(f"### {name}\n{content}")
+    parts.append("""输出JSON: {"refuted":bool,"blocking":"none"|"contradiction"|"unverifiable","confidence":"high"|"medium"|"low","reasoning":"...","findings":[]}""")
+    msg_content = [{"type": "text", "text": "\n\n".join(parts)}]
+    if images:
+        msg_content += [{"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": i}} for i in images]
+    try:
+        resp = client.messages.create(
+            model="deepseek-v4-pro", max_tokens=2048, system=system,
+            messages=[{"role": "user", "content": msg_content}], timeout=timeout)
+        txt = "".join(b.text for b in resp.content if hasattr(b, "text"))
+        return {"message": {"content": txt}}
+    except Exception as e:
+        return {"message": {"content": f'{{"refuted":true,"blocking":"none","confidence":"low","reasoning":"DeepSeek error: {e}"}}'}}
+
+
 def _call_judge(system: str, evidence: dict, statute: dict, model: str,
                 images: list[str] | None = None, timeout: int = JUDGE_TIMEOUT) -> dict:
     """Single LLM judge call. `images` (base64) are only sent to the visual judge.
@@ -240,6 +319,10 @@ def _call_judge(system: str, evidence: dict, statute: dict, model: str,
     Ollama truncates an oversized prompt it drops from the front, so the
     judge's mandate and output format always survive.
     """
+    # Route: DeepSeek cloud (fast for long prompts) or Ollama local
+    if os.environ.get("HAIDIAN_JUDGE_BACKEND") == "deepseek":
+        return _call_deepseek(system, evidence, statute, images)
+
     import httpx
 
     statute_part = json.dumps({

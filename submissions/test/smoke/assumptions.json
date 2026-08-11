@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1.0",
+  "entries": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-CONTROLS-002",
+      "status": "pending_professional_confirmation",
+      "statement": "floor_area_ratio (容积率) is not available from official sources; design intensity is conceptual and must be calibrated against formal regulatory plan.",
+      "impact": "Building scale and density conclusions are design suggestions, not statutory controls."
+    },
+    {
+      "id": "A-CONTROLS-003",
+      "status": "pending_professional_confirmation",
+      "statement": "building_height_m (建筑高度) is not available from official sources; building heights are conceptual and must be calibrated against formal regulatory plan.",
+      "impact": "Height conclusions are design suggestions, not statutory controls."
+    },
+    {
+      "id": "A-CONTROLS-004",
+      "status": "pending_professional_confirmation",
+      "statement": "building_density (建筑密度) is not available from official sources; density conclusions are design suggestions, not statutory controls."
+    },
+    {
+      "id": "A-CONTROLS-005",
+      "status": "pending_professional_confirmation",
+      "statement": "green_ratio (绿地率) official target is not available from official sources; the submitted green ratio is a design outcome, not a statutory requirement."
+    },
+    {
+      "id": "A-CONTROLS-006",
+      "status": "pending_professional_confirmation",
+      "statement": "setback_m (退线距离) is not available from official sources; building setbacks are design suggestions, not statutory controls."
+    }
+  ]
+}
