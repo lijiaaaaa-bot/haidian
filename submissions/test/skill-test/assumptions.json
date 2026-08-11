@@ -6,6 +6,40 @@
       "status": "pending_professional_confirmation",
       "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
       "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-CTRL",
+      "category": "regulatory_gap",
+      "statement": "控规指标(floor_area_ratio,building_height_m,building_density,green_ratio,setback_m)未在公开资料中找到",
+      "covered_controls": [
+        "floor_area_ratio",
+        "building_height_m",
+        "building_density",
+        "green_ratio",
+        "setback_m"
+      ],
+      "status": "pending_professional_confirmation"
+    }
+  ],
+  "entries": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-CTRL",
+      "category": "regulatory_gap",
+      "statement": "控规指标(floor_area_ratio,building_height_m,building_density,green_ratio,setback_m)未在公开资料中找到",
+      "covered_controls": [
+        "floor_area_ratio",
+        "building_height_m",
+        "building_density",
+        "green_ratio",
+        "setback_m"
+      ],
+      "status": "pending_professional_confirmation"
     }
   ]
 }
