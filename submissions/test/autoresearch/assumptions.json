@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-CONTROL-001",
+      "category": "regulatory_gap",
+      "statement": "三个重点区的控规指标(floor_area_ratio等)未在公开资料中找到，基于典型值假设",
+      "evidence": "北京市基准地价成果未涵盖具体街区指标",
+      "impact": "影响方案指标计算精确度",
+      "status": "pending_professional_confirmation"
+    }
+  ]
+}
