@@ -1,0 +1,37 @@
+{
+  "yearly_events": [
+    {
+      "event_id": "E-001",
+      "name": "全球AI创新大会",
+      "frequency": "年度",
+      "description": "汇聚全球AI领域顶尖专家和企业，展示最新研究成果和技术应用",
+      "target_audience": "国际AI专家、企业家、政府官员",
+      "expected_participants": 5000
+    },
+    {
+      "event_id": "E-002",
+      "name": "中关村AI创新周",
+      "frequency": "年度",
+      "description": "聚焦中关村地区AI产业创新，举办技术论坛、项目路演等活动",
+      "target_audience": "本地AI企业、创业者、投资人",
+      "expected_participants": 2000
+    },
+    {
+      "event_id": "E-003",
+      "name": "AI+场景应用展",
+      "frequency": "半年度",
+      "description": "展示AI技术在医疗、交通、教育等领域的应用场景和成果",
+      "target_audience": "公众、企业、研究机构",
+      "expected_participants": 10000
+    }
+  ],
+  "brand_ip_system": {
+    "brand_name": "百年京张AI创新带",
+    "brand_elements": [
+      "核心标识",
+      "视觉色彩体系",
+      "品牌口号"
+    ],
+    "communication_strategy": "通过多渠道传播，提升品牌知名度和影响力"
+  }
+}

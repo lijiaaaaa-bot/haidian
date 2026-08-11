@@ -1,0 +1,709 @@
+{
+  "schema_version": "0.1.0",
+  "requirements": [
+    {
+      "requirement_id": "agent.1",
+      "title_zh": "一带总体概念与功能统筹方案设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative",
+        "logo_or_visual_identity_direction",
+        "overall_structure_diagram",
+        "compliance_matrix_entry",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm",
+        "design_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "agent.2",
+      "title_zh": "AI全栈自主创新体系与世界级AI创新生态设计",
+      "mandatory": true,
+      "report_sections": [
+        "case_study_table",
+        "ecosystem_map",
+        "industry_space_mapping",
+        "metrics_and_sources",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "scenario_cards_count",
+        "persona_count",
+        "landmark_count"
+      ],
+      "drawings": [
+        "ecosystem_map"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "agent.3",
+      "title_zh": "AI+场景赋能新范式与智能化AI活力城市设计",
+      "mandatory": true,
+      "report_sections": [
+        "scenario_cards",
+        "persona_table",
+        "scenario_space_operation_matrix",
+        "privacy_and_human_review_boundary",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "scenario_cards_count",
+        "persona_count"
+      ],
+      "drawings": [
+        "scenario_cards",
+        "persona_table",
+        "scenario_space_operation_matrix"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "agent.4",
+      "title_zh": "AI公共空间、智能原生新业态与朝圣地标设计",
+      "mandatory": true,
+      "report_sections": [
+        "public_space_design",
+        "landmark_catalog",
+        "hor_display_system",
+        "component_library",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY",
+        "KEY_AREA"
+      ],
+      "metrics": [
+        "landmark_count"
+      ],
+      "drawings": [
+        "landmark_catalog",
+        "public_space_design"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "agent.5",
+      "title_zh": "百年京张文化、中关村文化与AI新文化融合叙事设计",
+      "mandatory": true,
+      "report_sections": [
+        "culture_narrative",
+        "signage_system_direction",
+        "spatial_storyline",
+        "international_communication_copy",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "spatial_storyline"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "agent.6",
+      "title_zh": "一带全球AI创新活动体系与长期运营设计",
+      "mandatory": true,
+      "report_sections": [
+        "annual_event_system",
+        "brand_ip_system",
+        "developer_community_operation",
+        "scenario_open_operation",
+        "conversion_pathway",
+        "visual_index_section"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "annual_event_system",
+        "brand_ip_system"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.1",
+      "title_zh": "占位符需求 1",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.2",
+      "title_zh": "占位符需求 2",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.3",
+      "title_zh": "占位符需求 3",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.4",
+      "title_zh": "占位符需求 4",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.5",
+      "title_zh": "占位符需求 5",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.6",
+      "title_zh": "占位符需求 6",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.7",
+      "title_zh": "占位符需求 7",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.8",
+      "title_zh": "占位符需求 8",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.9",
+      "title_zh": "占位符需求 9",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.10",
+      "title_zh": "占位符需求 10",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.11",
+      "title_zh": "占位符需求 11",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.12",
+      "title_zh": "占位符需求 12",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.13",
+      "title_zh": "占位符需求 13",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.14",
+      "title_zh": "占位符需求 14",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.15",
+      "title_zh": "占位符需求 15",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.16",
+      "title_zh": "占位符需求 16",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    },
+    {
+      "requirement_id": "placeholder.17",
+      "title_zh": "占位符需求 17",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [
+        "assumption_1"
+      ],
+      "self_check_ids": [
+        "self_check_1"
+      ]
+    }
+  ]
+}

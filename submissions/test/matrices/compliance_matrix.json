@@ -1,0 +1,170 @@
+{
+  "schema_version": "0.1.0",
+  "requirements": [
+    {
+      "requirement_id": "agent.1",
+      "title_zh": "一带总体概念与功能统筹方案设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY",
+        "KEY_DESIGN_AREA"
+      ],
+      "metrics": [
+        "total_design_area_sqm",
+        "key_design_area_sqm"
+      ],
+      "drawings": [
+        "overall_structure_diagram.png"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-001"
+      ]
+    },
+    {
+      "requirement_id": "agent.2",
+      "title_zh": "AI全栈自主创新体系与世界级AI创新生态设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metrics": [
+        "zhongzhiyuan_area_sqm",
+        "beijing_ai_origin_area_sqm",
+        "dazhongsi_area_sqm"
+      ],
+      "drawings": [
+        "ecosystem_map.png"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-002"
+      ]
+    },
+    {
+      "requirement_id": "agent.3",
+      "title_zh": "AI+场景赋能新范式与智能化AI活力城市设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metrics": [
+        "total_design_area_sqm"
+      ],
+      "drawings": [
+        "scenario_space_operation_matrix.png"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-003"
+      ]
+    },
+    {
+      "requirement_id": "agent.4",
+      "title_zh": "AI公共空间、智能原生新业态与朝圣地标设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metrics": [
+        "total_design_area_sqm"
+      ],
+      "drawings": [
+        "public_space_design.png"
+      ],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-004"
+      ]
+    },
+    {
+      "requirement_id": "agent.5",
+      "title_zh": "百年京张文化、中关村文化与AI新文化融合叙事设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_design_area_sqm"
+      ],
+      "drawings": [],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-005"
+      ]
+    },
+    {
+      "requirement_id": "agent.6",
+      "title_zh": "一带全球AI创新活动体系与长期运营设计",
+      "mandatory": true,
+      "report_sections": [
+        "proposal_narrative"
+      ],
+      "geojson_layers": [
+        "SITE_BOUNDARY"
+      ],
+      "metrics": [
+        "total_design_area_sqm"
+      ],
+      "drawings": [],
+      "visual_sections": [
+        "visual_index_section"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-006"
+      ]
+    }
+  ]
+}

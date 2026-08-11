@@ -1,0 +1,162 @@
+{
+  "type": "FeatureCollection",
+  "name": "land_use_structure_diagram",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "STRUCT-001",
+      "properties": {
+        "id": "STRUCT-001",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "创新轴",
+        "name_zh": "京张AI创新主轴",
+        "description_zh": "串联三处重点区的南北向创新走廊"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.348,
+            39.945
+          ],
+          [
+            116.348,
+            39.97
+          ],
+          [
+            116.348,
+            39.99
+          ],
+          [
+            116.348,
+            40.02
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STRUCT-002",
+      "properties": {
+        "id": "STRUCT-002",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "创新轴",
+        "name_zh": "东西缝合廊道",
+        "description_zh": "连接中关村与清河的东西向创新走廊"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.34,
+            39.985
+          ],
+          [
+            116.345,
+            39.985
+          ],
+          [
+            116.352,
+            39.985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STRUCT-003",
+      "properties": {
+        "id": "STRUCT-003",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "创新节点",
+        "name_zh": "众智园AI自主创新加速区",
+        "description_zh": "AI全栈自主创新体系核心"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3485,
+          40.016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STRUCT-004",
+      "properties": {
+        "id": "STRUCT-004",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "创新节点",
+        "name_zh": "北京AI原点社区",
+        "description_zh": "世界级AI创新生态核心"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3475,
+          39.988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STRUCT-005",
+      "properties": {
+        "id": "STRUCT-005",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "创新节点",
+        "name_zh": "大钟寺AI产业集聚区",
+        "description_zh": "智能原生新业态核心"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3485,
+          39.947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "STRUCT-006",
+      "properties": {
+        "id": "STRUCT-006",
+        "layer": "LAND_USE_STRUCTURE",
+        "type_zh": "生态基底",
+        "name_zh": "京张遗址公园绿带",
+        "description_zh": "贯穿南北的生态与文化遗产廊道"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.345,
+            39.945
+          ],
+          [
+            116.345,
+            39.97
+          ],
+          [
+            116.346,
+            39.985
+          ],
+          [
+            116.347,
+            40.005
+          ],
+          [
+            116.348,
+            40.02
+          ]
+        ]
+      }
+    }
+  ]
+}

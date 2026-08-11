@@ -1,0 +1,72 @@
+{
+  "type": "FeatureCollection",
+  "name": "overall_design_area_boundary",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SITE-BOUNDARY-001",
+      "properties": {
+        "id": "SITE-BOUNDARY-001",
+        "layer": "SITE_BOUNDARY",
+        "scope_id": "overall_design_area",
+        "name_zh": "总体设计范围边界",
+        "source_type": "provisional_reference",
+        "confidence": "medium",
+        "geometry_role": "design_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "area_sqm_declared": 11400000,
+        "usage_note": "参考边界，基于公告文字四至描述。正式红线需待官方 GIS 数据确认。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.3407,
+              39.939
+            ],
+            [
+              116.3553,
+              39.939
+            ],
+            [
+              116.3553,
+              39.965
+            ],
+            [
+              116.3533,
+              39.99
+            ],
+            [
+              116.3553,
+              40.0265
+            ],
+            [
+              116.3427,
+              40.0265
+            ],
+            [
+              116.3417,
+              40.006
+            ],
+            [
+              116.3397,
+              39.975
+            ],
+            [
+              116.3407,
+              39.939
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

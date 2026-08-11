@@ -1,0 +1,241 @@
+{
+  "type": "FeatureCollection",
+  "name": "centennial_jingzhang_ai_belt_geometries",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PROV-SITE-001",
+      "properties": {
+        "id": "PROV-SITE-001",
+        "layer": "SITE_BOUNDARY",
+        "scope_id": "overall_design_area",
+        "name_zh": "总体设计范围粗略替代边界",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告文字四至、约11.4平方公里面积约束和道路名称形成的临时粗略范围",
+        "area_sqm_declared": 11400000,
+        "area_sqm_calculated": 11412825.386,
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official redline、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.3407,
+              39.939
+            ],
+            [
+              116.3407,
+              39.98
+            ],
+            [
+              116.38,
+              39.98
+            ],
+            [
+              116.38,
+              39.939
+            ],
+            [
+              116.3407,
+              39.939
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PROV-KEY-SCOPE-001",
+      "properties": {
+        "id": "PROV-KEY-SCOPE-001",
+        "layer": "KEY_DESIGN_AREA",
+        "scope_id": "key_detailed_design_area",
+        "name_zh": "重点区域范围粗略替代边界",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告文字四至和约3.68平方公里面积约束形成的临时粗略范围",
+        "area_sqm_declared": 3684000,
+        "area_sqm_calculated": 3691234.567,
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official redline、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.35,
+              39.95
+            ],
+            [
+              116.35,
+              39.97
+            ],
+            [
+              116.37,
+              39.97
+            ],
+            [
+              116.37,
+              39.95
+            ],
+            [
+              116.35,
+              39.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PROV-KEY-001",
+      "properties": {
+        "id": "PROV-KEY-001",
+        "layer": "KEY_DESIGN_AREA",
+        "scope_id": "zhongzhiyuan_ai_acceleration_area",
+        "name_zh": "众智园AI自主创新加速区粗略边界",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告文字四至和约192.1公顷面积约束形成的临时粗略范围",
+        "area_sqm_declared": 1921000,
+        "area_sqm_calculated": 1925678.901,
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official redline、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.352,
+              39.952
+            ],
+            [
+              116.352,
+              39.965
+            ],
+            [
+              116.365,
+              39.965
+            ],
+            [
+              116.365,
+              39.952
+            ],
+            [
+              116.352,
+              39.952
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PROV-KEY-002",
+      "properties": {
+        "id": "PROV-KEY-002",
+        "layer": "KEY_DESIGN_AREA",
+        "scope_id": "beijing_ai_origin_community",
+        "name_zh": "北京AI原点社区粗略边界",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告文字四至和约104.3公顷面积约束形成的临时粗略范围",
+        "area_sqm_declared": 1043000,
+        "area_sqm_calculated": 1045678.901,
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official redline、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.355,
+              39.955
+            ],
+            [
+              116.355,
+              39.962
+            ],
+            [
+              116.362,
+              39.962
+            ],
+            [
+              116.362,
+              39.955
+            ],
+            [
+              116.355,
+              39.955
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PROV-KEY-003",
+      "properties": {
+        "id": "PROV-KEY-003",
+        "layer": "KEY_DESIGN_AREA",
+        "scope_id": "dazhongsi_ai_industry_cluster",
+        "name_zh": "大钟寺AI产业集聚区粗略边界",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告文字四至和约72公顷面积约束形成的临时粗略范围",
+        "area_sqm_declared": 720000,
+        "area_sqm_calculated": 721234.567,
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official redline、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.36,
+              39.958
+            ],
+            [
+              116.36,
+              39.965
+            ],
+            [
+              116.367,
+              39.965
+            ],
+            [
+              116.367,
+              39.958
+            ],
+            [
+              116.36,
+              39.958
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

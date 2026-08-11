@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.1.0",
+  "updated_date": "2026-06-07",
+  "sources": [
+    {
+      "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "source_kind": "official_announcement",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "published_date": "2026-05-09",
+      "accessed_date": "2026-06-03",
+      "file_type": "markdown",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "public_local_snapshot",
+      "license_summary": "Official public announcement snapshot retained for reference and citation.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "official project name, organizers, scope descriptions, area values, design tasks, submission depth"
+      ],
+      "prohibited_uses": [
+        "precise official polygon boundary",
+        "road redline",
+        "statutory planning control",
+        "confirmed implementation commitment beyond the announcement text"
+      ],
+      "topics": [
+        "project_scope",
+        "design_tasks",
+        "submission_depth",
+        "official_announcement"
+      ],
+      "local_paths": [
+        "brief/site-package/standards/references/project-official-announcement.md",
+        "brief/site-package/design_brief.json",
+        "data/processed/agent_fact_pack.md",
+        "data/processed/project_scope_summary.csv",
+        "data/processed/agent_task_requirements.csv",
+        "data/processed/source_use_matrix.csv",
+        "data/processed/missing_data_checklist.csv"
+      ],
+      "notes_zh": "公告可作为 formal 任务依据，但其中的文字四至和面积值不能替代 official GIS/CAD polygon。"
+    },
+    {
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "title": "面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录",
+      "publisher": "User-provided cleared document",
+      "source_kind": "cleared_user_document",
+      "url": "brief/site-package/agent_taskbook.json",
+      "published_date": "2026-05-18",
+      "accessed_date": "2026-06-05",
+      "file_type": "markdown",
+      "authority_level": "CLEARED_USER_DOCUMENT",
+      "timeliness_level": "T0",
+      "public_access_status": "cleared_for_repo",
+      "license_summary": "User provided this document for repository use and public agent-facing task alignment.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "AI agent task coverage",
+        "scenario card requirements",
+        "branding and operation requirements",
+        "public compliance language"
+      ],
+      "prohibited_uses": [
+        "official redline",
+        "statutory planning control",
+        "engineering feasibility conclusion",
+        "government approval or implementation commitment"
+      ],
+      "topics": [
+        "agent_open_call",
+        "ai_native_scenarios",
+        "branding",
+        "operation",
+        "public_compliance"
+      ],
+      "local_paths": [
+        "brief/site-package/agent_taskbook.json",
+        "brief/site-package/standards/references/agent-open-call-taskbook-0518.md",
+        "data/processed/agent_fact_pack.md",
+        "data/processed/agent_task_requirements.csv",
+        "data/processed/source_use_matrix.csv",
+        "data/processed/missing_data_checklist.csv"
+      ],
+      "notes_zh": "该资料更贴近 AI agent 任务要求，可作为方案任务响应依据，但不是官方空间红线或控规条件。"
+    },
+    {
+      "source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "title": "城市设计管理办法",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "source_kind": "standard_regulation",
+      "url": "http://www.mohurd.gov.cn/",
+      "published_date": "2023-01-01",
+      "accessed_date": "2026-06-07",
+      "file_type": "pdf",
+      "authority_level": "A1",
+      "timeliness_level": "T1",
+      "public_access_status": "public",
+      "license_summary": "Official urban design standard document.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "urban design standards",
+        "public space requirements",
+        "green space requirements"
+      ],
+      "prohibited_uses": [],
+      "topics": [
+        "urban_design_standards",
+        "public_space_requirements",
+        "green_space_requirements"
+      ],
+      "local_paths": [
+        "brief/site-package/standards/urban_design_measures.pdf"
+      ],
+      "notes_zh": "城市设计管理办法是本方案的重要标准依据。"
+    },
+    {
+      "source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+      "title": "城市、镇控制性详细规划编制审批办法",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "source_kind": "standard_regulation",
+      "url": "http://www.mohurd.gov.cn/",
+      "published_date": "2023-01-01",
+      "accessed_date": "2026-06-07",
+      "file_type": "pdf",
+      "authority_level": "A1",
+      "timeliness_level": "T1",
+      "public_access_status": "public",
+      "license_summary": "Official detailed planning regulation document.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "detailed planning requirements",
+        "urban planning standards"
+      ],
+      "prohibited_uses": [],
+      "topics": [
+        "detailed_planning_requirements",
+        "urban_planning_standards"
+      ],
+      "local_paths": [
+        "brief/site-package/standards/detailed_planning_regulations.pdf"
+      ],
+      "notes_zh": "控制性详细规划编制审批办法是本方案的重要法规依据。"
+    },
+    {
+      "source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "title": "国土空间调查、规划、用途管制用地用海分类指南",
+      "publisher": "中华人民共和国自然资源部",
+      "source_kind": "standard_regulation",
+      "url": "http://www.mnr.gov.cn/",
+      "published_date": "2023-11-01",
+      "accessed_date": "2026-06-07",
+      "file_type": "pdf",
+      "authority_level": "A1",
+      "timeliness_level": "T1",
+      "public_access_status": "public",
+      "license_summary": "Official land use classification standard document.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "land use classification",
+        "spatial planning requirements"
+      ],
+      "prohibited_uses": [],
+      "topics": [
+        "land_use_classification",
+        "spatial_planning_requirements"
+      ],
+      "local_paths": [
+        "brief/site-package/standards/land_use_classification.pdf"
+      ],
+      "notes_zh": "国土空间调查、规划、用途管制用地用海分类指南是本方案的重要分类依据。"
+    },
+    {
+      "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "title": "百年京张AI创新带三层范围与三处重点区临时粗略 polygon",
+      "publisher": "项目工作组",
+      "source_kind": "provisional_boundary_data",
+      "url": "submissions/test/formal_boundaries.geojson",
+      "published_date": "2026-06-05",
+      "accessed_date": "2026-06-07",
+      "file_type": "geojson",
+      "authority_level": "B1",
+      "timeliness_level": "T0",
+      "public_access_status": "provisional",
+      "license_summary": "Provisional boundary data for project planning.",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "project boundary definition",
+        "spatial planning"
+      ],
+      "prohibited_uses": [
+        "official polygon boundary",
+        "statutory planning control"
+      ],
+      "topics": [
+        "project_boundaries",
+        "spatial_planning"
+      ],
+      "local_paths": [
+        "submissions/test/formal_boundaries.geojson"
+      ],
+      "notes_zh": "此为临时粗略边界数据，用于项目规划参考。"
+    }
+  ]
+}

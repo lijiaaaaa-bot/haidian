@@ -1,0 +1,332 @@
+{
+  "type": "FeatureCollection",
+  "name": "land_use_conceptual",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "LU-001",
+      "properties": {
+        "id": "LU-001",
+        "layer": "LAND_USE",
+        "land_use_code": "B3",
+        "land_use_zh": "科研设计用地",
+        "description_zh": "众智园核心研发区，AI芯片、大模型、基础算法研发",
+        "conceptual_ratio": 0.35,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.344,
+              40.01
+            ],
+            [
+              116.352,
+              40.01
+            ],
+            [
+              116.352,
+              40.022
+            ],
+            [
+              116.344,
+              40.022
+            ],
+            [
+              116.344,
+              40.01
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-002",
+      "properties": {
+        "id": "LU-002",
+        "layer": "LAND_USE",
+        "land_use_code": "B4",
+        "land_use_zh": "新型产业用地",
+        "description_zh": "众智园AI应用孵化与测试验证区",
+        "conceptual_ratio": 0.25,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.344,
+              40.022
+            ],
+            [
+              116.353,
+              40.022
+            ],
+            [
+              116.353,
+              40.0255
+            ],
+            [
+              116.344,
+              40.0255
+            ],
+            [
+              116.344,
+              40.022
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-003",
+      "properties": {
+        "id": "LU-003",
+        "layer": "LAND_USE",
+        "land_use_code": "B29",
+        "land_use_zh": "其他商务用地",
+        "description_zh": "北京AI原点社区，AI企业总部、创新服务、科技金融",
+        "conceptual_ratio": 0.3,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.343,
+              39.985
+            ],
+            [
+              116.351,
+              39.985
+            ],
+            [
+              116.351,
+              39.992
+            ],
+            [
+              116.343,
+              39.992
+            ],
+            [
+              116.343,
+              39.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-004",
+      "properties": {
+        "id": "LU-004",
+        "layer": "LAND_USE",
+        "land_use_code": "B1",
+        "land_use_zh": "商业用地",
+        "description_zh": "大钟寺AI智能消费与体验区，AI+零售、餐饮、娱乐",
+        "conceptual_ratio": 0.28,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.343,
+              39.945
+            ],
+            [
+              116.353,
+              39.945
+            ],
+            [
+              116.353,
+              39.9485
+            ],
+            [
+              116.343,
+              39.9485
+            ],
+            [
+              116.343,
+              39.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-005",
+      "properties": {
+        "id": "LU-005",
+        "layer": "LAND_USE",
+        "land_use_code": "A37",
+        "land_use_zh": "公园绿地",
+        "description_zh": "京张遗址公园及沿线绿带",
+        "conceptual_ratio": 0.15,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.34,
+              39.97
+            ],
+            [
+              116.355,
+              39.97
+            ],
+            [
+              116.355,
+              39.98
+            ],
+            [
+              116.34,
+              39.98
+            ],
+            [
+              116.34,
+              39.97
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-006",
+      "properties": {
+        "id": "LU-006",
+        "layer": "LAND_USE",
+        "land_use_code": "S1",
+        "land_use_zh": "城市道路用地",
+        "description_zh": "区域主干路及支路网",
+        "conceptual_ratio": 0.12,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.345,
+              39.95
+            ],
+            [
+              116.35,
+              39.95
+            ],
+            [
+              116.35,
+              40.02
+            ],
+            [
+              116.345,
+              40.02
+            ],
+            [
+              116.345,
+              39.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-007",
+      "properties": {
+        "id": "LU-007",
+        "layer": "LAND_USE",
+        "land_use_code": "R2",
+        "land_use_zh": "二类居住用地",
+        "description_zh": "创新人才配套居住区",
+        "conceptual_ratio": 0.1,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.975
+            ],
+            [
+              116.348,
+              39.975
+            ],
+            [
+              116.348,
+              39.982
+            ],
+            [
+              116.342,
+              39.982
+            ],
+            [
+              116.342,
+              39.975
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-008",
+      "properties": {
+        "id": "LU-008",
+        "layer": "LAND_USE",
+        "land_use_code": "U9",
+        "land_use_zh": "其他公用设施用地",
+        "description_zh": "分布式算力中心、能源站等新型基础设施",
+        "conceptual_ratio": 0.05,
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              39.99
+            ],
+            [
+              116.35,
+              39.99
+            ],
+            [
+              116.35,
+              39.995
+            ],
+            [
+              116.346,
+              39.995
+            ],
+            [
+              116.346,
+              39.99
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

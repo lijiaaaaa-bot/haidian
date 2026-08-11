@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.1.0",
+  "standards": [
+    {
+      "standard_id": "brief_alignment",
+      "requirement_zh": "方案是否契合项目任务书要求",
+      "professional_dimension": "project_alignment",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "overall_structure_diagram.png"
+      ],
+      "geometry_refs": [
+        "SITE_BOUNDARY",
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm",
+        "key_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-001"
+      ],
+      "evidence_summary_zh": "方案内容与任务书要求高度一致，覆盖所有六项核心任务。"
+    },
+    {
+      "standard_id": "originality",
+      "requirement_zh": "方案是否具有原创性",
+      "professional_dimension": "innovation",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "ecosystem_map.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "zhongzhiyuan_area_sqm",
+        "beijing_ai_origin_area_sqm",
+        "dazhongsi_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-002"
+      ],
+      "evidence_summary_zh": "方案提出独特的AI创新生态模型和空间布局策略。"
+    },
+    {
+      "standard_id": "ai_planning_innovation",
+      "requirement_zh": "是否体现AI规划创新性",
+      "professional_dimension": "planning_innovation",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "scenario_space_operation_matrix.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-003"
+      ],
+      "evidence_summary_zh": "方案提出AI场景赋能新范式和智能化城市设计思路。"
+    },
+    {
+      "standard_id": "implementation_feasibility",
+      "requirement_zh": "方案是否具备实施可行性",
+      "professional_dimension": "feasibility",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "public_space_design.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-004"
+      ],
+      "evidence_summary_zh": "方案基于现有空间条件和功能需求，提出可行的空间布局。"
+    },
+    {
+      "standard_id": "public_interest_inclusion",
+      "requirement_zh": "是否体现公共利益优先原则",
+      "professional_dimension": "public_interest",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [],
+      "geometry_refs": [
+        "SITE_BOUNDARY"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-005"
+      ],
+      "evidence_summary_zh": "方案强调公共空间和市民体验，体现公共利益优先原则。"
+    },
+    {
+      "standard_id": "risk_compliance",
+      "requirement_zh": "是否符合公开资料边界要求",
+      "professional_dimension": "compliance",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [],
+      "geometry_refs": [
+        "SITE_BOUNDARY"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-006"
+      ],
+      "evidence_summary_zh": "方案严格遵守公开资料边界，未使用非公开数据或未经核实信息。"
+    },
+    {
+      "standard_id": "expression_completeness",
+      "requirement_zh": "表达是否完整",
+      "professional_dimension": "expression",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "overall_structure_diagram.png",
+        "ecosystem_map.png",
+        "scenario_space_operation_matrix.png",
+        "public_space_design.png"
+      ],
+      "geometry_refs": [
+        "SITE_BOUNDARY",
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm",
+        "key_design_area_sqm",
+        "zhongzhiyuan_area_sqm",
+        "beijing_ai_origin_area_sqm",
+        "dazhongsi_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-001",
+        "CHECK-002",
+        "CHECK-003",
+        "CHECK-004",
+        "CHECK-005",
+        "CHECK-006"
+      ],
+      "evidence_summary_zh": "方案包含文本、图示、表格和空间数据，表达完整。"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "name": "overall_design_boundary",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "overall_design_area",
+      "properties": {
+        "id": "overall_design_area",
+        "name_zh": "总体设计范围",
+        "area_sqm": 11400000,
+        "area_km2": 11.4,
+        "type": "design_scope"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.25,
+              40.02
+            ],
+            [
+              116.4,
+              40.02
+            ],
+            [
+              116.4,
+              39.9
+            ],
+            [
+              116.25,
+              39.9
+            ],
+            [
+              116.25,
+              40.02
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "type": "FeatureCollection",
+  "name": "mobility_bluegreen_network",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "MOB-001",
+      "properties": {
+        "id": "MOB-001",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "慢行绿道",
+        "description_zh": "京张遗址公园线性绿道，贯通南北",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.345,
+            39.945
+          ],
+          [
+            116.345,
+            39.97
+          ],
+          [
+            116.346,
+            39.985
+          ],
+          [
+            116.347,
+            40.005
+          ],
+          [
+            116.348,
+            40.02
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MOB-002",
+      "properties": {
+        "id": "MOB-002",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "东西缝合廊道",
+        "description_zh": "连接中关村与清河的东西向创新走廊",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.34,
+            39.985
+          ],
+          [
+            116.345,
+            39.985
+          ],
+          [
+            116.35,
+            39.985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MOB-003",
+      "properties": {
+        "id": "MOB-003",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "南北贯通廊道",
+        "description_zh": "连接三处重点区的南北向创新轴",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.348,
+            39.945
+          ],
+          [
+            116.348,
+            39.97
+          ],
+          [
+            116.348,
+            39.99
+          ],
+          [
+            116.348,
+            40.01
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MOB-004",
+      "properties": {
+        "id": "MOB-004",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "小月河场景赋能带",
+        "description_zh": "沿小月河的AI场景体验路径",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.342,
+            39.96
+          ],
+          [
+            116.345,
+            39.97
+          ],
+          [
+            116.348,
+            39.98
+          ],
+          [
+            116.35,
+            39.99
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MOB-005",
+      "properties": {
+        "id": "MOB-005",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "轨道站点TOD节点",
+        "description_zh": "13号线大钟寺站周边一体化开发概念区",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.345,
+          39.947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "MOB-006",
+      "properties": {
+        "id": "MOB-006",
+        "layer": "MOBILITY_NETWORK",
+        "type_zh": "轨道站点TOD节点",
+        "description_zh": "10号线西土城站周边一体化开发概念区",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.352,
+          39.965
+        ]
+      }
+    }
+  ]
+}

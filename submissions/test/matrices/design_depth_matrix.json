@@ -1,0 +1,169 @@
+{
+  "schema_version": "0.1.0",
+  "items": [
+    {
+      "item_id": "depth-001",
+      "title_zh": "总体概念与命名体系",
+      "professional_dimension": "project_alignment",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "overall_structure_diagram.png"
+      ],
+      "geometry_refs": [
+        "SITE_BOUNDARY",
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm",
+        "key_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-001"
+      ],
+      "evidence_summary_zh": "已完整响应总体概念与命名体系要求。"
+    },
+    {
+      "item_id": "depth-002",
+      "title_zh": "AI创新生态设计",
+      "professional_dimension": "innovation",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "ecosystem_map.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "zhongzhiyuan_area_sqm",
+        "beijing_ai_origin_area_sqm",
+        "dazhongsi_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-002"
+      ],
+      "evidence_summary_zh": "已完整响应AI创新生态设计要求。"
+    },
+    {
+      "item_id": "depth-003",
+      "title_zh": "场景赋能与城市活力设计",
+      "professional_dimension": "planning_innovation",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "scenario_space_operation_matrix.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-003"
+      ],
+      "evidence_summary_zh": "已完整响应场景赋能与城市活力设计要求。"
+    },
+    {
+      "item_id": "depth-004",
+      "title_zh": "公共空间与朝圣地标设计",
+      "professional_dimension": "public_interest",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [
+        "public_space_design.png"
+      ],
+      "geometry_refs": [
+        "KEY_DESIGN_AREA"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-004"
+      ],
+      "evidence_summary_zh": "已完整响应公共空间与朝圣地标设计要求。"
+    },
+    {
+      "item_id": "depth-005",
+      "title_zh": "文化叙事与品牌识别",
+      "professional_dimension": "compliance",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [],
+      "geometry_refs": [
+        "SITE_BOUNDARY"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-005"
+      ],
+      "evidence_summary_zh": "已完整响应文化叙事与品牌识别要求。"
+    },
+    {
+      "item_id": "depth-006",
+      "title_zh": "全球活动体系与长期运营",
+      "professional_dimension": "feasibility",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "proposal_narrative"
+      ],
+      "drawing_refs": [],
+      "geometry_refs": [
+        "SITE_BOUNDARY"
+      ],
+      "metric_refs": [
+        "total_design_area_sqm"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "CHECK-006"
+      ],
+      "evidence_summary_zh": "已完整响应全球活动体系与长期运营要求。"
+    }
+  ]
+}

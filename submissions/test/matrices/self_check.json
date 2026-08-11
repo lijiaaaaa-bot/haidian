@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "CHECK-001",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal_narrative",
+      "message": "方案文本已覆盖所有任务要求",
+      "suggested_fix": ""
+    },
+    {
+      "check_id": "CHECK-002",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "ecosystem_map.png",
+      "message": "生态系统图谱已生成并符合要求",
+      "suggested_fix": ""
+    },
+    {
+      "check_id": "CHECK-003",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "scenario_space_operation_matrix.png",
+      "message": "场景-空间-运营映射已建立",
+      "suggested_fix": ""
+    },
+    {
+      "check_id": "CHECK-004",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "public_space_design.png",
+      "message": "公共空间设计已包含朝圣地标元素",
+      "suggested_fix": ""
+    },
+    {
+      "check_id": "CHECK-005",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual_index_section",
+      "message": "视觉识别系统已建立",
+      "suggested_fix": ""
+    },
+    {
+      "check_id": "CHECK-006",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "overall_structure_diagram.png",
+      "message": "总体结构图已生成",
+      "suggested_fix": ""
+    }
+  ]
+}

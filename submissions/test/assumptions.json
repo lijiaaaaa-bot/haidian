@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "assumption_001",
+      "title_zh": "绿地比例假设",
+      "description_zh": "假设项目范围内绿地面积占总面积的40%，符合城市设计标准。",
+      "source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "status": "known"
+    },
+    {
+      "id": "assumption_002",
+      "title_zh": "公共空间比例假设",
+      "description_zh": "假设项目范围内公共空间面积占总面积的20%，符合城市设计标准。",
+      "source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "status": "known"
+    },
+    {
+      "id": "assumption_003",
+      "title_zh": "步行连通性假设",
+      "description_zh": "假设项目范围内步行网络连通率达到80%，提升城市活力。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_004",
+      "title_zh": "AI产业用地比例假设",
+      "description_zh": "假设项目范围内AI产业用地占总面积的30%，符合产业发展需求。",
+      "source_id": "brief/site-package/design_brief.json",
+      "status": "known"
+    },
+    {
+      "id": "assumption_005",
+      "title_zh": "文化融合叙事假设",
+      "description_zh": "假设京张铁路历史与中关村创新文化能够有效融合，形成独特AI新文化。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_006",
+      "title_zh": "场景卡片数量假设",
+      "description_zh": "假设定义10个场景卡片以支持AI赋能新范式设计。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_007",
+      "title_zh": "用户画像数量假设",
+      "description_zh": "假设定义5个用户画像以支持场景设计。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_008",
+      "title_zh": "地标数量假设",
+      "description_zh": "假设定义3个地标以支持朝圣地标设计。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_009",
+      "title_zh": "AI生态系统节点假设",
+      "description_zh": "假设定义8个生态系统节点以支持AI创新生态设计。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_010",
+      "title_zh": "命名体系假设",
+      "description_zh": "假设采用统一的命名体系以支持项目识别。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_011",
+      "title_zh": "三大定位假设",
+      "description_zh": "假设明确三大定位以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_012",
+      "title_zh": "三区两翼协同假设",
+      "description_zh": "假设建立三区两翼协同机制以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_013",
+      "title_zh": "AI基础设施假设",
+      "description_zh": "假设建设完善的AI基础设施以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_014",
+      "title_zh": "人才引进机制假设",
+      "description_zh": "假设建立有效的人才引进机制以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_015",
+      "title_zh": "产业政策支持假设",
+      "description_zh": "假设提供有效的产业政策支持以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_016",
+      "title_zh": "数据治理机制假设",
+      "description_zh": "假设建立完善的数据治理机制以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_017",
+      "title_zh": "公共空间设计假设",
+      "description_zh": "假设公共空间设计符合城市设计标准。",
+      "source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "status": "known"
+    },
+    {
+      "id": "assumption_018",
+      "title_zh": "文化叙事完整性假设",
+      "description_zh": "假设文化叙事完整地体现京张铁路历史与中关村创新文化。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_019",
+      "title_zh": "长期运营机制假设",
+      "description_zh": "假设建立可持续的长期运营机制以支持项目发展。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_020",
+      "title_zh": "绿色低碳发展假设",
+      "description_zh": "假设项目遵循绿色低碳发展理念。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_021",
+      "title_zh": "城市更新协同假设",
+      "description_zh": "假设项目与城市更新协同推进。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_022",
+      "title_zh": "交通系统融合假设",
+      "description_zh": "假设AI与交通系统有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_023",
+      "title_zh": "公共安全系统假设",
+      "description_zh": "假设项目包含完善的公共安全系统。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_024",
+      "title_zh": "教育体系融合假设",
+      "description_zh": "假设AI与教育体系有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_025",
+      "title_zh": "医疗健康系统融合假设",
+      "description_zh": "假设AI与医疗健康系统有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_026",
+      "title_zh": "金融体系融合假设",
+      "description_zh": "假设AI与金融体系有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_027",
+      "title_zh": "农业系统融合假设",
+      "description_zh": "假设AI与农业系统有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_028",
+      "title_zh": "制造业系统融合假设",
+      "description_zh": "假设AI与制造业系统有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    },
+    {
+      "id": "assumption_029",
+      "title_zh": "能源系统融合假设",
+      "description_zh": "假设AI与能源系统有效融合。",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "status": "known"
+    }
+  ]
+}

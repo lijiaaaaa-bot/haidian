@@ -1,0 +1,190 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LU-001",
+        "land_use_type": "innovation_zone",
+        "name_zh": "AI创新功能区",
+        "area_sqm": 4500000,
+        "percentage": 40
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.95
+            ],
+            [
+              116.352,
+              39.95
+            ],
+            [
+              116.352,
+              39.98
+            ],
+            [
+              116.342,
+              39.98
+            ],
+            [
+              116.342,
+              39.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LU-002",
+        "land_use_type": "residential_zone",
+        "name_zh": "居住功能区",
+        "area_sqm": 2700000,
+        "percentage": 25
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.98
+            ],
+            [
+              116.352,
+              39.98
+            ],
+            [
+              116.352,
+              40.0
+            ],
+            [
+              116.342,
+              40.0
+            ],
+            [
+              116.342,
+              39.98
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LU-003",
+        "land_use_type": "commercial_service_zone",
+        "name_zh": "商业服务功能区",
+        "area_sqm": 1350000,
+        "percentage": 15
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              40.0
+            ],
+            [
+              116.352,
+              40.0
+            ],
+            [
+              116.352,
+              40.02
+            ],
+            [
+              116.342,
+              40.02
+            ],
+            [
+              116.342,
+              40.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LU-004",
+        "land_use_type": "public_facility_zone",
+        "name_zh": "公共设施功能区",
+        "area_sqm": 900000,
+        "percentage": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              40.02
+            ],
+            [
+              116.352,
+              40.02
+            ],
+            [
+              116.352,
+              40.04
+            ],
+            [
+              116.342,
+              40.04
+            ],
+            [
+              116.342,
+              40.02
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "LU-005",
+        "land_use_type": "green_ecological_zone",
+        "name_zh": "绿地生态功能区",
+        "area_sqm": 900000,
+        "percentage": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              40.04
+            ],
+            [
+              116.352,
+              40.04
+            ],
+            [
+              116.352,
+              40.06
+            ],
+            [
+              116.342,
+              40.06
+            ],
+            [
+              116.342,
+              40.04
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

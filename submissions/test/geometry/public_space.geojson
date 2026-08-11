@@ -1,0 +1,117 @@
+{
+  "type": "FeatureCollection",
+  "name": "public_space_and_landmarks",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PS-001",
+      "properties": {
+        "id": "PS-001",
+        "layer": "PUBLIC_SPACE",
+        "type_zh": "AI朝圣地标",
+        "name_zh": "京张AI记忆馆",
+        "description_zh": "利用京张铁路遗址建筑改造的AI历史与未来展示中心，融合詹天佑精神与AI新文化",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.345,
+          39.97
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-002",
+      "properties": {
+        "id": "PS-002",
+        "layer": "PUBLIC_SPACE",
+        "type_zh": "AI朝圣地标",
+        "name_zh": "AI原点广场",
+        "description_zh": "北京AI原点社区核心公共空间，展示中国AI发展里程碑的互动装置艺术区",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.347,
+          39.988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-003",
+      "properties": {
+        "id": "PS-003",
+        "layer": "PUBLIC_SPACE",
+        "type_zh": "AI朝圣地标",
+        "name_zh": "智能钟鸣广场",
+        "description_zh": "大钟寺文化IP与AI融合的智能互动广场，以古钟文化为灵感的AI声音艺术装置",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.348,
+          39.946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-004",
+      "properties": {
+        "id": "PS-004",
+        "layer": "PUBLIC_SPACE",
+        "type_zh": "公共活动空间",
+        "name_zh": "小月河AI滨水步道",
+        "description_zh": "沿小月河的AI场景体验步道，设置智能照明、互动地面和AR导览",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.342,
+            39.96
+          ],
+          [
+            116.345,
+            39.97
+          ],
+          [
+            116.348,
+            39.98
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-005",
+      "properties": {
+        "id": "PS-005",
+        "layer": "PUBLIC_SPACE",
+        "type_zh": "公共活动空间",
+        "name_zh": "众智园创新广场",
+        "description_zh": "众智园核心区的开放式创新交流广场，支持路演、展览和开发者聚会",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.348,
+          40.015
+        ]
+      }
+    }
+  ]
+}

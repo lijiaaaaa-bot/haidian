@@ -1,0 +1,127 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "百年京张AI创新带用户画像",
+  "description_zh": "面向百年京张AI创新带的五类核心用户画像，用于场景设计和公共服务配置。",
+  "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+  "assumption_ids": [
+    "assumption_007"
+  ],
+  "personas": [
+    {
+      "persona_id": "P-001",
+      "label_zh": "AI开发者/工程师",
+      "description_zh": "从事AI算法研发、模型训练和数据标注的专业技术人员，年龄25-45岁，对算力资源、开源社区和协作空间有强需求。",
+      "age_range": [
+        25,
+        45
+      ],
+      "primary_needs": [
+        "高性能算力中心",
+        "开源代码共享空间",
+        "技术沙龙场地",
+        "弹性办公工位"
+      ],
+      "key_scenarios": [
+        "SC-001 AI+医疗诊断",
+        "SC-004 AI+金融风控",
+        "SC-006 AI+智能制造"
+      ],
+      "spatial_preference": "靠近众智园AI自主创新加速区，便于获取算力资源和参与技术社区活动。",
+      "privacy_concerns": "代码知识产权、算法专利保护",
+      "data_usage": "训练数据集、开源模型库、API接口调用日志"
+    },
+    {
+      "persona_id": "P-002",
+      "label_zh": "AI创业者/企业创始人",
+      "description_zh": "AI领域初创企业或成长期企业的创始人/高管，关注融资渠道、政策支持和市场对接。",
+      "age_range": [
+        30,
+        50
+      ],
+      "primary_needs": [
+        "孵化器空间",
+        "投融资对接平台",
+        "政策咨询窗口",
+        "产业联盟网络"
+      ],
+      "key_scenarios": [
+        "SC-004 AI+金融风控",
+        "SC-005 AI+智慧城市管理",
+        "SC-006 AI+智能制造"
+      ],
+      "spatial_preference": "大钟寺AI产业集聚区，便于企业集聚和产业链协同。",
+      "privacy_concerns": "商业机密保护、融资数据保密",
+      "data_usage": "市场调研数据、竞品分析、用户行为数据"
+    },
+    {
+      "persona_id": "P-003",
+      "label_zh": "城市居民/社区居民",
+      "description_zh": "生活在创新带周边的常住居民，关注AI技术对日常生活的影响，包括智慧社区、智能交通和公共服务。",
+      "age_range": [
+        20,
+        70
+      ],
+      "primary_needs": [
+        "智慧社区服务",
+        "便捷交通出行",
+        "公共休闲空间",
+        "AI科普教育"
+      ],
+      "key_scenarios": [
+        "SC-002 AI+智能交通",
+        "SC-005 AI+智慧城市管理",
+        "SC-008 AI+文化旅游",
+        "SC-010 AI+健康养老"
+      ],
+      "spatial_preference": "北京AI原点社区，便于享受AI赋能的公共服务和生活便利。",
+      "privacy_concerns": "个人出行数据、健康监测数据、家庭安防数据",
+      "data_usage": "社区服务数据、交通出行数据、公共空间使用数据"
+    },
+    {
+      "persona_id": "P-004",
+      "label_zh": "国际访客/学者",
+      "description_zh": "来自全球各地的AI研究者、政策制定者和产业专家，关注国际交流、技术展示和文化体验。",
+      "age_range": [
+        28,
+        65
+      ],
+      "primary_needs": [
+        "国际会议场地",
+        "技术展示中心",
+        "文化体验路线",
+        "多语言导览服务"
+      ],
+      "key_scenarios": [
+        "SC-007 AI+环境保护",
+        "SC-008 AI+文化旅游",
+        "SC-001 AI+医疗诊断"
+      ],
+      "spatial_preference": "京张遗址公园及周边，便于参与国际活动和体验历史文化。",
+      "privacy_concerns": "跨境数据流动合规、学术成果保护",
+      "data_usage": "会议注册数据、展览互动数据、文化资源访问数据"
+    },
+    {
+      "persona_id": "P-005",
+      "label_zh": "政府管理者/政策制定者",
+      "description_zh": "负责创新带规划、管理和政策制定的政府部门人员，关注产业监测、公共服务评估和治理效能。",
+      "age_range": [
+        35,
+        60
+      ],
+      "primary_needs": [
+        "数据驾驶舱",
+        "产业监测平台",
+        "公众参与渠道",
+        "跨部门协同工具"
+      ],
+      "key_scenarios": [
+        "SC-005 AI+智慧城市管理",
+        "SC-007 AI+环境保护",
+        "SC-002 AI+智能交通"
+      ],
+      "spatial_preference": "统筹研究范围核心节点，便于全域监测和决策支持。",
+      "privacy_concerns": "政务数据安全、公共数据开放边界",
+      "data_usage": "产业运行数据、公共服务数据、环境监测数据"
+    }
+  ]
+}

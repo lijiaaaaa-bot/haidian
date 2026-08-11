@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "total_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "Declared from official announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Area is approximate based on text description"
+      ]
+    },
+    "key_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "Declared from official announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Area is approximate based on text description"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "Declared from official announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Area is approximate based on text description"
+      ]
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "Declared from official announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Area is approximate based on text description"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "Declared from official announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Area is approximate based on text description"
+      ]
+    },
+    "green_space_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "To be determined based on detailed analysis",
+      "confidence": "low",
+      "assumptions": [
+        "No detailed green space data available"
+      ],
+      "reason": "Green space data not yet available in public sources"
+    },
+    "public_space_per_capita_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "To be determined based on population and area data",
+      "confidence": "low",
+      "assumptions": [
+        "Population data not yet available"
+      ],
+      "reason": "Population data required for per capita calculation"
+    }
+  }
+}

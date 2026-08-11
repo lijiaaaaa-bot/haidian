@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-08-09",
+  "diagram_type": "overall_design_structure",
+  "title_zh": "百年京张AI创新带总体空间结构图",
+  "description_zh": "本图展示‘三区两翼’协同布局与主要功能分区。",
+  "elements": [
+    {
+      "id": "site_boundary",
+      "type": "polygon",
+      "label_zh": "总体设计范围",
+      "role": "provisional_constraint"
+    },
+    {
+      "id": "zhongzhiyuan_ai_acceleration_area",
+      "type": "polygon",
+      "label_zh": "众智园AI自主创新加速区",
+      "role": "key_area"
+    },
+    {
+      "id": "beijing_ai_origin_community",
+      "type": "polygon",
+      "label_zh": "北京AI原点社区",
+      "role": "key_area"
+    },
+    {
+      "id": "dazhongsi_ai_industry_cluster",
+      "type": "polygon",
+      "label_zh": "大钟寺AI产业集聚区",
+      "role": "key_area"
+    },
+    {
+      "id": "zhongguancun_technology_service_wing",
+      "type": "polygon",
+      "label_zh": "中关村科技服务翼",
+      "role": "supporting_function"
+    },
+    {
+      "id": "xiaoyuehe_scenario_empowerment_wing",
+      "type": "polygon",
+      "label_zh": "小月河场景赋能翼",
+      "role": "supporting_function"
+    }
+  ],
+  "legend": [
+    {
+      "symbol": "polygon",
+      "color": "#4A90E2",
+      "label_zh": "总体设计范围"
+    },
+    {
+      "symbol": "polygon",
+      "color": "#50C878",
+      "label_zh": "重点区域"
+    },
+    {
+      "symbol": "polygon",
+      "color": "#FFA500",
+      "label_zh": "支撑功能区"
+    }
+  ]
+}

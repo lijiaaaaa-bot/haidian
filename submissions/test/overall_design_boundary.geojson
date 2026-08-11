@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "overall_design_area",
+      "properties": {
+        "id": "overall_design_area",
+        "layer": "overall_design_boundary",
+        "source_type": "provisional",
+        "confidence": "medium",
+        "geometry_role": "boundary",
+        "area_sqm_declared": 11400000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.2,
+              39.8
+            ],
+            [
+              116.4,
+              39.8
+            ],
+            [
+              116.4,
+              40.0
+            ],
+            [
+              116.2,
+              40.0
+            ],
+            [
+              116.2,
+              39.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "key_area_1",
+      "properties": {
+        "id": "key_area_1",
+        "layer": "key_areas",
+        "source_type": "provisional",
+        "confidence": "medium",
+        "geometry_role": "area",
+        "area_sqm_declared": 1921000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.25,
+              39.85
+            ],
+            [
+              116.35,
+              39.85
+            ],
+            [
+              116.35,
+              39.95
+            ],
+            [
+              116.25,
+              39.95
+            ],
+            [
+              116.25,
+              39.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "key_area_2",
+      "properties": {
+        "id": "key_area_2",
+        "layer": "key_areas",
+        "source_type": "provisional",
+        "confidence": "medium",
+        "geometry_role": "area",
+        "area_sqm_declared": 1043000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.25,
+              39.95
+            ],
+            [
+              116.35,
+              39.95
+            ],
+            [
+              116.35,
+              40.05
+            ],
+            [
+              116.25,
+              40.05
+            ],
+            [
+              116.25,
+              39.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "key_area_3",
+      "properties": {
+        "id": "key_area_3",
+        "layer": "key_areas",
+        "source_type": "provisional",
+        "confidence": "medium",
+        "geometry_role": "area",
+        "area_sqm_declared": 720000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.35,
+              39.85
+            ],
+            [
+              116.45,
+              39.85
+            ],
+            [
+              116.45,
+              39.95
+            ],
+            [
+              116.35,
+              39.95
+            ],
+            [
+              116.35,
+              39.85
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

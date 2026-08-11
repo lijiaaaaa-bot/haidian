@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "generated_from": "repo physical data files",
   "generation_note": "此文件由 constraints/extractors.py 从 repo 数据文件自动生成。手动添加的约束应在 manual_overrides 中。",
-  "total_constraints": 43,
+  "total_constraints": 49,
   "constraints": [
     {
       "constraint_id": "C-COORD-001",
@@ -957,6 +957,59 @@
       "check_function": "check_three_lines_awareness",
       "enabled": true,
       "params": {},
+      "check_type": "CODE"
+    },
+    {
+      "constraint_id": "C-SM-GEOMETRY-VALID",
+      "name": "state_machine_land_use_geometry_valid",
+      "category": "spatial",
+      "severity": "high",
+      "description": "几何有效性校验: 每个 land_use feature 的几何必须有效（面积>0、不自交、环闭合）",
+      "check_function": "check_land_use_geometry_valid",
+      "enabled": true,
+      "params": {},
+      "check_type": "CODE"
+    },
+    {
+      "constraint_id": "C-SM-BUILDING-HEIGHT",
+      "name": "state_machine_building_height",
+      "category": "spatial",
+      "severity": "high",
+      "description": "建筑高度校验: building 图层每个 feature 必须带高度字段，且高度在 1-500m 合理范围",
+      "check_function": "check_building_height",
+      "enabled": true,
+      "params": {
+        "min_height_m": 1,
+        "max_height_m": 500,
+        "height_fields": ["height_m", "building_height_m", "height"]
+      },
+      "check_type": "CODE"
+    },
+    {
+      "constraint_id": "C-SM-ROAD-NETWORK",
+      "name": "state_machine_road_network",
+      "category": "spatial",
+      "severity": "high",
+      "description": "路网完整性校验: roads 图层至少 3 条道路（拒绝单线脚手架）",
+      "check_function": "check_road_network",
+      "enabled": true,
+      "params": {
+        "min_roads": 3
+      },
+      "check_type": "CODE"
+    },
+    {
+      "constraint_id": "C-SM-GREEN-RATIO",
+      "name": "state_machine_green_ratio",
+      "category": "spatial",
+      "severity": "high",
+      "description": "绿地率校验: 用实际几何计算绿地率，须在 0.05-0.80 合理范围（不读声明值）",
+      "check_function": "check_green_ratio",
+      "enabled": true,
+      "params": {
+        "min_ratio": 0.05,
+        "max_ratio": 0.80
+      },
       "check_type": "CODE"
     }
   ],

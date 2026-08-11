@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "T-001",
+        "type": "walking_path",
+        "name_zh": "步行连廊",
+        "length_m": 2000
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.345,
+            39.95
+          ],
+          [
+            116.35,
+            39.95
+          ],
+          [
+            116.35,
+            39.97
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "T-002",
+        "type": "cycling_path",
+        "name_zh": "自行车道",
+        "length_m": 1500
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.345,
+            39.97
+          ],
+          [
+            116.35,
+            39.97
+          ],
+          [
+            116.35,
+            39.99
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "T-003",
+        "type": "public_transit_station",
+        "name_zh": "轨道站点",
+        "capacity": 1000
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.348,
+          39.98
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "type": "FeatureCollection",
+  "name": "phasing_plan_conceptual",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PHASE-001",
+      "properties": {
+        "id": "PHASE-001",
+        "layer": "PHASING",
+        "phase_zh": "近期（1-3年）",
+        "description_zh": "京张遗址公园活力带启动、AI原点社区核心节点建设、首批AI场景开放",
+        "priority": "high",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.97
+            ],
+            [
+              116.35,
+              39.97
+            ],
+            [
+              116.35,
+              39.995
+            ],
+            [
+              116.342,
+              39.995
+            ],
+            [
+              116.342,
+              39.97
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PHASE-002",
+      "properties": {
+        "id": "PHASE-002",
+        "layer": "PHASING",
+        "phase_zh": "中期（3-5年）",
+        "description_zh": "众智园加速区全面开发、大钟寺AI产业集聚区改造、小月河场景赋能带完善",
+        "priority": "medium",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.945
+            ],
+            [
+              116.355,
+              39.945
+            ],
+            [
+              116.355,
+              39.97
+            ],
+            [
+              116.342,
+              39.97
+            ],
+            [
+              116.342,
+              39.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PHASE-003",
+      "properties": {
+        "id": "PHASE-003",
+        "layer": "PHASING",
+        "phase_zh": "远期（5-10年）",
+        "description_zh": "全域AI创新生态成熟、品牌IP体系完善、国际影响力形成",
+        "priority": "long_term",
+        "status": "conceptual_suggestion"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.34,
+              39.94
+            ],
+            [
+              116.355,
+              39.94
+            ],
+            [
+              116.355,
+              40.027
+            ],
+            [
+              116.34,
+              40.027
+            ],
+            [
+              116.34,
+              39.94
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "type": "FeatureCollection",
+  "name": "land_use_classification",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "LU-001",
+      "properties": {
+        "lu_code": "A3",
+        "lu_name_zh": "科研用地",
+        "lu_name_en": "Research Land",
+        "area_sqm": 2850000,
+        "percentage": 24.96,
+        "key_area": "zhongzhiyuan_ai_acceleration_area",
+        "description_zh": "众智园AI自主创新加速区核心科研用地，用于AI算法研发、模型训练和算力中心建设。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.345,
+              40.01
+            ],
+            [
+              116.352,
+              40.01
+            ],
+            [
+              116.352,
+              40.022
+            ],
+            [
+              116.345,
+              40.022
+            ],
+            [
+              116.345,
+              40.01
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-002",
+      "properties": {
+        "lu_code": "B8",
+        "lu_name_zh": "商业用地",
+        "lu_name_en": "Commercial Land",
+        "area_sqm": 1560000,
+        "percentage": 13.67,
+        "key_area": "dazhongsi_ai_industry_cluster",
+        "description_zh": "大钟寺AI产业集聚区智能商业用地，用于AI+消费、智能零售和体验式商务。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.343,
+              39.945
+            ],
+            [
+              116.353,
+              39.945
+            ],
+            [
+              116.353,
+              39.948
+            ],
+            [
+              116.343,
+              39.948
+            ],
+            [
+              116.343,
+              39.945
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-003",
+      "properties": {
+        "lu_code": "A9",
+        "lu_name_zh": "其他类多功能用地",
+        "lu_name_en": "Other Multi-functional Land",
+        "area_sqm": 1240000,
+        "percentage": 10.87,
+        "key_area": "beijing_ai_origin_community",
+        "description_zh": "北京AI原点社区混合功能用地，用于AI+生活体验、公共服务和社区创新。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.343,
+              39.985
+            ],
+            [
+              116.352,
+              39.985
+            ],
+            [
+              116.352,
+              39.992
+            ],
+            [
+              116.343,
+              39.992
+            ],
+            [
+              116.343,
+              39.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-004",
+      "properties": {
+        "lu_code": "E9",
+        "lu_name_zh": "公园绿地",
+        "lu_name_en": "Park Green Space",
+        "area_sqm": 2100000,
+        "percentage": 18.4,
+        "key_area": null,
+        "description_zh": "京张遗址公园及小月河沿线蓝绿空间，用于生态保护和公共休闲。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.34,
+              39.97
+            ],
+            [
+              116.355,
+              39.97
+            ],
+            [
+              116.355,
+              39.982
+            ],
+            [
+              116.34,
+              39.982
+            ],
+            [
+              116.34,
+              39.97
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-005",
+      "properties": {
+        "lu_code": "S1",
+        "lu_name_zh": "道路与交通设施用地",
+        "lu_name_en": "Road and Transport Land",
+        "area_sqm": 980000,
+        "percentage": 8.59,
+        "key_area": null,
+        "description_zh": "创新带内部道路网络和慢行系统基础。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.95
+            ],
+            [
+              116.354,
+              39.95
+            ],
+            [
+              116.354,
+              39.965
+            ],
+            [
+              116.342,
+              39.965
+            ],
+            [
+              116.342,
+              39.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-006",
+      "properties": {
+        "lu_code": "R2",
+        "lu_name_zh": "二类居住用地",
+        "lu_name_en": "Residential Land",
+        "area_sqm": 1450000,
+        "percentage": 12.71,
+        "key_area": "beijing_ai_origin_community",
+        "description_zh": "创新带配套居住用地，用于人才安居和生活服务。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.344,
+              39.975
+            ],
+            [
+              116.35,
+              39.975
+            ],
+            [
+              116.35,
+              39.982
+            ],
+            [
+              116.344,
+              39.982
+            ],
+            [
+              116.344,
+              39.975
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-007",
+      "properties": {
+        "lu_code": "A2",
+        "lu_name_zh": "文化用地",
+        "lu_name_en": "Cultural Land",
+        "area_sqm": 680000,
+        "percentage": 5.96,
+        "key_area": null,
+        "description_zh": "京张铁路历史文化展示和AI新文化融合空间。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.341,
+              39.985
+            ],
+            [
+              116.348,
+              39.985
+            ],
+            [
+              116.348,
+              39.992
+            ],
+            [
+              116.341,
+              39.992
+            ],
+            [
+              116.341,
+              39.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LU-008",
+      "properties": {
+        "lu_code": "U9",
+        "lu_name_zh": "其他基础设施用地",
+        "lu_name_en": "Other Infrastructure Land",
+        "area_sqm": 543000,
+        "percentage": 4.76,
+        "key_area": null,
+        "description_zh": "分布式算力节点、能源站和新型市政设施。",
+        "provisional": true,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              40.02
+            ],
+            [
+              116.353,
+              40.02
+            ],
+            [
+              116.353,
+              40.025
+            ],
+            [
+              116.346,
+              40.025
+            ],
+            [
+              116.346,
+              40.02
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

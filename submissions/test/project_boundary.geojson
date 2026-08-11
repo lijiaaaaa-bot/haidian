@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "百年京张AI创新带",
+        "area_sqm": 1200000,
+        "description": "项目总体范围"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.0,
+              39.8
+            ],
+            [
+              116.5,
+              39.8
+            ],
+            [
+              116.5,
+              40.2
+            ],
+            [
+              116.0,
+              40.2
+            ],
+            [
+              116.0,
+              39.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "核心设计区",
+        "area_sqm": 800000,
+        "description": "总体设计区域"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.1,
+              39.9
+            ],
+            [
+              116.4,
+              39.9
+            ],
+            [
+              116.4,
+              40.1
+            ],
+            [
+              116.1,
+              40.1
+            ],
+            [
+              116.1,
+              39.9
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

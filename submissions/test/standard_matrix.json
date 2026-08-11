@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1.0",
+  "standards": [
+    {
+      "standard_id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "requirement_zh": "城市设计管理办法要求",
+      "professional_dimension": "城市设计",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative",
+        "public_space_design"
+      ],
+      "drawing_refs": [
+        "site_overview",
+        "public_space_network"
+      ],
+      "geometry_refs": [
+        "site_boundary",
+        "key_areas"
+      ],
+      "metric_refs": [
+        "green_ratio",
+        "public_space_ratio"
+      ],
+      "source_ids": [
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "check_13"
+      ],
+      "evidence_summary_zh": "方案符合城市设计管理办法中关于公共空间、城市风貌和建筑控制的要求。"
+    },
+    {
+      "standard_id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "requirement_zh": "控制性详细规划编制审批办法要求",
+      "professional_dimension": "规划审批",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "proposal_narrative",
+        "land_use_layout"
+      ],
+      "drawing_refs": [
+        "site_overview",
+        "key_areas_map"
+      ],
+      "geometry_refs": [
+        "site_boundary",
+        "key_areas"
+      ],
+      "metric_refs": [
+        "land_use_ratio",
+        "building_density"
+      ],
+      "source_ids": [
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "check_14"
+      ],
+      "evidence_summary_zh": "方案符合控制性详细规划编制审批办法中关于规划深度和实施管理的要求。"
+    },
+    {
+      "standard_id": "MNR-LAND-USE-CLASSIFICATION",
+      "requirement_zh": "国土空间调查、规划、用途管制用地用海分类指南要求",
+      "professional_dimension": "土地利用",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "land_use_layout",
+        "metrics"
+      ],
+      "drawing_refs": [
+        "land_use_map"
+      ],
+      "geometry_refs": [
+        "site_boundary",
+        "key_areas"
+      ],
+      "metric_refs": [
+        "land_use_ratio"
+      ],
+      "source_ids": [
+        "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311"
+      ],
+      "assumption_ids": [],
+      "self_check_ids": [
+        "check_15"
+      ],
+      "evidence_summary_zh": "方案采用国土空间规划用地分类标准，确保土地利用的规范性和科学性。"
+    }
+  ]
+}

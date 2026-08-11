@@ -212,6 +212,10 @@ class ConstraintEngine:
             # state-machine backed checks (urban-design-knowledge integration)
             "check_land_use_classification": _check_sm_landuse,
             "check_three_lines_awareness": _check_sm_threelines,
+            "check_land_use_geometry_valid": _check_sm_geometry_valid,
+            "check_building_height": _check_sm_building_height,
+            "check_road_network": _check_sm_road_network,
+            "check_green_ratio": _check_sm_green_ratio,
         })
 
     # ── Reporting ───────────────────────────────────────────────────
@@ -274,15 +278,45 @@ class ConstraintEngine:
 # These are PURE — no LLM, no randomness, same input → same output.
 # ═══════════════════════════════════════════════════════════════════════
 
+# Maintainer-gate canonical geometry filenames (scripts/validate_submission.py,
+# ALLOWED_GEOMETRY_FILES). LAYER-001 accepts either the layer-derived name
+# (KEY_AREA -> key_area.geojson) or these canonical names, so the CODE gate and
+# the maintainer gate agree on what a complete package looks like instead of
+# contradicting each other over the same files.
+MAINTAINER_GEOMETRY_FILENAMES = {
+    "SITE_BOUNDARY": "site_boundary.geojson",
+    "KEY_AREA": "key_areas.geojson",
+    "LAND_USE": "land_use.geojson",
+    "BUILDING_FOOTPRINT": "buildings.geojson",
+    "ROAD_CENTERLINE": "roads.geojson",
+    "GREEN_SPACE": "green_space.geojson",
+    "PUBLIC_SPACE": "public_space.geojson",
+    "PHASE": "phasing.geojson",
+}
+
+
 def _check_required_layers(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:
-    """Verify all required GeoJSON layers exist."""
+    """Verify all required GeoJSON layers exist.
+
+    Layers in params['optional_layers'] (default SITE_BOUNDARY) are NOT
+    penalized when absent — the maintainer gate owns those files, so a missing
+    optional layer neither adds nor subtracts points here.
+    """
     required = params.get("required_layers", [])
+    optional = set(params.get("optional_layers", ["SITE_BOUNDARY"]))
     geometry_dir = sub_path / "geometry"
     missing = []
+    skipped = []
     for layer in required:
-        # Map layer name to expected filename
-        filename = f"{layer.lower()}.geojson"
-        if not (geometry_dir / filename).exists():
+        candidates = [f"{layer.lower()}.geojson"]
+        canonical = MAINTAINER_GEOMETRY_FILENAMES.get(layer)
+        if canonical and canonical not in candidates:
+            candidates.append(canonical)
+        if any((geometry_dir / name).exists() for name in candidates):
+            continue
+        if layer in optional:
+            skipped.append(layer)
+        else:
             missing.append(layer)
 
     if missing:
@@ -290,6 +324,18 @@ def _check_required_layers(sub_path: Path, params: dict) -> tuple[CheckOutcome, 
             CheckOutcome.FAIL,
             f"缺失 {len(missing)} 个必交图层: {', '.join(missing)}",
             f"geometry/: missing {missing}",
+        )
+    if skipped:
+        if len(skipped) == len(required):
+            return (
+                CheckOutcome.SKIP,
+                f"必交图层均为可选图层（缺失: {', '.join(skipped)}），由维护者门禁处理",
+                "",
+            )
+        return (
+            CheckOutcome.PASS,
+            f"全部必交图层存在（可选图层 {', '.join(skipped)} 缺失不扣分，由维护者门禁处理）",
+            "",
         )
     return (CheckOutcome.PASS, f"全部 {len(required)} 个必交图层存在", "")
 
@@ -445,6 +491,45 @@ def _check_no_land_use_overlap(sub_path: Path, params: dict) -> tuple[CheckOutco
     return (CheckOutcome.PASS, "land_use 无重叠", "")
 
 
+def _find_metric_value(metrics: Any, metric_key: str) -> Any:
+    """Locate a named metric value across supported metrics.json shapes.
+
+    Supported shapes:
+      - flat:    {"<key>": 1234}
+      - entry:   {"<key>": {"value": 1234}}
+      - nested:  {"metrics": {"<key>": {"value": 1234}}}   (schema shape)
+      - list:    [{"metric": "<key>", "value": 1234}, {"<key>": 1234}]
+
+    Returns the numeric value, or None when the key is absent or non-numeric.
+    """
+    if isinstance(metrics, dict):
+        val = metrics.get(metric_key)
+        if isinstance(val, dict):
+            val = val.get("value")
+        if isinstance(val, (int, float)):
+            return val
+        nested = metrics.get("metrics")
+        if isinstance(nested, dict) and metric_key in nested:
+            val = nested[metric_key]
+            if isinstance(val, dict):
+                val = val.get("value")
+            if isinstance(val, (int, float)):
+                return val
+    elif isinstance(metrics, list):
+        for m in metrics:
+            if not isinstance(m, dict):
+                continue
+            if m.get("metric") == metric_key:
+                val = m.get("value")
+                if isinstance(val, (int, float)):
+                    return val
+            if metric_key in m:
+                val = m[metric_key]
+                if isinstance(val, (int, float)):
+                    return val
+    return None
+
+
 def _check_area_tolerance(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:
     """Check area within tolerance of declared value."""
     declared = params.get("declared_area_sqm")
@@ -465,43 +550,43 @@ def _check_area_tolerance(sub_path: Path, params: dict) -> tuple[CheckOutcome, s
     except json.JSONDecodeError:
         return (CheckOutcome.FAIL, "metrics.json 不是合法 JSON", str(metrics_file))
 
-    # Find the matching metric
     actual = None
-    
-    # If a specific metric_key is provided, try top-level first, then nested metrics.{key}.value
-    if metric_key and isinstance(metrics, dict):
-        actual = metrics.get(metric_key)
-        # Also try nested structure: metrics.metrics.{metric_key}.value
-        if actual is None and isinstance(metrics.get("metrics"), dict):
-            metric_entry = metrics["metrics"].get(metric_key)
-            if isinstance(metric_entry, dict):
-                actual = metric_entry.get("value")
-    
-    # Fallback: scan for first _sqm key at top level
-    if actual is None:
+    if metric_key:
+        # Look ONLY for the named metric. A missing key is a FAIL with a precise
+        # message — never silently fall back to some other *_sqm value (that
+        # made all six area checks report the same misleading number).
+        actual = _find_metric_value(metrics, metric_key)
+        if actual is None:
+            return (
+                CheckOutcome.FAIL,
+                f"指标 {metric_key} 未在 metrics.json 中找到",
+                f"metrics.json: missing metric key '{metric_key}'",
+            )
+    else:
+        # Legacy behavior (no metric_key): scan for the first *_sqm value.
         for m in metrics if isinstance(metrics, list) else [metrics]:
             if isinstance(m, dict):
                 for key, val in m.items():
                     if isinstance(val, (int, float)) and key.endswith("_sqm"):
                         actual = val
                         break
-    
-    # Fallback: scan nested metrics.{key}.value for _sqm keys
-    if actual is None and isinstance(metrics, dict) and isinstance(metrics.get("metrics"), dict):
-        for key, entry in metrics["metrics"].items():
-            if isinstance(entry, dict) and key.endswith("_sqm"):
-                val = entry.get("value")
-                if isinstance(val, (int, float)):
-                    actual = val
-                    break
 
-    if actual is None and isinstance(metrics, dict):
-        actual = metrics.get("site_area_sqm")
-        # Try nested
-        if actual is None and isinstance(metrics.get("metrics"), dict):
-            entry = metrics["metrics"].get("site_area_sqm")
-            if isinstance(entry, dict):
-                actual = entry.get("value")
+        # Fallback: scan nested metrics.{key}.value for _sqm keys
+        if actual is None and isinstance(metrics, dict) and isinstance(metrics.get("metrics"), dict):
+            for key, entry in metrics["metrics"].items():
+                if isinstance(entry, dict) and key.endswith("_sqm"):
+                    val = entry.get("value")
+                    if isinstance(val, (int, float)):
+                        actual = val
+                        break
+
+        if actual is None and isinstance(metrics, dict):
+            actual = metrics.get("site_area_sqm")
+            # Try nested
+            if actual is None and isinstance(metrics.get("metrics"), dict):
+                entry = metrics["metrics"].get("site_area_sqm")
+                if isinstance(entry, dict):
+                    actual = entry.get("value")
 
     if actual is None:
         return (CheckOutcome.FAIL, f"metrics.json 中未找到面积值", str(metrics_file))
@@ -566,8 +651,18 @@ def _check_task_coverage(sub_path: Path, params: dict) -> tuple[CheckOutcome, st
     except json.JSONDecodeError:
         return (CheckOutcome.FAIL, "compliance_matrix.json 不是合法 JSON", str(matrix_file))
 
-    # Search for the requirement
-    entries = matrix if isinstance(matrix, list) else matrix.get("entries", [])
+    # Search for the requirement. The schema (compliance_matrix.schema.json)
+    # mandates a "requirements" key; the checker historically read "entries".
+    # Accept both container key names — never fail a schema-conformant matrix
+    # over the container key. Only when neither exists do we report FAIL.
+    if isinstance(matrix, list):
+        entries = matrix
+    else:
+        entries = matrix.get("entries")
+        if not isinstance(entries, list):
+            entries = matrix.get("requirements")
+        if not isinstance(entries, list):
+            entries = []
     for entry in entries:
         if entry.get("requirement_id") == req_id:
             # Check evidence fields are non-empty
@@ -824,8 +919,15 @@ def _check_crs_used(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, st
 
 
 def _check_locked_layers(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:
-    """Verify locked layers are not modified."""
+    """Verify locked layers are not modified.
+
+    Organizer-provided reference layers (SITE_BOUNDARY, KEY_AREA) are allowed
+    to appear in the package — the maintainer gate requires them on disk even
+    though they are not editable. Only genuinely locked, non-reference content
+    is penalized. The allowed set can be overridden via params['allowed_layers'].
+    """
     locked = set(params.get("locked_layers", []))
+    allowed = set(params.get("allowed_layers", ["SITE_BOUNDARY", "KEY_AREA"]))
     geometry_dir = sub_path / "geometry"
     violations = []
 
@@ -833,7 +935,7 @@ def _check_locked_layers(sub_path: Path, params: dict) -> tuple[CheckOutcome, st
         data = json.loads(geojson_file.read_text(encoding="utf-8"))
         for feat in data.get("features", []):
             layer = feat.get("properties", {}).get("layer", "")
-            if layer in locked:
+            if layer in locked and layer not in allowed:
                 feat_id = feat.get("properties", {}).get("id", "?")
                 violations.append(f"{geojson_file.name}#{feat_id}: locked layer '{layer}'")
 
@@ -856,7 +958,9 @@ def _check_layer_names(sub_path: Path, params: dict) -> tuple[CheckOutcome, str,
         data = json.loads(geojson_file.read_text(encoding="utf-8"))
         for feat in data.get("features", []):
             layer = feat.get("properties", {}).get("layer", "")
-            if layer and layer not in valid:
+            # KEY_AREA (required but neither editable nor locked) and its
+            # variants (KEY_AREA-1, KEY_AREA/PROV-*) are legitimate names.
+            if layer and layer not in valid and not layer.startswith("KEY_AREA"):
                 feat_id = feat.get("properties", {}).get("id", "?")
                 violations.append(f"{geojson_file.name}#{feat_id}: unknown layer '{layer}'")
 
@@ -879,3 +983,23 @@ def _check_sm_landuse(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str,
 def _check_sm_threelines(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
     from constraints.state_machine_checks import check_three_lines_awareness
     return check_three_lines_awareness(sub_path, _params)
+
+
+def _check_sm_geometry_valid(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_land_use_geometry_valid
+    return check_land_use_geometry_valid(sub_path, _params)
+
+
+def _check_sm_building_height(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_building_height
+    return check_building_height(sub_path, _params)
+
+
+def _check_sm_road_network(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_road_network
+    return check_road_network(sub_path, _params)
+
+
+def _check_sm_green_ratio(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.state_machine_checks import check_green_ratio
+    return check_green_ratio(sub_path, _params)
