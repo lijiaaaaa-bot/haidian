@@ -1,0 +1,209 @@
+{
+  "type": "FeatureCollection",
+  "name": "public_space",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PS-001",
+      "properties": {
+        "id": "PS-001",
+        "layer": "PUBLIC_SPACE",
+        "name_zh": "AI朝圣地标·原点广场",
+        "name_en": "AI Landmark · Origin Plaza",
+        "type_zh": "AI朝圣地标",
+        "landmark_count": 1,
+        "design_rationale": "不少于3个AI朝圣地标之一 — agent.4 朝圣地标设计",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              39.988
+            ],
+            [
+              116.35,
+              39.988
+            ],
+            [
+              116.35,
+              39.992
+            ],
+            [
+              116.346,
+              39.992
+            ],
+            [
+              116.346,
+              39.988
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-002",
+      "properties": {
+        "id": "PS-002",
+        "layer": "PUBLIC_SPACE",
+        "name_zh": "AI朝圣地标·众智广场",
+        "name_en": "AI Landmark · Zhongzhi Plaza",
+        "type_zh": "AI朝圣地标",
+        "landmark_count": 2,
+        "design_rationale": "不少于3个AI朝圣地标之二 — agent.4 朝圣地标设计",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              40.015
+            ],
+            [
+              116.352,
+              40.015
+            ],
+            [
+              116.352,
+              40.02
+            ],
+            [
+              116.346,
+              40.02
+            ],
+            [
+              116.346,
+              40.015
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-003",
+      "properties": {
+        "id": "PS-003",
+        "layer": "PUBLIC_SPACE",
+        "name_zh": "AI朝圣地标·大钟寺AI广场",
+        "name_en": "AI Landmark · Dazhongsi AI Plaza",
+        "type_zh": "AI朝圣地标",
+        "landmark_count": 3,
+        "design_rationale": "不少于3个AI朝圣地标之三 — agent.4 朝圣地标设计",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.348,
+              39.947
+            ],
+            [
+              116.355,
+              39.947
+            ],
+            [
+              116.355,
+              39.94984
+            ],
+            [
+              116.348,
+              39.94984
+            ],
+            [
+              116.348,
+              39.947
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-004",
+      "properties": {
+        "id": "PS-004",
+        "layer": "PUBLIC_SPACE",
+        "name_zh": "京张文化体验廊道",
+        "name_en": "Jingzhang Cultural Experience Corridor",
+        "type_zh": "文化体验空间",
+        "design_rationale": "百年京张文化融合叙事 — agent.5 文化叙事",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.344,
+              39.944
+            ],
+            [
+              116.35,
+              39.944
+            ],
+            [
+              116.35,
+              40.026
+            ],
+            [
+              116.344,
+              40.026
+            ],
+            [
+              116.344,
+              39.944
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "PS-005",
+      "properties": {
+        "id": "PS-005",
+        "layer": "PUBLIC_SPACE",
+        "name_zh": "AI场景体验节点群",
+        "name_en": "AI Scenario Experience Nodes",
+        "type_zh": "场景体验空间",
+        "design_rationale": "不少于10张AI场景卡落地 — agent.3 场景赋能",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.9835
+            ],
+            [
+              116.353,
+              39.9835
+            ],
+            [
+              116.353,
+              39.9935
+            ],
+            [
+              116.342,
+              39.9935
+            ],
+            [
+              116.342,
+              39.9835
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

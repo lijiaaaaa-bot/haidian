@@ -31,7 +31,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from constraints.engine import CheckOutcome, ConstraintEngine  # noqa: E402
+from constraints.engine import (  # noqa: E402
+    CheckOutcome,
+    ConstraintEngine,
+    ConstraintResult,
+)
 
 POLL_SECONDS = 5 * 60  # lidangzzz: check every 5 minutes
 
@@ -113,77 +117,76 @@ TOOL_GENERATE_FIGURE = {
 }
 
 SYSTEM_PROMPT = textwrap.dedent("""\
-你是百年京张AI创新带城市设计的方案生成者。你是全权工作者——Master 不告诉你
-哪里错了，你自己读、自己判断、自己改、自己验证。
-
-## 你的目标
-
-在 {submission_path}/ 下生成完整的 formal 城市设计方案包。
+你是方案修复者。Master 会发给你 CODE 约束失败列表。你唯一的工作是修复这些具体失败。
+不要重写整个方案——只修改失败的文件。
 
 ## 工作方式
 
-1. 先读 brief/site-package/design_brief.json 了解任务
-2. 读 brief/site-package/agent_taskbook.json 了解六大 agent 任务和边界条款
-3. 读 brief/site-package/schemas/ 了解各 JSON 的 schema
-4. 读 templates/proposal.md 了解方案模板
-5. 读 data/source_registry.json 了解可用资料来源
-6. 修改 {submission_path}/ 下的文件——proposal.md、GeoJSON、metrics、matrices；图纸用 generate_figure 工具生成
-7. 用 run_python 验证你的方案——调 ConstraintEngine.validate() 看还有哪些约束没过
-8. 重复 6-7 直到你认为所有约束都满足
+1. 读 Master 消息中的失败列表——这些是你唯一要修的东西
+2. 读受影响的文件了解当前状态
+3. 逐个修复：改文件 → run_python 验证
+4. 不要重写没失败的文件——只动坏的
+5. 不要从零生成新几何——修改已有文件
 
-## 关键约束
+## 验证代码（复制到 run_python）
+```
+from constraints.engine import ConstraintEngine
+e = ConstraintEngine()
+e.load_registry()
+r = e.validate('{submission_path}')
+for x in r:
+    if x.outcome.name != 'PASS':
+        print(f'FAIL {{x.constraint_id}}: {{x.detail}}')
+print(f'{{sum(1 for x in r if x.outcome.name=="PASS")}}/{{len(r)}} PASS')
+```
 
-- 所有 JSON/GeoJSON 必须符合 brief/site-package/schemas/ 的 schema
-- proposal.md 不得声称官方批准、不得编造控规数据
-- 空间数据必须使用 EPSG:4548 投影计算面积
-- 图纸用 generate_figure 工具生成专业规划图纸（EPSG:4548 投影、标题、图例、比例尺、指北针、来源标注），不要手写 matplotlib 代码
-- provisional 边界必须明确标注
-
-## 文件读写规则
-
-- 读：可以读 brief/、templates/、data/、docs/、{submission_path}/、schema/
-- 写：只能写 {submission_path}/ 下的文件
-- 不要改 manifest.json（Master 收尾时统一刷新）
-- 所有 JSON 写入前用 run_python 做 json.loads 校验
-
-## 图纸生成
-
-- 需要图纸时调用 generate_figure：传 figure_type（site_overview/land_use/key_areas/mobility/metrics）和 GeoJSON 文件列表
-- 图纸自动保存到 {submission_path}/assets/figures/ 下并覆盖同名文件：site-overview.png、land-use-structure.png、key-areas.png、mobility-bluegreen.png、metrics-evidence.png
-- 用地、边界、道路、绿地等数据来自 {submission_path}/geometry/ 下的 GeoJSON，先确认文件存在再生成
-- 不要自己写 matplotlib 渲染代码；图纸由专业渲染管线生成，带标题、图例、比例尺、指北针和来源标注
-
-## 专业知识参考
-
-遇到你不理解的概念（如"三区三线""强制措辞""用地分类"），读这些文件：
-- brief/site-package/standards/references/three-lines-knowledge.md — 国土空间规划体系
-- brief/site-package/agent_taskbook.json — 任务定义、边界条款、强制措辞模板
-- templates/proposal.md — 方案模板和引用格式要求
-不要猜——用自己的话表达专业知识，不是复制粘贴。
-
-## 完成
-
-当你认为方案满足所有约束后，告诉 Master 你完成了。Master 会独立验证；
-如果还有问题，你会被重新叫起来继续改。""")
+## 规则
+- 只修失败的项——不要动已通过的
+- 只写 {submission_path}/ 下的文件
+- 不改 manifest.json
+- 写完整有效的 JSON/GeoJSON
+- site_boundary 是 provisional_rough——永远不要声称 official_boundary=true
+- 禁止 mock 或伪造 ConstraintEngine——用上面的验证代码""")
 
 SYSTEM_PROMPT_MLX = textwrap.dedent("""\
-You are an urban design agent. Use tools for ALL actions.
+You are a submission repair agent. The Master sends you a list of CODE constraint failures.
+Your ONLY job: fix those specific failures. Do NOT regenerate the entire submission.
 
 ## Tools
-- read_file(path) — read a file
-- write_file(path, content) — write a file
-- run_python(code) — run Python code to validate
-- generate_figure(figure_type, geojson_files) — generate images
+- read_file(path) — read any file in the repo
+- write_file(path, content) — write to {submission_path}/ (blocked elsewhere)
+- run_python(code) — run Python to validate
+- generate_figure(figure_type, geojson_files) — generate planning figures
 
-## Task
-Fix validation failures in {submission_path}/
-Read the submission files, understand what's failing, fix ONE issue at a time.
-After writing, verify with run_python calling ConstraintEngine.validate().
+## Workflow
+1. Read the failure list in the user message — these are the ONLY things you need to fix
+2. Read the affected files to understand the current state
+3. Fix ONE failure at a time: write the corrected file, then validate
+4. Do NOT rewrite files that aren't failing — only touch what's broken
+5. Do NOT generate new geometry from scratch — modify existing files
+
+## Validation Code (copy-paste into run_python)
+```
+from constraints.engine import ConstraintEngine
+e = ConstraintEngine()
+e.load_registry()
+r = e.validate('{submission_path}')
+for x in r:
+    if x.outcome.name != 'PASS':
+        print(f'FAIL {{x.constraint_id}}: {{x.detail}}')
+print(f'{{sum(1 for x in r if x.outcome.name=="PASS")}}/{{len(r)}} PASS')
+```
 
 ## Rules
-- Only modify files under {submission_path}/
-- Never touch manifest.json, constraints/, scripts/, brief/
-- Write complete, valid JSON/GeoJSON content""")
+- Only modify failing items — don't touch passing ones
+- Only write files under {submission_path}/
+- Never touch manifest.json — Master finalizes it
+- Write complete, valid JSON/GeoJSON
+- Provisional boundaries: site_boundary is provisional_rough — never claim official_boundary=true
+- NEVER mock or fake ConstraintEngine — use the exact import code above
+- Do NOT read constraints/registry.json or constraints/engine.py — the failure hints are sufficient
+- Do NOT read brief/site-package/ files unless the failure explicitly requires it
+- Maximum 8 tool calls per round — fix only the top 3 failures""")
 
 SUBMISSION_TOOLS = [TOOL_READ_FILE, TOOL_WRITE_FILE, TOOL_RUN_PYTHON, TOOL_GENERATE_FIGURE]
 
@@ -380,15 +383,15 @@ def _figure_submission(arg_submission: str, geojson_files: list) -> Path | None:
             return cand
         log(f"  generate_figure: submission 参数无法解析: {arg_submission!r}")
     for raw in geojson_files:
-        # Walk up from a geojson path to the directory whose parent is
-        # submissions/ — handles any nesting depth (geometry/, subdirs, ...).
+        # Walk up from a geojson path to the slug directory: the dir
+        # whose grandparent is submissions/.  Handles geometry/, subdirs.
         p = (ROOT / str(raw).strip()).resolve()
         if not p.is_file() or ROOT not in p.parents:
             continue
         cur = p.parent
         while cur != ROOT and cur.parent != ROOT:
-            if cur.parent == subs_dir:
-                return cur
+            if cur.parent.parent == subs_dir:
+                return cur  # cur is e.g. submissions/test/fact-first
             cur = cur.parent
     candidates = [p for p in subs_dir.iterdir() if p.is_dir() and p.name != "README.md"]
     if len(candidates) == 1:
@@ -1699,20 +1702,11 @@ def spawn_subagent(submission: Path, *,
         use_mlx = os.environ.get("HAIDIAN_MLX") == "true"
         template = SYSTEM_PROMPT_MLX if use_mlx else SYSTEM_PROMPT
         system_msg = template.format(submission_path=str(slug), slug=submission.name)
-        # Muse Glimmer reasoning strength
         if reasoning and "muse-glimmer" in model:
             system_msg = f"Reasoning strength: {reasoning}\n\n{system_msg}"
-        if "muse-glimmer" in model:
-            first = (
-                "开始工作。你需要完成以下任务：\n"
-                "1. 读 brief/site-package/design_brief.json 了解方案要求\n"
-                "2. 读 {submission_path}/proposal.md 等文件了解当前脚手架状态\n"
-                "3. 用 write_file 逐步修改提案文件，从 proposal.md 开始\n"
-                "4. 每次修改后用 run_python 验证\n\n"
-                "注意：读完关键文件后就必须开始写，不要反复读。"
-            ).format(submission_path=str(slug))
-        else:
-            first = "开始工作。先读 brief/site-package/design_brief.json 了解任务。"
+        # Combine first message + inject into ONE message so the agent doesn't
+        # wait for a "later" message that never comes (it's all in one batch)
+        first = inject if inject else "开始工作。没有失败项，检查当前状态。"
         messages = [
             {"role": "system", "content": system_msg},
             {"role": "user", "content": first},
@@ -1806,9 +1800,125 @@ def scaffold(submission: Path, args: argparse.Namespace) -> None:
         raise SystemExit(1)
 
 
+def _declared_metric_keys(submission: Path) -> set:
+    """Metric keys the submission actually *declares* in metrics.json — under
+    the ``metrics`` object (dict or list, matching the engine's own parsing in
+    _check_sanity_bounds). Missing file / broken JSON → empty set."""
+    mf = submission / "metrics.json"
+    if not mf.is_file():
+        return set()
+    try:
+        data = json.loads(mf.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return set()
+    keys: set = set()
+    if isinstance(data, dict):
+        keys |= set(data.keys())  # engine also reads top-level metric keys
+        inner = data.get("metrics")
+        if isinstance(inner, dict):
+            keys |= set(inner.keys())
+        elif isinstance(inner, list):
+            keys |= {m.get("metric") for m in inner if isinstance(m, dict)}
+    elif isinstance(data, list):
+        keys |= {m.get("metric") for m in data if isinstance(m, dict)}
+    return keys
+
+
+def _required_metric_keys(engine: ConstraintEngine) -> set:
+    """Official required-metric set: the C-SANITY constraints' metric_key params
+    (constraints/registry.json → brief/site-package/ranges/planning_limits.json
+    ``schema_sanity_bounds_not_planning_approval``: ratio/floor_area_ratio/height_m)."""
+    keys: set = set()
+    for c in getattr(engine, "registry", {}).get("constraints", []):
+        if str(c.get("constraint_id", "")).startswith("C-SANITY"):
+            k = (c.get("params") or {}).get("metric_key")
+            if k:
+                keys.add(k)
+    return keys
+
+
+def _missing_required_metrics(engine: ConstraintEngine, submission: Path) -> list:
+    """Fix 1 — SKIP trap. The engine returns SKIP (not FAIL) when a required
+    metric key is absent from metrics.json, so criteria_met would declare DONE
+    over an incomplete metrics.json. The official contract (metrics.schema.json
+    ``$defs.metric`` + planning_limits.json ``required_for_final_submission``)
+    requires these metrics be *declared* — status may be ``unknown`` with a
+    reason, but the key must exist. Missing declaration → loop-level FAIL."""
+    declared = _declared_metric_keys(submission)
+    missing = sorted(_required_metric_keys(engine) - declared)
+    return [
+        ConstraintResult(
+            constraint_id=f"C-SANITY-{k}",
+            name=f"required_metric_{k}",
+            outcome=CheckOutcome.FAIL,
+            severity="high",
+            category="metric",
+            detail=f"metrics.json 未声明必需指标 {k}(即使值未知也需以 status=unknown 声明)",
+            evidence="planning_limits.json schema_sanity_bounds_not_planning_approval / required_for_final_submission",
+        )
+        for k in missing
+    ]
+
+
+def _metric_claim_gaps(submission: Path) -> list:
+    """Fix 3 — claims deliverable. A metric declared ``known`` must carry a
+    non-empty ``formula`` and ``source_files`` that resolve to real files
+    (metrics.schema.json requires both on every metric entry). A concrete value
+    with no supporting file in the package is an unverifiable claim."""
+    mf = submission / "metrics.json"
+    if not mf.is_file():
+        return []
+    try:
+        data = json.loads(mf.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return []
+    inner = data.get("metrics") if isinstance(data, dict) else data
+    if isinstance(inner, dict):
+        entries = inner.items()
+    elif isinstance(inner, list):
+        entries = [(m.get("metric"), m) for m in inner if isinstance(m, dict)]
+    else:
+        return []
+    gaps: list = []
+    for key, entry in entries:
+        if not isinstance(entry, dict) or entry.get("status") != "known":
+            continue
+        srcs = entry.get("source_files") or []
+        if not isinstance(srcs, list):
+            srcs = [srcs]
+        formula = entry.get("formula") or ""
+        existing = any(
+            (submission / str(s)).is_file() or (ROOT / str(s)).is_file()
+            for s in srcs
+        )
+        if not str(formula).strip():
+            gaps.append(ConstraintResult(
+                constraint_id=f"C-CLAIM-{key}",
+                name=f"metric_claim_{key}",
+                outcome=CheckOutcome.FAIL,
+                severity="high",
+                category="metric",
+                detail=f"metrics.json 的 {key} 声明为 known 但缺少 formula",
+                evidence=f"metrics.json metrics.{key}",
+            ))
+        elif not existing:
+            gaps.append(ConstraintResult(
+                constraint_id=f"C-CLAIM-{key}",
+                name=f"metric_claim_{key}",
+                outcome=CheckOutcome.FAIL,
+                severity="high",
+                category="metric",
+                detail=f"metrics.json 的 {key} 声明为 known 但 source_files 都指向不存在的文件",
+                evidence=f"metrics.json metrics.{key}.source_files",
+            ))
+    return gaps
+
+
 def criteria_met(engine: ConstraintEngine, submission: Path) -> tuple[bool, list]:
     results = engine.validate(submission.relative_to(ROOT))
     failures = [r for r in results if r.outcome in (CheckOutcome.FAIL, CheckOutcome.ERROR)]
+    failures += _missing_required_metrics(engine, submission)
+    failures += _metric_claim_gaps(submission)
     return len(failures) == 0, failures
 
 
@@ -1939,30 +2049,43 @@ def _restore_snapshot(submission: Path) -> None:
     shutil.copytree(src, submission)
 
 
-def _load_loop_state() -> dict:
+def _load_loop_state(submission_key: str = "default") -> dict:
     """Load persisted ratchet state (best_failures) from .goal-driven/loop-state.json.
 
     Survives crash/restart cycles so a supervisor relaunch of the loop
     (run_autonomous.sh) starts from the same best-known failure count instead
     of treating the regressed-on-disk state as the baseline.
+
+    Keyed by submission path so different submissions don't share ratchet state.
     """
     fp = STATE_DIR / "loop-state.json"
     try:
         if fp.exists():
             data = json.loads(fp.read_text(encoding="utf-8"))
-            if isinstance(data, dict) and isinstance(data.get("best_failures"), int):
-                return data
+            if isinstance(data, dict):
+                sub_state = data.get(submission_key, {})
+                if isinstance(sub_state, dict) and isinstance(sub_state.get("best_failures"), int):
+                    return sub_state
     except Exception:
         pass
     return {}
 
 
-def _save_loop_state(best_failures: int) -> None:
+def _save_loop_state(best_failures: int, submission_key: str = "default") -> None:
     """Persist best_failures to .goal-driven/loop-state.json (best-effort)."""
     try:
         fp = STATE_DIR / "loop-state.json"
         fp.parent.mkdir(parents=True, exist_ok=True)
-        fp.write_text(json.dumps({"best_failures": best_failures}), encoding="utf-8")
+        data = {}
+        if fp.exists():
+            try:
+                data = json.loads(fp.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        if not isinstance(data, dict):
+            data = {}
+        data[submission_key] = {"best_failures": best_failures}
+        fp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     except Exception:
         pass  # in-memory ratchet still works; persistence is best-effort
 
@@ -1989,7 +2112,7 @@ def _ratchet(engine: ConstraintEngine, submission: Path,
         _restore_snapshot(submission)
         ok, failures = criteria_met(engine, submission)
         log(f"ratchet: restored state has {len(failures)} failures")
-    _save_loop_state(best_failures)
+    _save_loop_state(best_failures, str(submission.relative_to(ROOT)))
     return len(failures) == 0, failures, best_failures
 
 
@@ -2212,6 +2335,8 @@ def main():
     p.add_argument("--reasoning", default="high",
                    choices=["low", "medium", "high", "xhigh"],
                    help="Reasoning strength for Muse Glimmer (default: high)")
+    p.add_argument("--no-scaffold", action="store_true",
+                   help="Skip scaffold generation — subagent generates from facts on a blank submission dir")
     p.add_argument("--panel", action="store_true",
                    help="Enable 7-reviewer design jury (Gate 2 LLM panel)")
     p.add_argument("--cloud", nargs="?", const="auto", default="",
@@ -2243,7 +2368,23 @@ def main():
         p.error(f"--submission must be inside {ROOT / 'submissions'}")
 
     if not submission.exists():
-        scaffold(submission, args)
+        if args.no_scaffold:
+            # Create empty submission skeleton — subagent generates everything
+            submission.mkdir(parents=True, exist_ok=True)
+            for d in ["geometry", "assets/figures", "report", "visual", "drawings"]:
+                (submission / d).mkdir(parents=True, exist_ok=True)
+            # Create minimal manifest skeleton (Master finalizes later)
+            import json
+            (submission / "manifest.json").write_text(json.dumps({
+                "schema_version": "0.1.0", "package_id": submission.name,
+                "project_id": "centennial-jingzhang-ai-belt",
+                "package_state": "scaffold", "submission_stage": "formal",
+                "submission_type": "ai_agent", "files": [],
+                "validation_claim": {"self_checked": False, "known_blockers": [], "data_confidence": "unknown"},
+            }, ensure_ascii=False, indent=2), encoding="utf-8")
+            log(f"no-scaffold: created empty submission dir at {submission}")
+        else:
+            scaffold(submission, args)
 
     engine = ConstraintEngine(ROOT)
     engine.load_registry()
@@ -2258,7 +2399,7 @@ def main():
     # --- lidangzzz loop ---
     started_at = time.time()
     last_failures = None
-    last_model = ""
+    last_model = MODELS["coder"]
     msgs = {}  # per-model message state for session reuse
     stall_count = 0
     STALL_MAX = 3  # reset session after N identical rounds
@@ -2266,15 +2407,18 @@ def main():
     # Ratchet state — best_failures is persisted in .goal-driven/loop-state.json
     # across crash/restart cycles.  With no persisted best, the current state
     # is the baseline: snapshot it so even the first regression can roll back.
-    best_failures = _load_loop_state().get("best_failures")
+    sub_key = str(submission.relative_to(ROOT))
+    best_failures = _load_loop_state(sub_key).get("best_failures")
     if best_failures is None:
         _, first_failures = criteria_met(engine, submission)
         best_failures = len(first_failures)
         _save_snapshot(submission)
-        _save_loop_state(best_failures)
+        _save_loop_state(best_failures, sub_key)
         log(f"ratchet: baseline {best_failures} failures — snapshot saved")
 
     gate2_seen = False  # once Gate 2 fires, don't ratchet-restore (quality tradeoffs)
+    _stall_break_msg = ""  # set by stall detection, consumed by inject builder
+    _skip_ratchet = False   # set by stall detection to keep agent's current state
 
     while True:
         # 1. check time
@@ -2285,9 +2429,35 @@ def main():
         # 2. criteria check — Gate 1 (CODE)
         ok, failures = criteria_met(engine, submission)
 
-        # Ratchet: protect the best-known state. Skip restore when Gate 2 has
-        # fired — quality fixes may naturally increase CODE failures temporarily.
-        if not gate2_seen:
+        # 3. stall detection — must run BEFORE ratchet so stall-break can
+        #    prevent the ratchet from erasing the agent's current work
+        if last_failures is not None:
+            prev_ids = {r.constraint_id for r in last_failures}
+            curr_ids = {r.constraint_id for r in failures}
+            if prev_ids == curr_ids:
+                stall_count += 1
+            else:
+                stall_count = 0
+            if stall_count >= STALL_MAX:
+                log(f"stall detected ({stall_count} identical rounds) — injecting stall-break message")
+                _stall_break_msg = (
+                    "⚠️ 死循环检测：连续多轮失败模式完全相同。不要从头重写——只修复以下失败。\n\n"
+                    "先读 submissions/test/fact-first/ 下的文件理解当前状态，然后逐个修：\n"
+                )
+                for r in failures:
+                    _stall_break_msg += f"  FAIL {r.constraint_id}: {r.detail}\n"
+                    if r.evidence:
+                        _stall_break_msg += f"    → {r.evidence}\n"
+                stall_count = 0
+                last_failures = None  # force inject rebuild for this round
+                _skip_ratchet = True  # keep current state so agent can inspect it
+                log("stall-break: skipping ratchet, agent will see current state")
+
+        # Ratchet: protect the best-known state. Skip when stall-breaking
+        # (keep agent's current state) or after Gate 2 has fired.
+        if _skip_ratchet:
+            _skip_ratchet = False  # one-shot
+        elif not gate2_seen:
             ok, failures, best_failures = _ratchet(engine, submission, failures, best_failures)
         elif len(failures) < best_failures:
             best_failures = len(failures)
@@ -2327,53 +2497,88 @@ def main():
             last_failures = None
             continue
 
-        # 3. stall detection
-        if last_failures is not None:
-            prev_ids = {r.constraint_id for r in last_failures}
-            curr_ids = {r.constraint_id for r in failures}
-            if prev_ids == curr_ids:
-                stall_count += 1
-            else:
-                stall_count = 0
-            if stall_count >= STALL_MAX:
-                log(f"stall detected ({stall_count} identical rounds) — resetting session")
-                msgs.clear()
-                stall_count = 0
-
-        # 3. pick model
+        # 3. pick model (stall detection moved before ratchet above)
         model = _pick_model(failures, last_model or MODELS["coder"], single=single_model)
         switched = model != last_model and not single_model  # never switch in single-model mode
         if switched:
             log(f"model switch: {last_model.split(':')[0] if last_model else 'none'} → {model.split(':')[0]}")
             msgs.pop(last_model, None) if last_model else None  # old model's context is stale
 
-        # 4. build inject
-        inject = ""
-        if last_failures is not None:
-            ids = {r.constraint_id for r in last_failures}
-            now = {r.constraint_id for r in failures}
-            fixed = ids - now
-            still = ids & now
-            if fixed or still or single_model:
-                parts = ["本轮验证结果（你必须修复以下每一项失败）："]
-                for r in failures:
-                    parts.append(f"  FAIL {r.constraint_id} [{r.severity}] {r.name}: {r.detail}")
-                    if r.evidence:
-                        parts.append(f"    证据: {r.evidence}")
-                if fixed:
-                    parts.insert(1, f"✓ 已修复 {len(fixed)} 条，继续保持。")
-                # Muse Glimmer: always give full failure context
-                inject = "\n".join(parts)
-        elif single_model and failures:
-            # First round: show what needs fixing
-            parts = ["验证发现以下失败项，请逐一修复："]
-            for r in failures:
-                parts.append(f"  FAIL {r.constraint_id} [{r.severity}] {r.name}: {r.detail}")
-                if r.evidence:
-                    parts.append(f"    证据: {r.evidence}")
-            inject = "\n".join(parts)
+        # 4. build inject (stall-break message takes priority)
+        if _stall_break_msg:
+            inject = _stall_break_msg
+            _stall_break_msg = ""  # consumed
+        else:
+            inject = ""
+        constraint_hints = {
+        "C-LAYER": "图层名必须是 LAND_USE/BUILDING_FOOTPRINT/ROAD_CENTERLINE/GREEN_SPACE/PUBLIC_SPACE/PHASE/KEY_AREA/SITE_BOUNDARY/CONSTRAINTS",
+        "C-GEO": "feature 必须在 site_boundary 内。用 centroid.within(site_polygon) 检查，如果超出则移动坐标或裁剪",
+        "C-ENUM": "land_use_code 必须从 brief/site-package/enums/land_use_codes.json 取值（07/08/09/10/12/13/14/16 等）",
+        "C-TASK": "compliance_matrix.json 缺少该 requirement_id 条目，补上即可",
+        "C-TEXT": 'proposal.md 中有禁止性声明（如具体数值未标注「概念建议」），加「概念建议」前缀',
+        "C-ASSUMPTIONS": "assumptions.json 需用 'entries' 键，每个条目包含缺失控规条件名称",
+        "C-SM-LANDUSE": "land_use_code 无效，改成合法枚举值",
+        "C-SM-THREELINES": "proposal.md 需提及 生态保护红线/永久基本农田/城镇开发边界/三区三线 四个概念",
+        "C-SM-GEOMETRY": "几何无效，用 shapely geom.buffer(0) 修复自交/环方向问题",
+        "C-SM-BUILDING": "建筑需 height_m/building_height_m/height 字段，值在 1-500m",
+        "C-SM-ROAD": "至少3条道路。目前只有N条，需增加",
+        "C-SM-GREEN": "绿地率需在 0.05-0.8 范围内。计算: green_area/site_area，调整 green_space 面积",
+        "C-AREA": "面积与公告值偏差过大。调整相关多边形顶点使投影面积接近目标值",
+        "C-SANITY": "必需指标未在 metrics.json 中声明:在 metrics 对象里补上声明即可(值未知就用 status=unknown + reason,不必伪造数值)。planning_limits.json 已给区间",
+        "C-CLAIM": "声明为 known 的指标缺证据:补非空 formula,并让 source_files 指向提交包内真实存在的文件",
+        "C-PACKAGE": "包完整性。检查 manifest.json 文件列表、self_check.json 状态、package_state",
+    }
 
-        # 5. spawn (new or continued)
+    def _build_constraint_hints(failures) -> str:
+        seen = set()
+        hints = []
+        for r in failures:
+            prefix = r.constraint_id.split("-")[0] + "-" + r.constraint_id.split("-")[1] if "-" in r.constraint_id else r.constraint_id
+            if prefix not in seen:
+                seen.add(prefix)
+                for key, hint in sorted(constraint_hints.items()):
+                    if r.constraint_id.startswith(key):
+                        hints.append(f"  {prefix}*: {hint}")
+                        break
+        return "\n".join(hints) if hints else ""
+
+    if not _stall_break_msg and last_failures is not None:
+        ids = {r.constraint_id for r in last_failures}
+        now = {r.constraint_id for r in failures}
+        fixed = ids - now
+        still = ids & now
+        if fixed or still or single_model:
+            parts = ["修复以下失败项（每个 FAIL 后附修复说明，不要查 registry，直接修）："]
+            for r in failures:
+                parts.append(f"  FAIL {r.constraint_id} [{r.severity}]: {r.detail}")
+            hints = _build_constraint_hints(failures)
+            if hints:
+                parts.append(f"\n修复指南（按约束前缀）：\n{hints}")
+            if fixed:
+                parts.insert(1, f"✓ 已修复 {len(fixed)} 条，继续保持。")
+            inject = "\n".join(parts)
+    elif not _stall_break_msg and single_model and failures:
+        parts = ["修复以下失败项（每个 FAIL 后附修复说明）："]
+        for r in failures:
+            parts.append(f"  FAIL {r.constraint_id} [{r.severity}]: {r.detail}")
+        hints = _build_constraint_hints(failures)
+        if hints:
+            parts.append(f"\n修复指南（按约束前缀）：\n{hints}")
+        inject = "\n".join(parts)
+
+        # 5. inject validation helper (don't mock — use the real engine)
+        if inject:
+            inject += ("\n\n验证方法（直接复制这段代码到 run_python）：\n"
+                       "from constraints.engine import ConstraintEngine\n"
+                       "e = ConstraintEngine()\n"
+                       "e.load_registry()\n"
+                       f"r = e.validate('{submission.relative_to(ROOT)}')\n"
+                       "for x in r:\n"
+                       "    if x.outcome.name != 'PASS':\n"
+                       "        print(f'FAIL {x.constraint_id}: {x.detail}')\n"
+                       "print(f'{sum(1 for x in r if x.outcome.name==\"PASS\")}/{len(r)} PASS')")
+
+        # 6. spawn (new or continued)
         existing = None if switched else msgs.get(model)
         m = spawn_subagent(submission, model=model, existing_msgs=existing, inject=inject,
                            reasoning=args.reasoning)

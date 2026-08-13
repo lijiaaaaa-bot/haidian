@@ -1,0 +1,72 @@
+{
+ "type": "FeatureCollection",
+ "name": "site_boundary",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "SITE-BOUNDARY-001",
+   "properties": {
+    "id": "SITE-BOUNDARY-001",
+    "layer": "SITE_BOUNDARY",
+    "scope_id": "overall_design_area",
+    "name_zh": "总体设计范围（概念参考边界）",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "area_sqm_declared": 11400000.0,
+    "usage_note": "provisional_rough 概念参考边界，非 official redline，不得作为审批依据。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443649.543,
+       4422964.093
+      ],
+      [
+       444897.417,
+       4422954.976
+      ],
+      [
+       444918.277,
+       4425841.885
+      ],
+      [
+       444767.531,
+       4428619.008
+      ],
+      [
+       444967.665,
+       4432670.586
+      ],
+      [
+       443892.106,
+       4432678.446
+      ],
+      [
+       443789.927,
+       4430402.834
+      ],
+      [
+       443593.658,
+       4426961.989
+      ],
+      [
+       443649.543,
+       4422964.093
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

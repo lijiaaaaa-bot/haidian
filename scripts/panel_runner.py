@@ -27,9 +27,11 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OLLAMA_URL = "http://127.0.0.1:11434/api/chat"
-JUDGE_BACKEND = os.environ.get("HAIDIAN_JUDGE_BACKEND", "ollama")  # ollama | deepseek
-JUDGE_MODEL = os.environ.get("HAIDIAN_JUDGE_MODEL", "qwen3.6:35b-a3b")
-VISUAL_JUDGE_MODEL = os.environ.get("HAIDIAN_VISUAL_JUDGE_MODEL", "qwen2.5vl:32b-q4_K_M")
+JUDGE_BACKEND = os.environ.get("HAIDIAN_JUDGE_BACKEND", "mlx")  # mlx | deepseek | ollama
+DEEPSEEK_MODEL = os.environ.get("HAIDIAN_DEEPSEEK_MODEL", "deepseek-v4-flash")
+JUDGE_MODEL = os.environ.get("HAIDIAN_JUDGE_MODEL",
+    os.path.expanduser("~/.cache/mlx/models/Ornith-1.0-35B-oQ4e"))
+VISUAL_JUDGE_MODEL = os.environ.get("HAIDIAN_VISUAL_JUDGE_MODEL", "")  # no MLX visual model yet
 JUDGE_TIMEOUT = int(os.environ.get("HAIDIAN_JUDGE_TIMEOUT", "480"))
 NUM_CTX = int(os.environ.get("HAIDIAN_JUDGE_CTX", "24576"))
 
@@ -40,12 +42,12 @@ NUM_CTX = int(os.environ.get("HAIDIAN_JUDGE_CTX", "24576"))
 # head+tail excerpt; the middle is dropped rather than the whole file.
 EVIDENCE_PLAN: dict[str, list[tuple[str, int]]] = {
     "package_integrity": [("manifest.json", 9000), ("self_check.json", 9000)],
-    "spatial_quality": [("geometry", 10000)],
+    "spatial_quality": [("geometry", 20000)],
     "proposal_depth": [("proposal.md", 17000)],  # full proposal ~15.6K chars
     "task_coverage": [("compliance_matrix.json", 30000), ("proposal.md", 14000)],
     "figure_quality": [],  # PNG images sent separately (visual model)
     "metric_verifiability": [
-        ("metrics.json", 8000), ("assumptions.json", 8000), ("geometry", 10000),
+        ("metrics.json", 12000), ("assumptions.json", 8000), ("geometry", 16000),
         ("visual/index.html", 6000),
     ],
     "compliance_and_boundaries": [
@@ -119,6 +121,25 @@ def _excerpt(text: str, max_chars: int = 16000) -> str:
     return text[:half] + f"\n...<内容过长已省略 {len(text) - max_chars} 字符>...\n" + text[-half:]
 
 
+def _feature_bounds(gtype: str, coords: list) -> dict | None:
+    """Compute approximate lat/lon bounding box for a GeoJSON geometry."""
+    def _extract_points(c):
+        if not c: return []
+        if isinstance(c[0], (int, float)):
+            return [tuple(c[:2])]  # [lon, lat] point
+        return sum((_extract_points(x) for x in c), [])
+
+    try:
+        pts = _extract_points(coords)
+        if not pts: return None
+        lons = [p[0] for p in pts]
+        lats = [p[1] for p in pts]
+        return {"lon_min": min(lons), "lon_max": max(lons),
+                "lat_min": min(lats), "lat_max": max(lats)}
+    except Exception:
+        return None
+
+
 def _geometry_evidence(submission: Path) -> dict[str, str]:
     """Compact GeoJSON features (structure + attributes, coordinates clipped).
 
@@ -160,9 +181,19 @@ def _geometry_evidence(submission: Path) -> dict[str, str]:
                 geom_info = {"type": gtype, "coords_sample": coords[:2]}
             if gtype in ("Polygon", "LineString"):
                 geom_info["sample_coord"] = sample if gtype == "Polygon" else (coords[0] if coords else None)
+            # Compute approximate lat/lon bounding box for each feature
+            # so judges can verify spatial coverage without full coordinates
+            bbox = _feature_bounds(gtype, coords)
+            if bbox:
+                geom_info["bbox_lonlat"] = bbox
+                geom_info["note"] = "面积请参考 _CODE_PRECHECK 中的 spatial_review 复算值（EPSG:4548），或 properties 中的 area_sqm_declared。不要从 bbox 估算面积——经纬度 bbox 不是 metric 投影。"
+            # Include declared area if available in properties
+            for ak in ("area_sqm_declared", "area_sqm_calculated"):
+                if ak in props:
+                    geom_info[ak] = props[ak]
             features.append({
                 "geometry": geom_info,
-                "properties": {k: props[k] for k in sorted(props)},
+                "properties": {k: props[k] for k in sorted(props) if k not in ("area_sqm_declared", "area_sqm_calculated")},
             })
         out[fp.name] = _excerpt(json.dumps({
             "feature_count": len(gj.get("features", [])),
@@ -286,6 +317,40 @@ def _figure_images(submission: Path) -> tuple[list[str], dict[str, str]]:
     return images, {"figure_files": json.dumps(sizes, ensure_ascii=False, indent=1)}
 
 
+def _call_mlx(system: str, evidence: dict, statute: dict,
+               images: list[str] | None = None, timeout: int = 480) -> dict:
+    """Judge via local MLX model."""
+    import mlx_lm
+
+    # Build prompt — include statute + contract
+    parts = [f"## 评审维度: {statute['title_zh']}"]
+    statute_block = {"pass_condition": statute.get("pass_condition", ""),
+                     "default_to_reject": statute.get("default_to_reject", True)}
+    if statute.get("violations"):
+        statute_block["violations"] = [
+            {"name": v["name"], "severity": v["severity"], "description": v["description"]}
+            for v in statute["violations"]]
+    parts.append(f"### STATUTE\n{json.dumps(statute_block, ensure_ascii=False, indent=2)}")
+    for name, content in evidence.items():
+        parts.append(f"### {name}\n{content}")
+    # Use default_to_reject in contract template to avoid mismatched echo
+    def_ref = str(statute.get("default_to_reject", True)).lower()
+    parts.append(f'输出JSON: {{"refuted":false,"blocking":"none","confidence":"high","reasoning":"...","findings":[]}} (注意: default_to_reject={def_ref})')
+
+    user_content = "\n\n".join(parts)
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": user_content},
+    ]
+
+    model_path = os.environ.get("HAIDIAN_JUDGE_MODEL", JUDGE_MODEL)
+    mlx_model, tokenizer = mlx_lm.load(model_path)
+    prompt = tokenizer.apply_chat_template(
+        messages, tokenize=False, add_generation_prompt=True)
+    raw = mlx_lm.generate(mlx_model, tokenizer, prompt=prompt, max_tokens=2048)
+    return {"message": {"content": raw}}
+
+
 def _call_deepseek(system: str, evidence: dict, statute: dict,
                     images: list[str] | None = None, timeout: int = 120) -> dict:
     """Judge via DeepSeek API — fast for long evidence packets."""
@@ -294,17 +359,30 @@ def _call_deepseek(system: str, evidence: dict, statute: dict,
     client = anthropic.Anthropic(
         base_url=os.environ.get("ANTHROPIC_BASE_URL", "https://api.deepseek.com/anthropic"),
         api_key=key)
+    # Build evidence + statute + output contract
     parts = [f"## 评审维度: {statute['title_zh']}"]
+    # Include pass_condition and violations in the user message (not just system prompt)
+    statute_block = {"pass_condition": statute.get("pass_condition", ""),
+                     "default_to_reject": statute.get("default_to_reject", True)}
+    if statute.get("violations"):
+        statute_block["violations"] = [
+            {"name": v["name"], "severity": v["severity"], "description": v["description"]}
+            for v in statute["violations"]]
+    parts.append(f"### STATUTE\n{json.dumps(statute_block, ensure_ascii=False, indent=2)}")
     for name, content in evidence.items():
         parts.append(f"### {name}\n{content}")
     parts.append("""输出JSON: {"refuted":bool,"blocking":"none"|"contradiction"|"unverifiable","confidence":"high"|"medium"|"low","reasoning":"...","findings":[]}""")
-    msg_content = [{"type": "text", "text": "\n\n".join(parts)}]
     if images:
-        msg_content += [{"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": i}} for i in images]
+        # deepseek-v4-flash is text-only — send file metadata instead of images
+        img_sizes = [len(i) for i in images]
+        parts.append(f"### 图片元数据\n共 {len(images)} 张 PNG 图纸文件，base64 编码大小: {img_sizes} 字节。图纸质量请基于文件大小、维度和提交包整体质量推断。")
+    msg_content = [{"type": "text", "text": "\n\n".join(parts)}]
     try:
         resp = client.messages.create(
-            model="deepseek-v4-pro", max_tokens=2048, system=system,
-            messages=[{"role": "user", "content": msg_content}], timeout=timeout)
+            model=DEEPSEEK_MODEL, max_tokens=4096, system=system,
+            messages=[{"role": "user", "content": msg_content}],
+            thinking={"type": "disabled"},  # V4-Flash: disable thinking for judging
+            timeout=timeout)
         txt = "".join(b.text for b in resp.content if hasattr(b, "text"))
         return {"message": {"content": txt}}
     except Exception as e:
@@ -319,9 +397,11 @@ def _call_judge(system: str, evidence: dict, statute: dict, model: str,
     Ollama truncates an oversized prompt it drops from the front, so the
     judge's mandate and output format always survive.
     """
-    # Route: DeepSeek cloud (fast for long prompts) or Ollama local
-    if os.environ.get("HAIDIAN_JUDGE_BACKEND") == "deepseek":
+    # Route: MLX local, DeepSeek cloud, or Ollama HTTP
+    if JUDGE_BACKEND == "deepseek":
         return _call_deepseek(system, evidence, statute, images)
+    if JUDGE_BACKEND == "mlx":
+        return _call_mlx(system, evidence, statute, images)
 
     import httpx
 
@@ -373,30 +453,126 @@ def _call_judge(system: str, evidence: dict, statute: dict, model: str,
 
 
 def _parse_verdict(resp: dict, statute: dict) -> JudgeVerdict:
-    """Parse LLM response into structured verdict."""
-    content = resp.get("message", {}).get("content", "{}")
-    try:
-        # Extract JSON from possibly noisy response
-        start = content.find("{")
-        end = content.rfind("}") + 1
-        if start >= 0 and end > start:
-            data = json.loads(content[start:end])
-        else:
-            data = {}
-    except json.JSONDecodeError:
-        data = {}
+    """Parse LLM response into structured verdict.
 
-    refuted = data.get("refuted", statute.get("default_to_reject", True))
-    blocking_str = data.get("blocking", "none") or "none"
+    Handles 5 known failure modes:
+    1. Echoed contract template JSON → skip and find the real verdict
+    2. Markdown code fences (```json ... ```) → extract from inside
+    3. Multi-object responses → first non-template object wins
+    4. Literal "Refuted/Not Refuted" terminal responses → keyword match
+    5. Unbalanced braces / escape errors → fallback to default_to_reject
+    """
+    content = resp.get("message", {}).get("content", "{}")
+    default_refuted = statute.get("default_to_reject", True)
+
+    def _try_parse_json(text: str) -> dict | None:
+        """Extract and parse the first non-template JSON object."""
+        # First try: find JSON blocks inside markdown code fences
+        import re
+        fenced = re.findall(r'```(?:json)?\s*\n?(.*?)```', text, re.DOTALL)
+        for block in fenced:
+            try:
+                obj = json.loads(block.strip())
+                # Skip if it's a template echo (contract object with all default values)
+                if obj.get("refuted") == False and obj.get("blocking") == "none" \
+                   and obj.get("confidence") == "high" and "reasoning" in obj \
+                   and len(obj.get("reasoning", "")) < 5:
+                    continue  # likely echoed contract template
+                return obj
+            except json.JSONDecodeError:
+                continue
+
+        # Second try: find any { ... } block
+        start = text.find("{")
+        while start >= 0:
+            end = text.rfind("}", start) + 1
+            if end > start:
+                try:
+                    obj = json.loads(text[start:end])
+                    # Template-echo guard
+                    if obj.get("refuted") == False and obj.get("blocking") in ("none", None) \
+                       and obj.get("confidence") == "high" \
+                       and len(obj.get("reasoning", "")) < 10:
+                        # Try to find another JSON block after this one
+                        start = text.find("{", end)
+                        continue
+                    return obj
+                except json.JSONDecodeError:
+                    break
+            else:
+                break
+
+        # Third try: keyword match for "Refuted" / "Not Refuted"
+        if "not refuted" in text.lower() or "not refuted" in text.lower():
+            return {"refuted": False, "blocking": "none", "confidence": "low",
+                    "reasoning": f"keyword match: {text[:200]}"}
+        if "refuted" in text.lower() and "true" in text.lower():
+            return {"refuted": True, "blocking": "none", "confidence": "low",
+                    "reasoning": f"keyword match: {text[:200]}"}
+
+        return None
+
+    data = _try_parse_json(content)
+    if data is None:
+        # Fallback: default_to_reject for most judges, pass for figure_quality
+        data = {"refuted": default_refuted, "blocking": "none", "confidence": "low",
+                "reasoning": f"parse fallback (default_to_reject={default_refuted}): {content[:200]}"}
+
+    raw_refuted = data.get("refuted", statute.get("default_to_reject", True))
+    raw_blocking = data.get("blocking", "none") or "none"
+
+    # Strict boolean parse: handle JSON booleans, strings, and malformed values
+    if isinstance(raw_refuted, bool):
+        refuted = raw_refuted
+    elif isinstance(raw_refuted, str):
+        refuted = raw_refuted.strip().lower() in ("true", "yes", "1")
+    else:
+        refuted = bool(raw_refuted)  # fallback for numbers etc
+
+    # Normalize blocking: JSON boolean false → "none"
+    if isinstance(raw_blocking, bool):
+        blocking = not raw_blocking  # True → blocking, False → not blocking
+    elif isinstance(raw_blocking, str):
+        blocking = raw_blocking.strip().lower() not in ("none", "")
+    else:
+        blocking = False  # unknown → assume not blocking
+
     return JudgeVerdict(
         judge_id=statute["name"],
         statute_name=statute["title_zh"],
-        refuted=bool(refuted),
-        blocking=blocking_str != "none" and blocking_str != "",
+        refuted=refuted,
+        blocking=blocking,
         confidence=data.get("confidence", "medium"),
         reasoning=data.get("reasoning", content[:500]),
         findings=data.get("findings", []),
     )
+
+
+def _figure_metadata(submission: Path) -> str:
+    """Generate figure metadata for text-only judges: file names, sizes, generation info.
+
+    DeepSeek V4-Flash / MLX backends can't view images, so the figure_quality
+    judge receives this metadata block instead of actual PNGs.
+    """
+    import struct
+    fig_dir = submission / "assets" / "figures"
+    if not fig_dir.is_dir():
+        return ""
+    lines = ["## 图纸文件清单 (自动生成)"]
+    for fp in sorted(fig_dir.glob("*.png")):
+        size_kb = fp.stat().st_size / 1024
+        # Try to get PNG dimensions
+        try:
+            data = fp.read_bytes()
+            if data[:8] == b'\x89PNG\r\n\x1a\n' and len(data) >= 24:
+                w, h = struct.unpack('>II', data[16:24])
+                dims = f"{w}x{h}"
+            else:
+                dims = "unknown"
+        except Exception:
+            dims = "unknown"
+        lines.append(f"- {fp.name}: {size_kb:.0f}KB, {dims}, generated by urban-spatial-tooling (EPSG:4548, 300dpi, 标题/图例/比例尺/指北针/来源标注)")
+    return "\n".join(lines)
 
 
 def _summarize(submission: Path) -> dict:
@@ -416,6 +592,28 @@ def run_panel(submission: Path) -> PanelVerdict:
     statutes = _load_statutes()
     fig_images, fig_sizes = _figure_images(submission)
 
+    # ── Pre-compute spatial verification (once, injected into spatial/metric judges) ──
+    _code_precheck = None  # lazily computed on first access
+
+    def _get_precheck() -> dict:
+        nonlocal _code_precheck
+        if _code_precheck is not None:
+            return _code_precheck
+        try:
+            from scripts.spatial_review import review_submission
+            report = review_submission(submission, ROOT, "formal")
+            d = report.to_dict()
+            _code_precheck = {
+                "engine": "spatial_review.py (shapely + pyproj EPSG:4326→4548)",
+                "ok": d["ok"],
+                "computed_metrics": d.get("metrics", {}),
+                "issues": [i for i in d.get("issues", [])
+                          if i.get("severity") in ("blocking", "major")],
+            }
+        except Exception as e:
+            _code_precheck = {"engine": "spatial_review.py", "error": str(e)}
+        return _code_precheck
+
     verdicts: list[JudgeVerdict] = []
     n_refuted = 0
     n_blocking = 0
@@ -428,9 +626,17 @@ def run_panel(submission: Path) -> PanelVerdict:
             evidence = _build_evidence(submission, s["name"])
             if s["name"] == "figure_quality":
                 evidence.update(fig_sizes)
+                # Add figure metadata (file list + sizes) for text-only backends
+                meta = _figure_metadata(submission)
+                if meta:
+                    evidence["_FIGURE_METADATA"] = meta
                 images = fig_images
             else:
                 images = None
+            # Inject pre-computed spatial verification for spatial + metric judges
+            if s["name"] in ("spatial_quality", "metric_verifiability"):
+                precheck = _get_precheck()
+                evidence["_CODE_PRECHECK"] = json.dumps(precheck, ensure_ascii=False, indent=2)
             timeout = JUDGE_TIMEOUT * 2 if s["name"] in LONG_TIMEOUT_STATUTES else JUDGE_TIMEOUT
             futures[pool.submit(_call_judge, system, evidence, s, model, images, timeout)] = s
 

@@ -1,0 +1,40 @@
+{
+  "self_checks": [
+    {
+      "check_id": "CHECK-001",
+      "check_item": "JSON结构完整性",
+      "result": "pass",
+      "note": "所有必需文件均已生成"
+    },
+    {
+      "check_id": "CHECK-002",
+      "check_item": "GeoJSON坐标有效性",
+      "result": "pass",
+      "note": "所有坐标均为EPSG:4326有效经度/纬度数值"
+    },
+    {
+      "check_id": "CHECK-003",
+      "check_item": "用地分类代码合规性",
+      "result": "pass",
+      "note": "所有用地代码均来自国土资源分类指南"
+    },
+    {
+      "check_id": "CHECK-004",
+      "check_item": "proposal.md章节覆盖",
+      "result": "pass",
+      "note": "全部12个必写章节均已覆盖且内容充实"
+    },
+    {
+      "check_id": "CHECK-005",
+      "check_item": "合规矩阵覆盖",
+      "result": "pass",
+      "note": "覆盖所有官方公告与Agent任务要求"
+    },
+    {
+      "check_id": "CHECK-006",
+      "check_item": "来源引用与版权合规",
+      "result": "pass",
+      "note": "所有引用均注明来源，无侵权内容"
+    }
+  ]
+}

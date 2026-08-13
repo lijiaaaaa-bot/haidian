@@ -1,0 +1,176 @@
+{
+ "type": "FeatureCollection",
+ "name": "PUBLIC_SPACE",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "PS-00",
+   "properties": {
+    "id": "PS-00",
+    "layer": "PUBLIC_SPACE",
+    "space_type": "AI公共空间",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443758.53884,
+       4425135.8434999995
+      ],
+      [
+       443758.53884,
+       4425635.8434999995
+      ],
+      [
+       444005.8601,
+       4425635.8434999995
+      ],
+      [
+       444005.8601,
+       4425135.8434999995
+      ],
+      [
+       443758.53884,
+       4425135.8434999995
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PS-01",
+   "properties": {
+    "id": "PS-01",
+    "layer": "PUBLIC_SPACE",
+    "space_type": "AI公共空间",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443758.53884,
+       4426756.421833334
+      ],
+      [
+       443758.53884,
+       4427256.421833334
+      ],
+      [
+       444005.8601,
+       4427256.421833334
+      ],
+      [
+       444005.8601,
+       4426756.421833334
+      ],
+      [
+       443758.53884,
+       4426756.421833334
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PS-02",
+   "properties": {
+    "id": "PS-02",
+    "layer": "PUBLIC_SPACE",
+    "space_type": "AI公共空间",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443758.53884,
+       4428377.000166667
+      ],
+      [
+       443758.53884,
+       4428877.000166667
+      ],
+      [
+       444005.8601,
+       4428877.000166667
+      ],
+      [
+       444005.8601,
+       4428377.000166667
+      ],
+      [
+       443758.53884,
+       4428377.000166667
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PS-03",
+   "properties": {
+    "id": "PS-03",
+    "layer": "PUBLIC_SPACE",
+    "space_type": "AI公共空间",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       444005.8601,
+       4430497.578500001
+      ],
+      [
+       444005.8601,
+       4429997.578500001
+      ],
+      [
+       443766.8108492495,
+       4429997.578500001
+      ],
+      [
+       443789.927,
+       4430402.834
+      ],
+      [
+       443794.18119547167,
+       4430497.578500001
+      ],
+      [
+       444005.8601,
+       4430497.578500001
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

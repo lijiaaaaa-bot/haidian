@@ -67,7 +67,7 @@
       "value": 1929201.877,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_area.geojson#PROV-KEY-001"
+        "geometry/key_areas.geojson#PROV-KEY-001"
       ],
       "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
       "confidence": "medium",
@@ -80,7 +80,7 @@
       "value": 1043236.909,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_area.geojson#PROV-KEY-002"
+        "geometry/key_areas.geojson#PROV-KEY-002"
       ],
       "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
       "confidence": "medium",
@@ -93,7 +93,7 @@
       "value": 720454.221,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_area.geojson#PROV-KEY-003"
+        "geometry/key_areas.geojson#PROV-KEY-003"
       ],
       "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
       "confidence": "medium",
@@ -106,11 +106,29 @@
       "value": 310807.184,
       "unit": "sqm",
       "source_files": [
-        "geometry/building_footprint.geojson"
+        "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
       "confidence": "medium",
       "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.77,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "sum(polygon_area(green_space_features, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": ["Computed from green_space.geojson in EPSG:4548 projection"]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.64,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "sum(polygon_area(public_space_features, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": ["Computed from public_space.geojson in EPSG:4548 projection"]
     },
     "green_ratio": {
       "status": "known",
@@ -120,9 +138,10 @@
         "geometry/green_space.geojson",
         "geometry/site_boundary.geojson"
       ],
-      "formula": "green_space_area_sqm / site_area_sqm",
+      "formula": "green_space_area_sqm / site_area_sqm = 1408600.77 / 11412825.39 = 0.123423",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [],
+      "computed_from": {"numerator": "green_space_area_sqm", "denominator": "site_area_sqm"}
     },
     "public_space_ratio": {
       "status": "known",
@@ -132,9 +151,10 @@
         "geometry/public_space.geojson",
         "geometry/site_boundary.geojson"
       ],
-      "formula": "public_space_area_sqm / site_area_sqm",
+      "formula": "public_space_area_sqm / site_area_sqm = 836345.64 / 11412825.39 = 0.073281",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [],
+      "computed_from": {"numerator": "public_space_area_sqm", "denominator": "site_area_sqm"}
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -153,7 +173,7 @@
       "value": 3,
       "unit": "count",
       "source_files": [
-        "geometry/key_area.geojson"
+        "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",

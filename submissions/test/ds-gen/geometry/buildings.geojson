@@ -1,0 +1,209 @@
+{
+  "type": "FeatureCollection",
+  "name": "buildings",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "BLD-001",
+      "properties": {
+        "id": "BLD-001",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "众智园AI全栈创新中心",
+        "name_en": "Zhongzhiyuan AI Full-Stack Innovation Center",
+        "key_area": "zhongzhiyuan_ai_acceleration_area",
+        "height_m": 45,
+        "floors": 8,
+        "building_type": "research",
+        "design_rationale": "众智园全栈自主创新体系核心建筑 — agent.1 总体概念",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.345, 40.018],
+            [116.349, 40.018],
+            [116.349, 40.022],
+            [116.345, 40.022],
+            [116.345, 40.018]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-002",
+      "properties": {
+        "id": "BLD-002",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "众智园M0产业孵化楼",
+        "name_en": "Zhongzhiyuan M0 Incubation Tower",
+        "key_area": "zhongzhiyuan_ai_acceleration_area",
+        "height_m": 35,
+        "floors": 6,
+        "building_type": "industrial",
+        "design_rationale": "众智园新型产业用地核心建筑 — agent.2 全栈自主创新体系",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.35, 40.018],
+            [116.353, 40.018],
+            [116.353, 40.022],
+            [116.35, 40.022],
+            [116.35, 40.018]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-003",
+      "properties": {
+        "id": "BLD-003",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "AI原点社区成果转化中心",
+        "name_en": "AI Origin Community Tech Transfer Center",
+        "key_area": "beijing_ai_origin_community",
+        "height_m": 30,
+        "floors": 5,
+        "building_type": "commercial",
+        "design_rationale": "AI原点社区近校型创新街区成果转化 — agent.5.3.2",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.344, 39.989],
+            [116.347, 39.989],
+            [116.347, 39.992],
+            [116.344, 39.992],
+            [116.344, 39.989]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-004",
+      "properties": {
+        "id": "BLD-004",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "AI原点社区人才公寓",
+        "name_en": "AI Origin Community Talent Housing",
+        "key_area": "beijing_ai_origin_community",
+        "height_m": 25,
+        "floors": 7,
+        "building_type": "residential",
+        "design_rationale": "AI原点社区人才居住配套 — agent.3 高品质城区",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.348, 39.984],
+            [116.351, 39.984],
+            [116.351, 39.987],
+            [116.348, 39.987],
+            [116.348, 39.984]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-005",
+      "properties": {
+        "id": "BLD-005",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "大钟寺AI智能消费综合体",
+        "name_en": "Dazhongsi AI Smart Consumption Complex",
+        "key_area": "dazhongsi_ai_industry_cluster",
+        "height_m": 40,
+        "floors": 7,
+        "building_type": "commercial",
+        "design_rationale": "大钟寺智能原生消费场景核心建筑 — agent.4 智能原生新业态",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.343, 39.945],
+            [116.347, 39.945],
+            [116.347, 39.948],
+            [116.343, 39.948],
+            [116.343, 39.945]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-006",
+      "properties": {
+        "id": "BLD-006",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "大钟寺AI商务旗舰楼",
+        "name_en": "Dazhongsi AI Business Flagship Tower",
+        "key_area": "dazhongsi_ai_industry_cluster",
+        "height_m": 55,
+        "floors": 12,
+        "building_type": "business",
+        "design_rationale": "大钟寺AI产业集聚区商务核心 — agent.2 世界级AI创新生态",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.349, 39.945],
+            [116.353, 39.945],
+            [116.353, 39.948],
+            [116.349, 39.948],
+            [116.349, 39.945]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "BLD-007",
+      "properties": {
+        "id": "BLD-007",
+        "layer": "BUILDING_FOOTPRINT",
+        "name_zh": "AI原点社区创新实验室",
+        "name_en": "AI Origin Community Innovation Lab",
+        "key_area": "beijing_ai_origin_community",
+        "height_m": 20,
+        "floors": 4,
+        "building_type": "research",
+        "design_rationale": "AI原点社区近校型创新街区科研空间 — agent.5.3.2",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "note": "概念建议，非审定建筑高度"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.342, 39.99],
+            [116.344, 39.99],
+            [116.344, 39.993],
+            [116.342, 39.993],
+            [116.342, 39.99]
+          ]
+        ]
+      }
+    }
+  ]
+}

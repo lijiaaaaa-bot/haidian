@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "building_type": "research_institute",
+        "name": "众智园AI研发中心",
+        "height_m": 60,
+        "floor_count": 15,
+        "area_sqm": 20000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3010, 39.9805],
+            [116.3030, 39.9805],
+            [116.3030, 39.9815],
+            [116.3010, 39.9815],
+            [116.3010, 39.9805]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "building_type": "residential_complex",
+        "name": "AI人才公寓",
+        "height_m": 30,
+        "floor_count": 10,
+        "area_sqm": 15000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3060, 39.9805],
+            [116.3080, 39.9805],
+            [116.3080, 39.9815],
+            [116.3060, 39.9815],
+            [116.3060, 39.9805]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "building_type": "commercial_building",
+        "name": "AI创新商业中心",
+        "height_m": 80,
+        "floor_count": 20,
+        "area_sqm": 25000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3110, 39.9805],
+            [116.3130, 39.9805],
+            [116.3130, 39.9815],
+            [116.3110, 39.9815],
+            [116.3110, 39.9805]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "building_type": "cultural_center",
+        "name": "百年京张文化馆",
+        "height_m": 40,
+        "floor_count": 12,
+        "area_sqm": 18000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3020, 39.9825],
+            [116.3040, 39.9825],
+            [116.3040, 39.9835],
+            [116.3020, 39.9835],
+            [116.3020, 39.9825]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "building_type": "innovation_hub",
+        "name": "AI场景测试验证中心",
+        "height_m": 50,
+        "floor_count": 13,
+        "area_sqm": 22000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3090, 39.9825],
+            [116.3110, 39.9825],
+            [116.3110, 39.9835],
+            [116.3090, 39.9835],
+            [116.3090, 39.9825]
+          ]
+        ]
+      }
+    }
+  ]
+}

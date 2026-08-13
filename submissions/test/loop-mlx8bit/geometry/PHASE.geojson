@@ -1,0 +1,151 @@
+{
+ "type": "FeatureCollection",
+ "name": "PHASE",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "PHASE-1",
+   "properties": {
+    "id": "PHASE-1",
+    "layer": "PHASE",
+    "phase_label": "一期",
+    "phase_order": 1,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       444898.0,
+       4426196.132666667
+      ],
+      [
+       444918.277,
+       4425841.885
+      ],
+      [
+       444897.417,
+       4422954.976
+      ],
+      [
+       443649.543,
+       4422964.093
+      ],
+      [
+       443605.5,
+       4426196.132666667
+      ],
+      [
+       444898.0,
+       4426196.132666667
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PHASE-2",
+   "properties": {
+    "id": "PHASE-2",
+    "layer": "PHASE",
+    "phase_label": "二期",
+    "phase_order": 2,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       444807.9512797935,
+       4429437.289333333
+      ],
+      [
+       444767.531,
+       4428619.008
+      ],
+      [
+       444898.0,
+       4426196.132666667
+      ],
+      [
+       443605.5,
+       4426196.132666667
+      ],
+      [
+       443593.658,
+       4426961.989
+      ],
+      [
+       443734.85143391613,
+       4429437.289333333
+      ],
+      [
+       444807.9512797935,
+       4429437.289333333
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PHASE-3",
+   "properties": {
+    "id": "PHASE-3",
+    "layer": "PHASE",
+    "phase_label": "三期",
+    "phase_order": 3,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443734.85143391613,
+       4429437.289333333
+      ],
+      [
+       443789.927,
+       4430402.834
+      ],
+      [
+       443892.106,
+       4432678.446
+      ],
+      [
+       444967.665,
+       4432670.586
+      ],
+      [
+       444807.9512797935,
+       4429437.289333333
+      ],
+      [
+       443734.85143391613,
+       4429437.289333333
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

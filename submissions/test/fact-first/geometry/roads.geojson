@@ -1,0 +1,90 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "road_type": "main_artery",
+        "name": "京张遗址公园慢行廊道",
+        "length_m": 1200,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3000, 39.9800],
+          [116.3150, 39.9800]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_type": "secondary_road",
+        "name": "清河滨河路",
+        "length_m": 800,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3000, 39.9820],
+          [116.3000, 39.9850]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_type": "pedestrian_path",
+        "name": "小月河绿道",
+        "length_m": 600,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3100, 39.9820],
+          [116.3100, 39.9850]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_type": "cycling_path",
+        "name": "京张遗址公园骑行道",
+        "length_m": 1000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3050, 39.9800],
+          [116.3050, 39.9850]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_type": "access_road",
+        "name": "大钟寺东路",
+        "length_m": 700,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3100, 39.9800],
+          [116.3100, 39.9820]
+        ]
+      }
+    }
+  ]
+}

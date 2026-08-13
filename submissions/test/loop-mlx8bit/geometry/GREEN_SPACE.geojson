@@ -1,0 +1,53 @@
+{
+ "type": "FeatureCollection",
+ "name": "GREEN_SPACE",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "GS-05",
+   "properties": {
+    "id": "GS-05",
+    "layer": "GREEN_SPACE",
+    "land_use_code": "1401",
+    "land_use_label_zh": "公园绿地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443819.33916913363,
+       4431057.867666667
+      ],
+      [
+       443892.106,
+       4432678.446
+      ],
+      [
+       444967.665,
+       4432670.586
+      ],
+      [
+       444888.00226836227,
+       4431057.867666667
+      ],
+      [
+       443819.33916913363,
+       4431057.867666667
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

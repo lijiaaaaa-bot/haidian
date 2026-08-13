@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    }
+  ],
+  "entries": [
+    {
+      "control": "floor_area_ratio",
+      "name": "容积率",
+      "status": "missing",
+      "note": "Approved FAR control not present in the public site package; must be confirmed from official planning documents."
+    },
+    {
+      "control": "building_height_m",
+      "name": "建筑高度",
+      "status": "missing",
+      "note": "Approved building height limit not present in the public site package; concept building heights are suggestions only."
+    },
+    {
+      "control": "building_density",
+      "name": "建筑密度",
+      "status": "missing",
+      "note": "Approved building density control not present in the public site package; must be confirmed from official planning documents."
+    },
+    {
+      "control": "green_ratio",
+      "name": "绿地率",
+      "status": "missing",
+      "note": "Approved green ratio control not present in the public site package; submitted green space layout is a concept suggestion only."
+    },
+    {
+      "control": "setback_m",
+      "name": "建筑退线",
+      "status": "missing",
+      "note": "Approved setback control not present in the public site package; must be confirmed from official planning documents."
+    }
+  ]
+}

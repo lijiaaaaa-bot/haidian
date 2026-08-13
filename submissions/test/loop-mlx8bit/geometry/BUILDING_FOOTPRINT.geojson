@@ -1,0 +1,417 @@
+{
+ "type": "FeatureCollection",
+ "name": "BUILDING_FOOTPRINT",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "BF-001",
+   "properties": {
+    "id": "BF-001",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0701",
+    "height_m": 36.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444160.79243663704, 4423689.823666667],
+      [444160.79243663704, 4423849.823666667],
+      [444380.79243663704, 4423849.823666667],
+      [444380.79243663704, 4423689.823666667],
+      [444160.79243663704, 4423689.823666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-002",
+   "properties": {
+    "id": "BF-002",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0701",
+    "height_m": 30.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444320.79243663704, 4423569.823666667],
+      [444320.79243663704, 4423729.823666667],
+      [444540.79243663704, 4423729.823666667],
+      [444540.79243663704, 4423569.823666667],
+      [444320.79243663704, 4423569.823666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-003",
+   "properties": {
+    "id": "BF-003",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0701",
+    "height_m": 42.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444020.79243663704, 4423829.823666667],
+      [444020.79243663704, 4423989.823666667],
+      [444240.79243663704, 4423989.823666667],
+      [444240.79243663704, 4423829.823666667],
+      [444020.79243663704, 4423829.823666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-004",
+   "properties": {
+    "id": "BF-004",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0901",
+    "height_m": 48.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444155.934089624, 4425128.719666666],
+      [444155.934089624, 4425288.719666666],
+      [444375.934089624, 4425288.719666666],
+      [444375.934089624, 4425128.719666666],
+      [444155.934089624, 4425128.719666666]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-005",
+   "properties": {
+    "id": "BF-005",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0901",
+    "height_m": 36.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444315.934089624, 4425008.719666666],
+      [444315.934089624, 4425168.719666666],
+      [444535.934089624, 4425168.719666666],
+      [444535.934089624, 4425008.719666666],
+      [444315.934089624, 4425008.719666666]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-006",
+   "properties": {
+    "id": "BF-006",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0901",
+    "height_m": 54.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444015.934089624, 4425268.719666666],
+      [444015.934089624, 4425428.719666666],
+      [444235.934089624, 4425428.719666666],
+      [444235.934089624, 4425268.719666666],
+      [444015.934089624, 4425268.719666666]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-007",
+   "properties": {
+    "id": "BF-007",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "100104",
+    "height_m": 45.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444116.1567858552, 4427309.35],
+      [444116.1567858552, 4427469.35],
+      [444336.1567858552, 4427469.35],
+      [444336.1567858552, 4427309.35],
+      [444116.1567858552, 4427309.35]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-008",
+   "properties": {
+    "id": "BF-008",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "100104",
+    "height_m": 60.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444276.1567858552, 4427189.35],
+      [444276.1567858552, 4427349.35],
+      [444496.1567858552, 4427349.35],
+      [444496.1567858552, 4427189.35],
+      [444276.1567858552, 4427189.35]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-009",
+   "properties": {
+    "id": "BF-009",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "100104",
+    "height_m": 39.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [443976.1567858552, 4427449.35],
+      [443976.1567858552, 4427609.35],
+      [444196.1567858552, 4427609.35],
+      [444196.1567858552, 4427449.35],
+      [443976.1567858552, 4427449.35]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-010",
+   "properties": {
+    "id": "BF-010",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 42.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444139.6274047705, 4428948.148666667],
+      [444139.6274047705, 4429108.148666667],
+      [444359.6274047705, 4429108.148666667],
+      [444359.6274047705, 4428948.148666667],
+      [444139.6274047705, 4428948.148666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-011",
+   "properties": {
+    "id": "BF-011",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 33.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444299.6274047705, 4428828.148666667],
+      [444299.6274047705, 4428988.148666667],
+      [444519.6274047705, 4428988.148666667],
+      [444519.6274047705, 4428828.148666667],
+      [444299.6274047705, 4428828.148666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-012",
+   "properties": {
+    "id": "BF-012",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 48.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [443999.6274047705, 4429088.148666667],
+      [443999.6274047705, 4429248.148666667],
+      [444219.6274047705, 4429248.148666667],
+      [444219.6274047705, 4429088.148666667],
+      [443999.6274047705, 4429088.148666667]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-013",
+   "properties": {
+    "id": "BF-013",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 51.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444187.0938937011, 4429840.0616666665],
+      [444187.0938937011, 4430000.0616666665],
+      [444407.0938937011, 4430000.0616666665],
+      [444407.0938937011, 4429840.0616666665],
+      [444187.0938937011, 4429840.0616666665]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-014",
+   "properties": {
+    "id": "BF-014",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 57.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444347.0938937011, 4429720.0616666665],
+      [444347.0938937011, 4429880.0616666665],
+      [444567.0938937011, 4429880.0616666665],
+      [444567.0938937011, 4429720.0616666665],
+      [444347.0938937011, 4429720.0616666665]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BF-015",
+   "properties": {
+    "id": "BF-015",
+    "layer": "BUILDING_FOOTPRINT",
+    "building_type": "M0_AI_INDUSTRIAL_PARK",
+    "land_use_code": "0802",
+    "height_m": 45.0,
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444047.0938937011, 4429980.0616666665],
+      [444047.0938937011, 4430140.0616666665],
+      [444267.0938937011, 4430140.0616666665],
+      [444267.0938937011, 4429980.0616666665],
+      [444047.0938937011, 4429980.0616666665]
+     ]
+    ]
+   }
+  }
+ ]
+}

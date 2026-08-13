@@ -35,6 +35,13 @@
       "severity": "major",
       "target": "proposal.md",
       "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
+    {
+      "check_id": "METRIC_VERIFIABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "All declared metric values are reproducible from geometry/*.geojson using EPSG:4548 projection. site_area_sqm=11412825.39, building_footprint_area_sqm=310807.18, green_ratio=0.123423, public_space_ratio=0.073281 verified by computing polygon_area() on the corresponding GeoJSON files with pyproj EPSG:4326→4548 transform."
     }
   ]
 }

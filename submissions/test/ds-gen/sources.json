@@ -1,0 +1,40 @@
+{
+  "sources_used": [
+    {
+      "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "title_zh": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "authority_level": "A0",
+      "usage_note": "用于项目名称、范围、面积、设计任务等正式任务依据"
+    },
+    {
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "title_zh": "面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录",
+      "authority_level": "CLEARED_USER_DOCUMENT",
+      "usage_note": "用于AI agent任务、场景卡、运营和边界条款要求"
+    },
+    {
+      "source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "title_zh": "城市设计管理办法",
+      "authority_level": "A0",
+      "usage_note": "用于城市设计专业标准和空间控制语言"
+    },
+    {
+      "source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+      "title_zh": "城市、镇控制性详细规划编制审批办法",
+      "authority_level": "A0",
+      "usage_note": "用于控规深度和实施管理边界语言"
+    },
+    {
+      "source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "title_zh": "国土空间调查、规划、用途管制用地用海分类指南",
+      "authority_level": "A0",
+      "usage_note": "用于land_use_code和分类术语"
+    },
+    {
+      "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "title_zh": "百年京张AI创新带三层范围与三处重点区临时粗略polygon",
+      "authority_level": "PROVISIONAL_REPOSITORY",
+      "usage_note": "仅用于AI生成、展示和临时自检，明确标记为临时边界"
+    }
+  ]
+}

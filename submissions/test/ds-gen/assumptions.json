@@ -1,0 +1,90 @@
+{
+  "entries": [
+    {
+      "assumption_id": "ASSUME-001",
+      "assumption_text": "临时边界是基于公告文字四至推断的粗轮廓，不代表官方红线，正式工作时需获取官方GIS边界。",
+      "related_gap": "GAP-BOUNDARY-001"
+    },
+    {
+      "assumption_id": "ASSUME-002",
+      "assumption_text": "缺乏官方控制性详细规划指标，本方案中的建筑高度、容积率、密度等均为概念引导，不构成法定控制依据。",
+      "related_gap": "GAP-CONTROL-001"
+    },
+    {
+      "assumption_id": "ASSUME-003",
+      "assumption_text": "缺乏现状建筑、地块权属和市政管线数据，相关设计仅为概念性布局，具体实施需依据专业测绘和权属调查。",
+      "related_gap": "GAP-BUILDING-001"
+    },
+    {
+      "assumption_id": "ASSUME-004",
+      "assumption_text": "京张铁路遗址公园、清华园车站旧址的文保控制范围尚不明确，公共空间和地标设计需保持保守，后续需获取正式文保资料。",
+      "related_gap": "GAP-HERITAGE-001"
+    },
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "category": "regulatory_control",
+      "statement": "缺失控规条件：A-CONTROLS-001。方案采用 provisional 边界和概念设计值，待正式控规条件确认后调整。",
+      "impact": "可能在正式评审前需要调整指标和用地布局"
+    },
+    {
+      "assumption_id": "A-CONTROLS-002",
+      "category": "regulatory_control",
+      "statement": "缺失控规条件：A-CONTROLS-002。方案采用 provisional 边界和概念设计值，待正式控规条件确认后调整。",
+      "impact": "可能在正式评审前需要调整指标和用地布局"
+    },
+    {
+      "assumption_id": "A-CONTROLS-003",
+      "category": "regulatory_control",
+      "statement": "缺失控规条件：A-CONTROLS-003。方案采用 provisional 边界和概念设计值，待正式控规条件确认后调整。",
+      "impact": "可能在正式评审前需要调整指标和用地布局"
+    },
+    {
+      "assumption_id": "A-CONTROLS-004",
+      "category": "regulatory_control",
+      "statement": "缺失控规条件：A-CONTROLS-004。方案采用 provisional 边界和概念设计值，待正式控规条件确认后调整。",
+      "impact": "可能在正式评审前需要调整指标和用地布局"
+    },
+    {
+      "assumption_id": "A-CONTROLS-005",
+      "category": "regulatory_control",
+      "statement": "缺失控规条件：A-CONTROLS-005。方案采用 provisional 边界和概念设计值，待正式控规条件确认后调整。",
+      "impact": "可能在正式评审前需要调整指标和用地布局"
+    },
+    {
+      "assumption_id": "A-CONTROLS-floor_area_ratio",
+      "statement": "floor_area_ratio: 海淀区 AI 创新带尚无批准的控规容积率指标。方案中容积率取值为概念建议，正式值以海淀分局批准为准",
+      "category": "regulatory_control_missing",
+      "impact": "概念建议值，待控规正式发布后需复算"
+    },
+    {
+      "assumption_id": "A-CONTROLS-building_height_m",
+      "statement": "building_height_m: 场地建筑限高待海淀分局确认。方案中建筑高度取值参考周边现状和国际案例，为概念建议值",
+      "category": "regulatory_control_missing",
+      "impact": "概念建议值，待控规正式发布后需复算"
+    },
+    {
+      "assumption_id": "A-CONTROLS-building_density",
+      "statement": "building_density: 建筑密度控规值缺失。方案中建筑密度基于概念设计推导，非规划确定值",
+      "category": "regulatory_control_missing",
+      "impact": "概念建议值，待控规正式发布后需复算"
+    },
+    {
+      "assumption_id": "A-CONTROLS-green_space_ratio",
+      "statement": "green_space_ratio: 绿地率控规下限值待确认。方案绿地率基于 site_boundary 几何计算，为 provisional 值",
+      "category": "regulatory_control_missing",
+      "impact": "概念建议值，待控规正式发布后需复算"
+    },
+    {
+      "assumption_id": "A-CONTROLS-building_setback_m",
+      "statement": "building_setback_m: 道路退线和地块退界待规划条件确认。方案中退线为概念建议值",
+      "category": "regulatory_control_missing",
+      "impact": "概念建议值，待控规正式发布后需复算"
+    },
+    {
+      "assumption_id": "A-CONTROLS-green_ratio",
+      "statement": "green_ratio: 绿地率控规下限值待确认。方案 green_ratio 基于 geometry/green_space.geojson 面积除以 site_area 计算，为 provisional 几何下的近似值",
+      "category": "regulatory_control_missing",
+      "impact": "绿地率实际要求可能高于或低于当前值"
+    }
+  ]
+}

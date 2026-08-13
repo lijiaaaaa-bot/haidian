@@ -1,0 +1,168 @@
+{
+ "type": "FeatureCollection",
+ "name": "ROAD_CENTERLINE",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "RC-001",
+   "properties": {
+    "id": "RC-001",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市次干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      443627.01702218235,
+      4424575.554333333
+     ],
+     [
+      444909.1268474643,
+      4424575.554333333
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RC-002",
+   "properties": {
+    "id": "RC-002",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市次干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      443605.5,
+      4426196.132666667
+     ],
+     [
+      444898.0,
+      4426196.132666667
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RC-003",
+   "properties": {
+    "id": "RC-003",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市次干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      443643.5,
+      4427816.711
+     ],
+     [
+      444811.08076843375,
+      4427816.711
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RC-004",
+   "properties": {
+    "id": "RC-004",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市次干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      443734.85143391613,
+      4429437.289333333
+     ],
+     [
+      444807.9512797935,
+      4429437.289333333
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RC-005",
+   "properties": {
+    "id": "RC-005",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市次干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      443819.33916913363,
+      4431057.867666667
+     ],
+     [
+      444888.00226836227,
+      4431057.867666667
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "RC-006",
+   "properties": {
+    "id": "RC-006",
+    "layer": "ROAD_CENTERLINE",
+    "road_class": "城市主干路",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      444280.6615,
+      4422959.482031774
+     ],
+     [
+      444280.6615,
+      4432675.606503301
+     ]
+    ]
+   }
+  }
+ ]
+}

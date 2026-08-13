@@ -1,0 +1,183 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 720797.698,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.39538,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm (calculated from geometry in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.470531,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm (calculated from geometry in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001"
+      ],
+      "formula": "polygon_area(PROV-RESEARCH-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 43,600,000 sqm"
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(SITE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 11,400,000 sqm"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-SCOPE-001"
+      ],
+      "formula": "sum(polygon_area(PROV-KEY-001..003, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 3,684,000 sqm"
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 1,921,000 sqm"
+      ]
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 1,043,000 sqm"
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; declared official value: 720,000 sqm"
+      ]
+    },
+    "ratio": {
+      "status": "known",
+      "value": 0.0631,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm = 720797.70 / 11412825.39 = 0.0631",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_fla / site_area_sqm (estimated from building heights and footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Estimated based on average building height and footprint area"
+      ]
+    },
+    "height_m": {
+      "status": "known",
+      "value": 35.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "weighted_average_height(buildings, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    }
+  }
+}

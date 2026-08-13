@@ -1,0 +1,151 @@
+{
+  "type": "FeatureCollection",
+  "name": "roads",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ROAD-001",
+      "properties": {
+        "id": "ROAD-001",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "京张走廊主干道",
+        "name_en": "Jingzhang Corridor Main Road",
+        "road_class": "main",
+        "design_rationale": "南北贯通京张走廊 — agent.1 总体空间结构",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.348, 39.944],
+          [116.348, 39.965],
+          [116.348, 39.9835],
+          [116.348, 40.0075],
+          [116.348, 40.026]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-002",
+      "properties": {
+        "id": "ROAD-002",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "大钟寺环路",
+        "name_en": "Dazhongsi Ring Road",
+        "road_class": "secondary",
+        "design_rationale": "大钟寺地铁站四象限连通 — agent.5.3.3",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.342, 39.94692],
+          [116.355, 39.94692]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-003",
+      "properties": {
+        "id": "ROAD-003",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "AI原点社区东西通道",
+        "name_en": "AI Origin Community East-West Connector",
+        "road_class": "secondary",
+        "design_rationale": "AI原点社区东西缝合 — agent.4 南北贯通",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.342, 39.9885],
+          [116.353, 39.9885]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-004",
+      "properties": {
+        "id": "ROAD-004",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "众智园南北轴线",
+        "name_en": "Zhongzhiyuan North-South Axis",
+        "road_class": "primary",
+        "design_rationale": "众智园花园街区南北轴线 — agent.5.3.1",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3485, 40.0075],
+          [116.3485, 40.026]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-005",
+      "properties": {
+        "id": "ROAD-005",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "小月河滨水慢行路",
+        "name_en": "Xiaoyuehe Waterfront Promenade",
+        "road_class": "pedestrian",
+        "design_rationale": "小月河场景赋能翼慢行系统 — agent.3 场景赋能",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.34, 39.944],
+          [116.34, 39.975],
+          [116.34, 40.006],
+          [116.34, 40.026]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-006",
+      "properties": {
+        "id": "ROAD-006",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "中关村科技服务翼通道",
+        "name_en": "Zhongguancun Tech Service Wing Connector",
+        "road_class": "secondary",
+        "design_rationale": "中关村科技服务翼 — agent.2 要素配置",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.353, 39.9835],
+          [116.353, 40.026]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-007",
+      "properties": {
+        "id": "ROAD-007",
+        "layer": "ROAD_CENTERLINE",
+        "name_zh": "三区横向连接带",
+        "name_en": "Three-Area Horizontal Connector",
+        "road_class": "tertiary",
+        "design_rationale": "三区两翼横向连接 — agent.1 协同回路",
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.342, 39.965],
+          [116.355, 39.965]
+        ]
+      }
+    }
+  ]
+}

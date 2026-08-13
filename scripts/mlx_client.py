@@ -100,6 +100,6 @@ def mlx_chat(messages: list, tools: list, model: str) -> dict:
             messages, tools=tools or None, tokenize=False, add_generation_prompt=True)
     except Exception:
         prompt = _manual_fmt(messages, tools)
-    raw = mlx_lm.generate(mlx_model, tokenizer, prompt=prompt, max_tokens=4096)
+    raw = mlx_lm.generate(mlx_model, tokenizer, prompt=prompt, max_tokens=1024)
     return {"message": {"role": "assistant", "content": _strip(raw),
                          "tool_calls": _parse(raw, tool_names)}}

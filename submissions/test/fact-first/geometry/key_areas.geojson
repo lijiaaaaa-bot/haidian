@@ -1,0 +1,74 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "area_id": "zhongzhiyuan_ai_acceleration_area",
+        "label_zh": "众智园AI自主创新加速区",
+        "area_sqm": 1921000,
+        "area_km2": 1.921,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3000, 39.9800],
+            [116.3050, 39.9800],
+            [116.3050, 39.9820],
+            [116.3000, 39.9820],
+            [116.3000, 39.9800]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "area_id": "beijing_ai_origin_community",
+        "label_zh": "北京AI原点社区",
+        "area_sqm": 1043000,
+        "area_km2": 1.043,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3050, 39.9800],
+            [116.3100, 39.9800],
+            [116.3100, 39.9820],
+            [116.3050, 39.9820],
+            [116.3050, 39.9800]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "area_id": "dazhongsi_ai_industry_cluster",
+        "label_zh": "大钟寺AI产业集聚区",
+        "area_sqm": 720000,
+        "area_km2": 0.720,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_subarea_values"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3100, 39.9800],
+            [116.3150, 39.9800],
+            [116.3150, 39.9820],
+            [116.3100, 39.9820],
+            [116.3100, 39.9800]
+          ]
+        ]
+      }
+    }
+  ]
+}

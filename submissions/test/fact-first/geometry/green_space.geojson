@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "green_space_type": "urban_park",
+        "name": "京张遗址公园",
+        "area_sqm": 1000000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3000, 39.9820],
+            [116.3050, 39.9820],
+            [116.3050, 39.9850],
+            [116.3000, 39.9850],
+            [116.3000, 39.9820]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "green_space_type": "riparian_zone",
+        "name": "清河滨河绿地",
+        "area_sqm": 500000,
+        "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "authority": "official_text_area_and_boundary_description"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3000, 39.9820],
+            [116.3000, 39.9850],
+            [116.3050, 39.9850],
+            [116.3050, 39.9820],
+            [116.3000, 39.9820]
+          ]
+        ]
+      }
+    }
+  ]
+}

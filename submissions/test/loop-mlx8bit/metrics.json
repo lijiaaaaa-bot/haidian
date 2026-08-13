@@ -1,0 +1,171 @@
+{
+  "schema_version": "0.1.0",
+  "coordinate_reference_system": {
+    "code": "EPSG:4548",
+    "name": "CGCS2000 / 3-degree Gauss-Kruger zone 39",
+    "usage": "All geometry files and area calculations use this projected CRS (urn:ogc:def:crs:EPSG::4548)."
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412827.156,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Trusted official boundary is present in the site package."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11412827.156,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(overall_design_area_boundary, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "overall_design_area boundary equals the submitted provisional site boundary."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692892.785,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/KEY_AREA.geojson"
+      ],
+      "formula": "sum(polygon_area(key_detailed_design_areas, EPSG:4548))",
+      "confidence": "high",
+      "assumptions": [
+        "Sum of the three key detailed design area polygons (zhongzhiyuan, beijing_ai_origin, dazhongsi)."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/coordinated_research_area.geojson"
+      ],
+      "formula": "polygon_area(coordinated_research_area_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "coordinated research scope corresponds to the announced 统筹研究范围 provisional boundary (43,600,000 m² declared), converted to EPSG:4548."
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.917,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/KEY_AREA.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon derived from public announcement coordinates."
+      ]
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.369,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/KEY_AREA.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon derived from public announcement coordinates."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.499,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/KEY_AREA.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon derived from public announcement coordinates."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "crs": "EPSG:4548",
+      "source_files": [
+        "geometry/BUILDING_FOOTPRINT.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1519,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/GREEN_SPACE.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/PUBLIC_SPACE.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/KEY_AREA.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

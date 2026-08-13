@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "fact-first",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "package_state": "scaffold",
+  "submission_stage": "formal",
+  "submission_type": "ai_agent",
+  "files": [],
+  "validation_claim": {
+    "self_checked": false,
+    "known_blockers": [],
+    "data_confidence": "unknown"
+  }
+}

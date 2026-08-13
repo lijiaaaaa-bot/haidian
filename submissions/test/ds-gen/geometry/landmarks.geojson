@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "landmark_type": "ai_pilgrimage_site",
+        "name": "AI朝圣地标：京张之光",
+        "description": "象征AI与百年京张融合的智能光柱，夜间可交互生成城市语义图谱",
+        "height_m": 35,
+        "source": "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "authority": "cleared_user_document"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.304000, 39.982000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "landmark_type": "ai_pilgrimage_site",
+        "name": "AI朝圣地标：智慧之眼",
+        "description": "由AI生成的动态城市雕塑，实时映射社区创新活动与人才流动数据",
+        "height_m": 28,
+        "source": "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "authority": "cleared_user_document"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.303500, 39.982000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "landmark_type": "ai_pilgrimage_site",
+        "name": "AI朝圣地标：数据之脉",
+        "description": "地下数据流可视化装置，展示京张遗址公园与小月河的智能水文监测系统",
+        "height_m": 22,
+        "source": "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "authority": "cleared_user_document"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.305000, 39.983000]
+      }
+    }
+  ]
+}

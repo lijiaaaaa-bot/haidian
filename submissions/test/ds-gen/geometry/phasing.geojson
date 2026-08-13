@@ -1,0 +1,190 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PH-01",
+        "layer": "PHASE",
+        "phase_name": "核心区启动",
+        "phase_order": 1,
+        "area_sqm_declared": 1062548.67
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              39.958
+            ],
+            [
+              116.353,
+              39.958
+            ],
+            [
+              116.353,
+              39.974
+            ],
+            [
+              116.346,
+              39.974
+            ],
+            [
+              116.346,
+              39.958
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PH-02",
+        "layer": "PHASE",
+        "phase_name": "核心区扩展",
+        "phase_order": 1,
+        "area_sqm_declared": 1128510.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              39.985
+            ],
+            [
+              116.353,
+              39.985
+            ],
+            [
+              116.353,
+              40.002
+            ],
+            [
+              116.346,
+              40.002
+            ],
+            [
+              116.346,
+              39.985
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PH-03",
+        "layer": "PHASE",
+        "phase_name": "核心区北扩",
+        "phase_order": 1,
+        "area_sqm_declared": 1828172.74
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              40.012
+            ],
+            [
+              116.3553,
+              40.012
+            ],
+            [
+              116.3553,
+              40.0265
+            ],
+            [
+              116.342,
+              40.0265
+            ],
+            [
+              116.342,
+              40.012
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PH-04",
+        "layer": "PHASE",
+        "phase_name": "廊道连接",
+        "phase_order": 2,
+        "area_sqm_declared": 341617.45
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.344,
+              39.94
+            ],
+            [
+              116.346,
+              39.94
+            ],
+            [
+              116.346,
+              39.958
+            ],
+            [
+              116.344,
+              39.958
+            ],
+            [
+              116.344,
+              39.94
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "PH-05",
+        "layer": "PHASE",
+        "phase_name": "外围扩展",
+        "phase_order": 3,
+        "area_sqm_declared": 2758579.02
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.34,
+              39.939
+            ],
+            [
+              116.3553,
+              39.939
+            ],
+            [
+              116.3553,
+              39.958
+            ],
+            [
+              116.34,
+              39.958
+            ],
+            [
+              116.34,
+              39.939
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

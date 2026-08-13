@@ -1,0 +1,187 @@
+{
+ "type": "FeatureCollection",
+ "name": "LAND_USE",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "LU-00",
+   "properties": {
+    "id": "LU-00",
+    "layer": "LAND_USE",
+    "land_use_code": "0701",
+    "land_use_label_zh": "城镇住宅用地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [443649.543, 4422964.093],
+      [443627.01702218235, 4424575.554333333],
+      [444909.1268474643, 4424575.554333333],
+      [444897.417, 4422954.976],
+      [443649.543, 4422964.093]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "LU-01",
+   "properties": {
+    "id": "LU-01",
+    "layer": "LAND_USE",
+    "land_use_code": "0901",
+    "land_use_label_zh": "商业用地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [443629.017, 4424575.554],
+      [443606.364, 4426196.133],
+      [444897.045, 4426196.133],
+      [444916.277, 4425841.838],
+      [444907.127, 4424575.554],
+      [443629.017, 4424575.554]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "LU-02",
+   "properties": {
+    "id": "LU-02",
+    "layer": "LAND_USE",
+    "land_use_code": "100104",
+    "land_use_label_zh": "新型产业用地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [443606.364, 4426196.133],
+      [443595.659, 4426961.946],
+      [443644.415, 4427816.711],
+      [444809.078, 4427816.711],
+      [444897.045, 4426196.133],
+      [443606.364, 4426196.133]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "LU-03",
+   "properties": {
+    "id": "LU-03",
+    "layer": "LAND_USE",
+    "land_use_code": "0802",
+    "land_use_label_zh": "科研用地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444897.417, 4422954.976],
+      [444909.1268474643, 4424575.554333333],
+      [444907.1270024086, 4424575.554333333],
+      [444916.277, 4425841.838],
+      [444897.045, 4426196.133],
+      [444809.078, 4427816.711],
+      [443644.415, 4427816.711],
+      [443595.659, 4426961.946],
+      [443606.364, 4426196.133],
+      [443629.0169953405, 4424575.554333333],
+      [443627.01702218235, 4424575.554333333],
+      [443649.543, 4422964.093],
+      [443593.658, 4426961.989],
+      [443789.927, 4430402.834],
+      [443734.85143391613, 4429437.289333333],
+      [444807.9512797935, 4429437.289333333],
+      [444888.00226836227, 4431057.867666667],
+      [444967.665, 4432670.586],
+      [444767.531, 4428619.008],
+      [444918.277, 4425841.885],
+      [444897.417, 4422954.976]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "LU-04",
+   "properties": {
+    "id": "LU-04",
+    "layer": "LAND_USE",
+    "land_use_code": "0802",
+    "land_use_label_zh": "科研用地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444807.9512797935, 4429437.289333333],
+      [443734.85143391613, 4429437.289333333],
+      [443789.927, 4430402.834],
+      [443819.33916913363, 4431057.867666667],
+      [444888.00226836227, 4431057.867666667],
+      [444807.9512797935, 4429437.289333333]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "LU-05",
+   "properties": {
+    "id": "LU-05",
+    "layer": "LAND_USE",
+    "land_use_code": "1401",
+    "land_use_label_zh": "公园绿地",
+    "source_type": "agent_generated_design_proposal",
+    "confidence": "medium",
+    "geometry_role": "concept_suggestion",
+    "official_boundary": false
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [444967.665, 4432670.586],
+      [444888.00226836227, 4431057.867666667],
+      [443819.33916913363, 4431057.867666667],
+      [443892.106, 4432678.446],
+      [444967.665, 4432670.586]
+     ]
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+{
+ "type": "FeatureCollection",
+ "name": "KEY_AREA",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:EPSG::4548"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "ZHONGZHIYUAN_AI_ACCELERATION_AREA",
+   "properties": {
+    "id": "ZHONGZHIYUAN_AI_ACCELERATION_AREA",
+    "layer": "KEY_AREA",
+    "area_id": "zhongzhiyuan_ai_acceleration_area",
+    "parent_scope_id": "key_detailed_design_area",
+    "name_zh": "众智园AI自主创新加速区",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "announced_area_sqm": 1921000.0,
+    "area_sqm_calculated": 1929201.917,
+    "usage_note": "provisional_rough 概念参考边界，非 official key-area polygon。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443902.159,
+       4430568.569
+      ],
+      [
+       444841.399,
+       4430561.702
+      ],
+      [
+       444856.292,
+       4432615.872
+      ],
+      [
+       443917.305,
+       4432622.739
+      ],
+      [
+       443902.159,
+       4430568.569
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "BEIJING_AI_ORIGIN_COMMUNITY",
+   "properties": {
+    "id": "BEIJING_AI_ORIGIN_COMMUNITY",
+    "layer": "KEY_AREA",
+    "area_id": "beijing_ai_origin_community",
+    "parent_scope_id": "key_detailed_design_area",
+    "name_zh": "北京AI原点社区",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "announced_area_sqm": 1043000.0,
+    "area_sqm_calculated": 1043236.369,
+    "usage_note": "provisional_rough 概念参考边界，非 official key-area polygon。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443797.102,
+       4427904.339
+      ],
+      [
+       444736.671,
+       4427897.463
+      ],
+      [
+       444744.729,
+       4429007.819
+      ],
+      [
+       443805.297,
+       4429014.696
+      ],
+      [
+       443797.102,
+       4427904.339
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "DAZHONGSI_AI_INDUSTRY_CLUSTER",
+   "properties": {
+    "id": "DAZHONGSI_AI_INDUSTRY_CLUSTER",
+    "layer": "KEY_AREA",
+    "area_id": "dazhongsi_ai_industry_cluster",
+    "parent_scope_id": "key_detailed_design_area",
+    "name_zh": "大钟寺AI产业聚集区",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "announced_area_sqm": 720000.0,
+    "area_sqm_calculated": 720454.499,
+    "usage_note": "provisional_rough 概念参考边界，非 official key-area polygon。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       443764.749,
+       4423518.447
+      ],
+      [
+       444875.788,
+       4423510.335
+      ],
+      [
+       444880.475,
+       4424158.779
+      ],
+      [
+       443769.53,
+       4424166.891
+      ],
+      [
+       443764.749,
+       4423518.447
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

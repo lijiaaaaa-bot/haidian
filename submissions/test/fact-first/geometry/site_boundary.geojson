@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "provisional_rough",
+        "scope_id": "overall_design_area",
+        "area_sqm": 11400000,
+        "area_km2": 11.4,
+        "boundary_type": "provisional_rough",
+        "source": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "authority": "provisional_repository"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.3000, 39.9800],
+            [116.3050, 39.9800],
+            [116.3050, 39.9850],
+            [116.3000, 39.9850],
+            [116.3000, 39.9800]
+          ]
+        ]
+      }
+    }
+  ]
+}

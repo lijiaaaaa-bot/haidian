@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "name": "KEY_AREA",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4548"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "COORDINATED-RESEARCH-001",
+      "properties": {
+        "id": "COORDINATED-RESEARCH-001",
+        "layer": "KEY_AREA",
+        "scope_id": "coordinated_research_area",
+        "name_zh": "统筹研究范围（概念参考边界）",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "area_sqm_declared": 43600000.0,
+        "usage_note": "provisional_rough 概念参考边界（源自公告统筹研究范围），非 official redline，不得作为审批依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [441781.15801691456, 4422867.082943044],
+            [445823.9855541211, 4422837.298849918],
+            [446357.91345893196, 4425831.615781178],
+            [446406.40171353077, 4432715.831014431],
+            [443051.7077890798, 4432740.21473431],
+            [442004.5230890722, 4429749.976078979],
+            [441291.41416422644, 4425868.9624171695],
+            [441781.15801691456, 4422867.082943044]
+          ]
+        ]
+      }
+    }
+  ]
+}
