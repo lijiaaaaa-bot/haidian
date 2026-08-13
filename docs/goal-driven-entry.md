@@ -1,8 +1,30 @@
 # Goal-Driven 入口程序设计（lidangzzz 模式）
 
 **日期**：2026-08-07
-**状态**：设计稿（未实现）
+**状态**：已实现（2026-08-13 归档）——见下方「实现与分歧说明」。
 **范围**：为百年京张AI创新带城市设计项目设计新的自主生成入口程序。取代 Phase/FSM 编排思路（`constraints/orchestrator.py`、`run_pipeline.py` 不在本设计内，保持原样不动）。
+
+---
+
+## 实现与分歧说明（2026-08-13 归档备注）
+
+本设计已经落地为 haidian 的重型自主路径，但**实际实现与设计稿有以下分歧**，读代码时以实际代码为准：
+
+| 设计稿 | 实际实现 |
+|---|---|
+| `scripts/llm_client.py`（§5.1） | **未按此拆分**。实际 LLM 客户端是 `scripts/mlx_client.py`（`mlx_chat`），且支持本地 MLX 与 DeepSeek 双后端 |
+| `scripts/submission_tools.py`（§5.1 四工具） | **未单独成文件**。工具逻辑内联在 `scripts/goal_driven_loop.py` 内 |
+| `scripts/panel_runner.py`（§5.1） | 未落地；Reflection Panel 仍走 `review-panel/` 的独立评审流程 |
+| `scripts/goal_driven_loop.py`（设计估 ~300 行） | **已实现，但膨胀到 ~2600 行**，内含 Master 循环、后端路由、状态管理、`--resume`/CLI |
+| `docs/goal-driven-entry.md` | 本文件 |
+
+**权威入口**：`bash scripts/run_autonomous.sh` → `python3 scripts/goal_driven_loop.py --submission submissions/test/test`。
+
+**规范裁决（2026-08-13）**：
+- `scripts/goal_driven_loop.py` 是 haidian 的**唯一重型自主实现**（canonical），重型任务一律走它；
+- `~/Projects/goal-driven` 框架包是**通用库**，与 haidian 无代码交叉，不迁移、不删除 `goal_driven_loop.py`（108KB 迁移高风险低收益），也不删除 `scripts/goal_fix_tests.py`；
+- `/goal-driven` 命令保持轻量协议，仅做「验证器→修一处→再验证」的手动循环。
+
 
 ---
 
