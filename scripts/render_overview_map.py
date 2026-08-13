@@ -74,6 +74,17 @@ def main() -> int:
                 xs, ys = line.xy
                 ax.plot(xs, ys, color=color, lw=lw, zorder=z, linestyle=ls, solid_capstyle="round")
 
+    # OSM 现状路网（浅灰细线背景，非红线；DATA-SRC-OSM, ODbL）
+    osm_path = REPO / "data" / "processed" / "osm_road_network.geojson"
+    if osm_path.exists():
+        osm = json.loads(osm_path.read_text(encoding="utf-8"))
+        osm_lw = {"expressway": 0.7, "primary": 0.6, "secondary": 0.55,
+                  "tertiary": 0.45, "residential": 0.35, "service": 0.25,
+                  "footway": 0.2, "pedestrian": 0.2}
+        for f in osm["features"]:
+            cls = f["properties"].get("road_class", "residential")
+            draw_line(shape(f["geometry"]), "#9aa0a6", osm_lw.get(cls, 0.3), 2)
+
     # 境界（淡灰）
     for f, g in bou:
         draw_line(g, "#cccccc", 0.8, 1)

@@ -263,11 +263,13 @@ def find_header(path, top_limit=200):
 
 
 def extract_rows_pymupdf(path, colmap, tol=14.0):
-    """按表头列 x 坐标提取指标行。返回 [{code, vals:{col:str}}]。"""
+    """按表头列 x 坐标提取指标行。返回 [{code, lu, vals:{col:str}}]。"""
     import fitz
     doc = fitz.open(path)
     rows = {}          # (page, yk) -> {col: raw}
-    codes = {}         # (page, yk) -> [(txt, x0, y0)]
+    codes = {}         # (page, yk) -> [(txt, x0, y0)]  编号列
+    lus = {}           # (page, yk) -> [(txt, x0, y0)]  用地性质列
+    lu_left = colmap.get("land", 200) - 30
     for pno in range(min(3, len(doc))):
         page = doc[pno]
         for w in page.get_text("words"):
@@ -285,8 +287,12 @@ def extract_rows_pymupdf(path, colmap, tol=14.0):
                 if bcol is not None:
                     rows.setdefault(key, {})[bcol] = txt
             else:
-                if 60 < y0 < 500 and x0 < 123 and CODE_RE.match(txt):
+                if not (60 < y0 < 500) or not CODE_RE.match(txt):
+                    continue
+                if x0 < 123:
                     codes.setdefault(key, []).append((txt, x0, y0))
+                elif x0 < lu_left:
+                    lus.setdefault(key, []).append((txt, x0, y0))
     buckets = []
     for key in sorted(rows):
         rec = dict(rows[key])
@@ -310,7 +316,18 @@ def extract_rows_pymupdf(path, colmap, tol=14.0):
             for txt, x0, y0 in codes.get((pno, cyk), []):
                 cw.append((txt, x0, y0))
         cw.sort(key=lambda t: (t[2], t[1]))
-        out.append({"code": "".join(t[0] for t in cw), "vals": dict(rec)})
+        lw = []
+        for cyk in range(yk - 5, yk + 6):
+            for txt, x0, y0 in lus.get((pno, cyk), []):
+                lw.append((txt, x0, y0))
+        lw.sort(key=lambda t: (t[2], t[1]))
+        lu_text = "".join(t[0] for t in lw)
+        lu = ""
+        # 注：\b 在“数字+CJK”间不成立，用 (?![A-Za-z0-9]) 界定代码结束
+        m = re.search(r"([A-Z]\d{1,2})(?![A-Za-z0-9])", lu_text)
+        if m:
+            lu = m.group(1)
+        out.append({"code": "".join(t[0] for t in cw), "lu": lu, "vals": dict(rec)})
     return out
 
 
@@ -319,8 +336,13 @@ def parse_plancond_ocr(text):
     text = RE_OCR_DECIMAL.sub(r"\1\2", text)  # 合并 "25612. 778" 之类 OCR 拆行
     rows = []
     for m in RE_OCR_ROW.finditer(text):
+        line = m.group(0)
+        lu = ""
+        lm = re.search(r"\b([A-Z]\d{1,2})\b", line[: m.end(2) - len(m.group(2))])
+        if lm:
+            lu = lm.group(1)
         rows.append({
-            "code": m.group(1) + "地块",
+            "code": m.group(1) + "地块", "lu": lu,
             "vals": {"land": m.group(2), "far": m.group(3), "floor": m.group(4),
                      "h": m.group(5), "density": m.group(6), "green": m.group(7)},
         })
@@ -506,12 +528,16 @@ def run(args):
         for r in rows:
             vals = r["vals"]
             row = dict(base)
-            row["parcel_code"] = r["code"]
-            # 用地性质：从“地块名（标题）+ 表格文本”中取常见用地代码
-            for code in ("B4", "B23", "B2", "B1", "R2", "F1", "F2", "F3", "A33", "S32"):
-                if code in title or code in json.dumps(vals, ensure_ascii=False):
-                    row["land_use_code"] = code
-                    break
+            row["parcel_code"] = r.get("code", "")
+            # 用地性质：优先该行的用地性质列/OCR 行代码；否则取全文唯一用地代码
+            lu = r.get("lu", "")
+            if not lu:
+                doc_codes = [c for c in ("B4", "B23", "B2", "B1", "R2", "F1", "F2", "F3", "A33", "S32")
+                             if re.search(r"(?<![A-Za-z0-9])%s(?![A-Za-z0-9])" % c, all_text)
+                             or re.search(r"(?<![A-Za-z0-9])%s(?![A-Za-z0-9])" % c, title)]
+                if len(doc_codes) == 1:
+                    lu = doc_codes[0]
+            row["land_use_code"] = lu
             row["far"] = vals.get("far", "")
             row["building_height_m"] = vals.get("h", "")
             row["building_density_pct"] = vals.get("density", "")

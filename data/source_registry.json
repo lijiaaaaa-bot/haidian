@@ -309,6 +309,39 @@
       ],
       "vectorization_note": "图03(两线三区)/图05(国土空间规划分区) 栅格公示图经颜色分类+边界轮廓+区bbox仿射配准矢量化；配准中误差百米级，仅背景参考",
       "validation_note": "交叉验证: 项目site与集中建设区叠合≥80%；fig03集中建设区(235.8km²)与fig05城镇建设用地(184.1km²)叠合75.6%"
+    },
+    {
+      "source_id": "DATA-SRC-OSM",
+      "title": "OpenStreetMap 道路网（项目范围）",
+      "publisher": "OpenStreetMap contributors",
+      "source_kind": "open_license_reference",
+      "url": "https://www.openstreetmap.org/",
+      "accessed_date": "2026-08-13",
+      "file_type": "geojson",
+      "authority_level": "OPEN_LICENSE_REFERENCE",
+      "timeliness_level": "T1",
+      "public_access_status": "public_url",
+      "license_summary": "ODbL 1.0，使用须署名 OpenStreetMap contributors",
+      "review_status": "approved",
+      "usable_for_formal": "background_only",
+      "allowed_uses": [
+        "current road network background",
+        "urban context reference"
+      ],
+      "prohibited_uses": [
+        "planning boundary",
+        "area calculation",
+        "official redline"
+      ],
+      "local_paths": [
+        "data/processed/osm_road_network.geojson"
+      ],
+      "validation_note": "2740 条与 site+150m 相交道路（expressway 111/primary 57/secondary 77/tertiary 286/residential 490/service 557/footway 1147/pedestrian 15）；含 G6辅路/京藏高速/交大东路等真实路名",
+      "topics": [
+        "current_road_network",
+        "urban_context",
+        "site_context"
+      ]
     }
   ]
 }

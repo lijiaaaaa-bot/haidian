@@ -3,21 +3,22 @@ window.HAIDIAN_SOURCE_REGISTRY = {
   "updatedDate": "2026-08-13",
   "registryPath": "data/source_registry.json",
   "counts": {
-    "total": 8,
+    "total": 9,
     "by_review_status": {
-      "approved": 7,
+      "approved": 8,
       "provisional": 1
     },
     "by_usable_for_formal": {
       "yes": 6,
       "provisional_only": 1,
-      "background_only": 1
+      "background_only": 2
     },
     "by_authority_level": {
       "A0": 5,
       "CLEARED_USER_DOCUMENT": 1,
       "PROVISIONAL_REPOSITORY": 1,
-      "A1": 1
+      "A1": 1,
+      "OPEN_LICENSE_REFERENCE": 1
     }
   },
   "usageRule": "Use approved formal sources for formal evidence; background_only sources for context; provisional_only sources for intake/visualization only; needs_review sources must not be used until reviewed.",
@@ -189,6 +190,29 @@ window.HAIDIAN_SOURCE_REGISTRY = {
         "key-area or road-centerline geometry basis"
       ],
       "url": "https://gisserver.tianditu.gov.cn/TDTService/wfs"
+    },
+    {
+      "source_id": "DATA-SRC-OSM",
+      "title": "OpenStreetMap 道路网（项目范围）",
+      "publisher": "OpenStreetMap contributors",
+      "authority_level": "OPEN_LICENSE_REFERENCE",
+      "review_status": "approved",
+      "usable_for_formal": "background_only",
+      "topics": [
+        "current_road_network",
+        "urban_context",
+        "site_context"
+      ],
+      "allowed_uses": [
+        "current road network background",
+        "urban context reference"
+      ],
+      "prohibited_uses": [
+        "planning boundary",
+        "area calculation",
+        "official redline"
+      ],
+      "url": "https://www.openstreetmap.org/"
     }
   ],
   "provisional": [
