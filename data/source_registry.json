@@ -300,7 +300,15 @@
         "生态控制线",
         "集中建设区",
         "三区三线"
-      ]
+      ],
+      "local_paths": [
+        "data/sources/fqgh/p088_fig03_sanzone.png",
+        "data/sources/fqgh/p090_fig05_zonation.png",
+        "data/processed/hd_fqgh_2020_fig03_sanzone.geojson",
+        "data/processed/hd_fqgh_2020_fig05_zonation.geojson"
+      ],
+      "vectorization_note": "图03(两线三区)/图05(国土空间规划分区) 栅格公示图经颜色分类+边界轮廓+区bbox仿射配准矢量化；配准中误差百米级，仅背景参考",
+      "validation_note": "交叉验证: 项目site与集中建设区叠合≥80%；fig03集中建设区(235.8km²)与fig05城镇建设用地(184.1km²)叠合75.6%"
     }
   ]
 }
