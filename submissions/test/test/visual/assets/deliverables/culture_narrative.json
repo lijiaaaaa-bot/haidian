@@ -1,0 +1,43 @@
+{
+  "overall_storyline": "百年京张AI创新带融合了京张铁路的历史文脉与AI创新的时代特征，构建了一个具有深厚文化底蕴和前沿科技活力的创新生态系统。",
+  "cultural_elements": [
+    {
+      "element_id": "CE-001",
+      "name": "京张铁路历史文化资源",
+      "description": "京张铁路作为中国第一条自主设计建设的铁路，承载着民族自强的历史记忆",
+      "representation": "在设计方案中融入京张铁路元素，如建筑造型、景观设计等"
+    },
+    {
+      "element_id": "CE-002",
+      "name": "中关村创新文化",
+      "description": "中关村作为中国科技创新的摇篮，体现了持续创新和开放合作的精神",
+      "representation": "在设计方案中体现中关村的创新精神，如创新园区、孵化器等"
+    },
+    {
+      "element_id": "CE-003",
+      "name": "AI新文化",
+      "description": "人工智能作为新时代的科技力量，代表着未来发展方向和人类智慧的结晶",
+      "representation": "在设计方案中展示AI技术的应用场景和创新成果"
+    }
+  ],
+  "spatial_storyline": [
+    {
+      "section_id": "SS-001",
+      "name": "历史起点",
+      "description": "从京张铁路的历史起点开始，讲述中国科技发展的历程",
+      "location": "京张遗址公园"
+    },
+    {
+      "section_id": "SS-002",
+      "name": "创新核心",
+      "description": "以AI原点社区为核心，展现当代科技创新的活力",
+      "location": "北京AI原点社区"
+    },
+    {
+      "section_id": "SS-003",
+      "name": "产业融合",
+      "description": "通过众智园和大钟寺产业区，展示AI技术与产业的深度融合",
+      "location": "众智园AI自主创新加速区、大钟寺AI产业集聚区"
+    }
+  ]
+}

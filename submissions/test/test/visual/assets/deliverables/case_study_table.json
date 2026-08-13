@@ -1,0 +1,87 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-06-07",
+  "case_studies": [
+    {
+      "id": "silicon_valley",
+      "name_zh": "美国硅谷",
+      "description_zh": "全球科技创新中心，以企业主导的开放式创新模式",
+      "key_features": [
+        "企业主导",
+        "开放式创新",
+        "风险投资活跃"
+      ]
+    },
+    {
+      "id": "tel_aviv",
+      "name_zh": "以色列特拉维夫",
+      "description_zh": "创业生态系统，政府支持下的产学研协同",
+      "key_features": [
+        "政府支持",
+        "产学研协同",
+        "创业文化浓厚"
+      ]
+    },
+    {
+      "id": "jurong",
+      "name_zh": "新加坡裕廊工业区",
+      "description_zh": "政府主导的产业规划与创新平台",
+      "key_features": [
+        "政府主导",
+        "产业规划",
+        "创新平台"
+      ]
+    },
+    {
+      "id": "munich",
+      "name_zh": "德国慕尼黑",
+      "description_zh": "科技园区与大学合作的创新集群",
+      "key_features": [
+        "大学合作",
+        "科技园区",
+        "创新集群"
+      ]
+    },
+    {
+      "id": "cambridge",
+      "name_zh": "英国剑桥",
+      "description_zh": "以大学为核心的科技创新集群",
+      "key_features": [
+        "大学核心",
+        "产学研结合",
+        "创新集群"
+      ]
+    },
+    {
+      "id": "shenzhen",
+      "name_zh": "中国深圳",
+      "description_zh": "政府引导下的产业生态构建",
+      "key_features": [
+        "政府引导",
+        "产业生态",
+        "快速迭代"
+      ]
+    },
+    {
+      "id": "boston",
+      "name_zh": "美国波士顿",
+      "description_zh": "以高校和研究机构为核心的创新集群",
+      "key_features": [
+        "高校核心",
+        "研究机构",
+        "创新集群"
+      ]
+    },
+    {
+      "id": "seoul",
+      "name_zh": "韩国首尔",
+      "description_zh": "政府主导的科技园区发展模式",
+      "key_features": [
+        "政府主导",
+        "科技园区",
+        "发展模式"
+      ]
+    }
+  ]
+}

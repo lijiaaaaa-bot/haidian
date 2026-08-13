@@ -1,0 +1,41 @@
+[
+  {
+    "landmark_id": "LM-001",
+    "name": "AI原点纪念碑",
+    "description": "展示AI发展历程和未来愿景的标志性建筑",
+    "location": "北京AI原点社区",
+    "design_elements": [
+      "历史元素",
+      "科技元素",
+      "互动装置"
+    ],
+    "cultural_significance": "体现AI文化传承与创新",
+    "expected_visits": 100000
+  },
+  {
+    "landmark_id": "LM-002",
+    "name": "众智园创新之塔",
+    "description": "象征技术创新与突破的地标性建筑",
+    "location": "众智园AI自主创新加速区",
+    "design_elements": [
+      "现代科技感",
+      "玻璃幕墙",
+      "互动展示"
+    ],
+    "cultural_significance": "代表AI创新精神",
+    "expected_visits": 80000
+  },
+  {
+    "landmark_id": "LM-003",
+    "name": "大钟寺AI之光",
+    "description": "体现产业融合与应用成果的标志性建筑",
+    "location": "大钟寺AI产业集聚区",
+    "design_elements": [
+      "工业元素",
+      "科技光影",
+      "互动体验"
+    ],
+    "cultural_significance": "展示AI产业化成就",
+    "expected_visits": 60000
+  }
+]

@@ -3,14 +3,14 @@
   "checks": [
     {
       "check_id": "BOUNDARY_TRUST",
-      "result": "pass",
+      "result": "unknown",
       "severity": "major",
       "target": "geometry/site_boundary.geojson",
       "message": "Provisional boundary is present; replace with official redline before professional scoring."
     },
     {
       "check_id": "KEY_AREAS_TRUST",
-      "result": "pass",
+      "result": "unknown",
       "severity": "major",
       "target": "geometry/key_areas.geojson",
       "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
@@ -41,7 +41,7 @@
       "result": "pass",
       "severity": "major",
       "target": "metrics.json",
-      "message": "All declared metric values are reproducible from geometry/*.geojson using EPSG:4548 projection. site_area_sqm=11412825.39, building_footprint_area_sqm=310807.18, green_ratio=0.123423, public_space_ratio=0.073281 verified by computing polygon_area() on the corresponding GeoJSON files with pyproj EPSG:4326→4548 transform."
+      "message": "site_area_sqm/building_footprint_area_sqm/green_space_area_sqm/public_space_area_sqm/key_detailed_design_area_sqm 可由包内 geometry 按 EPSG:4548 复算（tests 实证）；coordinated_research_area_sqm 来源为组织方 provisional 数据（包外），已在 metrics.assumptions 标注"
     }
   ]
 }

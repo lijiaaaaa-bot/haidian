@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-06-07",
+  "community_structure": {
+    "open_platform": {
+      "description_zh": "提供API接口和开发工具的开放平台",
+      "features": [
+        "API文档",
+        "代码示例",
+        "开发者工具"
+      ]
+    },
+    "training_program": {
+      "description_zh": "定期举办技术分享和培训活动",
+      "activities": [
+        "技术讲座",
+        "工作坊",
+        "在线课程"
+      ]
+    },
+    "project_incubation": {
+      "description_zh": "支持优秀项目的落地实施",
+      "support_types": [
+        "资金支持",
+        "技术指导",
+        "市场对接"
+      ]
+    },
+    "talent_attracting": {
+      "description_zh": "吸引全球顶尖AI人才聚集",
+      "mechanisms": [
+        "人才引进政策",
+        "国际合作项目",
+        "学术交流平台"
+      ]
+    }
+  },
+  "operational_mechanisms": [
+    {
+      "mechanism": "社区治理",
+      "description_zh": "建立开发者社区自治机制"
+    },
+    {
+      "mechanism": "激励机制",
+      "description_zh": "通过贡献奖励和荣誉体系激励参与"
+    },
+    {
+      "mechanism": "合作平台",
+      "description_zh": "搭建企业、研究机构和开发者之间的合作桥梁"
+    }
+  ]
+}

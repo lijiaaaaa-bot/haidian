@@ -2,13 +2,15 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8">
-<title>百年京张AI创新带 — 数据看板</title>
+<title>百年京张AI创新带 — 城市设计数据看板</title>
 <style>
 body{font-family:-apple-system,sans-serif;max-width:1200px;margin:0 auto;padding:2rem;background:#f8f9fa}
 h1{color:#1a1a2e;border-bottom:3px solid #e94560;padding-bottom:.5rem}
-.card{background:white;padding:1rem;margin:.5rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+section{margin:1.5rem 0;padding:1rem 1.25rem;background:white;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+h2{color:#1a1a2e;border-left:4px solid #e94560;padding-left:.5rem}
+.card{display:inline-block;background:#f0f4ff;padding:.75rem 1rem;margin:.4rem;border-radius:8px;min-width:200px}
 .card .label{font-size:.85rem;color:#666}
-.card .value{font-size:1.5rem;font-weight:bold;color:#1a1a2e}
+.card .value{font-size:1.4rem;font-weight:bold;color:#1a1a2e}
 .figures{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:1rem;margin-top:1rem}
 img{width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .note{color:#888;font-size:.8rem;margin-top:2rem}
@@ -16,9 +18,86 @@ img{width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 </head>
 <body>
 <h1>百年京张AI创新带 · 城市设计数据看板</h1>
-<div class="card"><div class="label">场地面积 (EPSG:4548)</div><div class="value" data-metric="site_area_sqm">11,412,825 m²</div></div>
-<div class="card"><div class="label">绿地率</div><div class="value" data-metric="green_ratio">0.1234 (12.3%)</div></div>
-<div class="card"><div class="label">公共空间率</div><div class="value" data-metric="public_space_ratio">0.0733 (7.3%)</div></div>
+
+<section id="overview">
+<h2>总览地图</h2>
+<img src="../assets/figures/site-overview.png" alt="总体概念图">
+<p>统筹研究、总体设计与重点区域三层空间框架的总体概念示意，底图数据来自 geometry/*.geojson（provisional boundary，EPSG:4548）。</p>
+</section>
+
+<section id="scope">
+<h2>三层范围</h2>
+<div class="card"><div class="label">统筹研究范围</div><div class="value">43,609,232 m²</div></div>
+<div class="card"><div class="label">总体设计范围</div><div class="value">11,412,825 m²</div></div>
+<div class="card"><div class="label">重点区域范围</div><div class="value">3,692,893 m²</div></div>
+</section>
+
+<section id="key-areas">
+<h2>重点区域</h2>
+<div class="card"><div class="label">众智园AI自主创新加速区</div><div class="value">1,929,202 m²</div></div>
+<div class="card"><div class="label">北京AI原点社区</div><div class="value">1,043,237 m²</div></div>
+<div class="card"><div class="label">大钟寺AI产业聚集区</div><div class="value">720,454 m²</div></div>
+<img src="../assets/figures/key-areas.png" alt="重点区域图">
+</section>
+
+<section id="land-use">
+<h2>用地分区</h2>
+<img src="../assets/figures/land-use-structure.png" alt="用地布局图">
+<p>四类用地分区覆盖总体设计范围，面积与 metric 复算一致（见 geometry/land_use.geojson）。</p>
+</section>
+
+<section id="mobility">
+<h2>交通慢行</h2>
+<img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿系统">
+<p>道路中心线与慢行廊道为方案级示意网络，表达重点区域间的慢行联系方向（见 geometry/roads.geojson；正式道路红线待官方数据）。</p>
+</section>
+
+<section id="bluegreen">
+<h2>蓝绿公共空间</h2>
+<div class="card"><div class="label">绿地面积</div><div class="value">1,408,601 m²</div></div>
+<div class="card"><div class="label">公共空间面积</div><div class="value">836,346 m²</div></div>
+</section>
+
+<section id="building">
+<h2>建筑</h2>
+<div class="card"><div class="label">建筑基底面积</div><div class="value">310,807 m²</div></div>
+<p>建筑基底表达更新与保留关系，高度与体量按控规条件待确认处理（见 geometry/buildings.geojson）。</p>
+</section>
+
+<section id="renewal">
+<h2>更新项目</h2>
+<p>更新项目清单 JZ-01 至 JZ-06（京张遗址公园慢行断点缝合、清河创新界面、原点社区成果转化街、大钟寺四象限步行连通、AI公共服务节点、全球AI活动周公共路线），详见 proposal.md 实施方案章节。</p>
+</section>
+
+<section id="scenarios">
+<h2>AI 场景</h2>
+<p>AI 场景卡、产业测试验证场景与用户画像（自主模型测试、标准制定工作坊、安全治理展示、低碳算力体验、开源社区、成果发布等），详见 proposal.md AI 创新生态章节。</p>
+</section>
+
+<section id="metrics">
+<h2>核心指标</h2>
+<div class="card"><div class="label">场地面积 (EPSG:4548)</div><div class="value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</div></div>
+<div class="card"><div class="label">绿地率</div><div class="value" data-metric="green_ratio" data-value="0.123423">0.1234 (12.3%)</div></div>
+<div class="card"><div class="label">公共空间率</div><div class="value" data-metric="public_space_ratio" data-value="0.073281">0.0733 (7.3%)</div></div>
+</section>
+
+<section id="coverage">
+<h2>任务覆盖</h2>
+<p>公告 1.3、1.4、1.5 与 agent.1-agent.6 必选任务逐条映射至章节、图层、指标、图纸与自检项（见 compliance_matrix.json）。</p>
+</section>
+
+<section id="selfcheck">
+<h2>自检状态</h2>
+<p>确定性校验 PASS · 空间校验 PASS · 专业证据校验 PASS · 视觉校验（本页）。</p>
+<p>场地边界与重点区域为 provisional，需在专业评分前替换为官方红线并复算全部指标（见 self_check.json 与 manifest.json known_blockers）。</p>
+</section>
+
+<section id="assumptions">
+<h2>假设</h2>
+<p>A-CONTROLS-001/002：控规强度、红线、权属、市政与工程条件待专业确认；A-BOUNDARY-001：三层范围与重点区 polygon 均为 provisional（见 assumptions.json）。</p>
+</section>
+
+<section id="figures">
 <h2>分析图纸</h2>
 <div class="figures">
 <img src="../assets/figures/site-overview.png" alt="总体概念图">
@@ -27,6 +106,8 @@ img{width:100%;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 <img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿系统">
 <img src="../assets/figures/metrics-evidence.png" alt="指标证据图">
 </div>
-<p class="note">数据来源: geometry/*.geojson 在 EPSG:4548 投影下计算 | AI 生成设计提案 | provisional boundary | 指标值与 metrics.json 一致</p>
+</section>
+
+<p class="note">来源: geometry/*.geojson 在 EPSG:4548 投影下计算 | AI 生成设计提案 | provisional boundary | 指标值与 metrics.json 一致</p>
 </body>
 </html>

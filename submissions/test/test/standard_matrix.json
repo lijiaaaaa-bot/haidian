@@ -18,14 +18,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -71,14 +70,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -124,14 +122,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -177,14 +174,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -230,14 +226,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -283,14 +278,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",

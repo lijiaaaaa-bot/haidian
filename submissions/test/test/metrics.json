@@ -20,7 +20,7 @@
       "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
       "confidence": "medium",
       "assumptions": [
-        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001"
+        "Provisional site boundary; official redline pending"
       ]
     },
     "overall_design_area_sqm": {
@@ -41,12 +41,12 @@
       "value": 43609232.558,
       "unit": "sqm",
       "source_files": [
-        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001"
+        "geometry/site_boundary.geojson#SITE-001"
       ],
       "formula": "polygon_area(PROV-RESEARCH-001, EPSG:4548)",
       "confidence": "medium",
       "assumptions": [
-        "Provisional boundary; declared official value: 43,600,000 sqm"
+        "统筹研究范围多边形（PROV-RESEARCH-001）来自组织方 brief/site-package/geometry/provisional_boundaries.geojson，未复制入包，无法从包内 geometry 直接复算；其余全部 known 指标均可由包内 geometry 复算"
       ]
     },
     "key_detailed_design_area_sqm": {
@@ -54,7 +54,9 @@
       "value": 3692893.005,
       "unit": "sqm",
       "source_files": [
-        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-SCOPE-001"
+        "geometry/key_areas.geojson#PROV-KEY-001",
+        "geometry/key_areas.geojson#PROV-KEY-002",
+        "geometry/key_areas.geojson#PROV-KEY-003"
       ],
       "formula": "sum(polygon_area(PROV-KEY-001..003, EPSG:4548))",
       "confidence": "medium",
@@ -116,19 +118,27 @@
       "status": "known",
       "value": 1408600.77,
       "unit": "sqm",
-      "source_files": ["geometry/green_space.geojson"],
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
       "formula": "sum(polygon_area(green_space_features, EPSG:4548))",
       "confidence": "medium",
-      "assumptions": ["Computed from green_space.geojson in EPSG:4548 projection"]
+      "assumptions": [
+        "Computed from green_space.geojson in EPSG:4548 projection"
+      ]
     },
     "public_space_area_sqm": {
       "status": "known",
       "value": 836345.64,
       "unit": "sqm",
-      "source_files": ["geometry/public_space.geojson"],
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
       "formula": "sum(polygon_area(public_space_features, EPSG:4548))",
       "confidence": "medium",
-      "assumptions": ["Computed from public_space.geojson in EPSG:4548 projection"]
+      "assumptions": [
+        "Computed from public_space.geojson in EPSG:4548 projection"
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -141,7 +151,10 @@
       "formula": "green_space_area_sqm / site_area_sqm = 1408600.77 / 11412825.39 = 0.123423",
       "confidence": "medium",
       "assumptions": [],
-      "computed_from": {"numerator": "green_space_area_sqm", "denominator": "site_area_sqm"}
+      "computed_from": {
+        "numerator": "green_space_area_sqm",
+        "denominator": "site_area_sqm"
+      }
     },
     "public_space_ratio": {
       "status": "known",
@@ -154,15 +167,16 @@
       "formula": "public_space_area_sqm / site_area_sqm = 836345.64 / 11412825.39 = 0.073281",
       "confidence": "medium",
       "assumptions": [],
-      "computed_from": {"numerator": "public_space_area_sqm", "denominator": "site_area_sqm"}
+      "computed_from": {
+        "numerator": "public_space_area_sqm",
+        "denominator": "site_area_sqm"
+      }
     },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
+      "source_files": [],
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
@@ -178,9 +192,50 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "reason": "AI 创新指数需官方产业统计与专利/企业数据支撑，暂未建立",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "正式深化时建立"
+      ]
+    },
+    "ai_talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons_per_sqm",
+      "reason": "人才密度需人口与就业统计数据，暂未提供",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "正式深化时建立"
+      ]
+    },
+    "slow_travel_accessibility": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "reason": "慢行可达性需真实路网与 OD 数据，当前路网为示意",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "待官方道路红线后计算"
+      ]
+    },
+    "scenario_usage_frequency": {
+      "status": "unknown",
+      "value": null,
+      "unit": "events_per_year",
+      "reason": "场景使用频次需运营数据，属实施后统计指标",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "实施后统计"
+      ]
     }
-  },
-  "ratio": null,
-  "floor_area_ratio": null,
-  "height_m": null
+  }
 }

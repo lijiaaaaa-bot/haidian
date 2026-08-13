@@ -1,0 +1,122 @@
+[
+  {
+    "card_id": "SC-001",
+    "title": "AI+医疗诊断",
+    "description": "利用AI技术提升医疗诊断准确率和效率",
+    "space_location": "北京AI原点社区医疗中心",
+    "user_group": "医生、患者",
+    "data_requirements": "医学图像数据、临床病例数据",
+    "privacy_boundary": "严格的数据加密和访问控制",
+    "human_review": "专家审核机制",
+    "operation_mechanism": "医疗机构与AI企业合作",
+    "expected_impact": "图像识别准确率95%以上"
+  },
+  {
+    "card_id": "SC-002",
+    "title": "AI+智能交通",
+    "description": "通过AI优化城市交通流量和管理",
+    "space_location": "众智园交通测试区",
+    "user_group": "交通管理部门、市民",
+    "data_requirements": "交通流量数据、路况数据",
+    "privacy_boundary": "匿名化处理个人出行数据",
+    "human_review": "交通专家审核机制",
+    "operation_mechanism": "交通部门与科技企业合作",
+    "expected_impact": "交通流量预测准确率90%以上"
+  },
+  {
+    "card_id": "SC-003",
+    "title": "AI+教育",
+    "description": "个性化学习推荐和智能教学辅助",
+    "space_location": "大钟寺AI产业聚集区教育中心",
+    "user_group": "学生、教师、家长",
+    "data_requirements": "学习行为数据、课程内容数据",
+    "privacy_boundary": "保护学生隐私和数据安全",
+    "human_review": "教育专家审核机制",
+    "operation_mechanism": "学校与AI企业合作",
+    "expected_impact": "个性化学习推荐准确率85%以上"
+  },
+  {
+    "card_id": "SC-004",
+    "title": "AI+金融风控",
+    "description": "利用AI技术进行风险识别和评估",
+    "space_location": "众智园金融科技区",
+    "user_group": "金融机构、监管机构",
+    "data_requirements": "交易数据、信用数据",
+    "privacy_boundary": "数据脱敏和访问控制",
+    "human_review": "金融专家审核机制",
+    "operation_mechanism": "金融机构与AI企业合作",
+    "expected_impact": "风险识别准确率92%以上"
+  },
+  {
+    "card_id": "SC-005",
+    "title": "AI+智慧城市管理",
+    "description": "通过AI优化城市运行管理和公共服务",
+    "space_location": "北京AI原点社区智慧城市中心",
+    "user_group": "城市管理机构、市民",
+    "data_requirements": "城市运行数据、公共服务数据",
+    "privacy_boundary": "数据安全和隐私保护机制",
+    "human_review": "城市管理专家审核机制",
+    "operation_mechanism": "政府与科技企业合作",
+    "expected_impact": "城市管理效率提升30%以上"
+  },
+  {
+    "card_id": "SC-006",
+    "title": "AI+智能制造",
+    "description": "利用AI技术提升制造业智能化水平",
+    "space_location": "大钟寺AI产业聚集区制造中心",
+    "user_group": "制造企业、工程师",
+    "data_requirements": "生产数据、设备数据",
+    "privacy_boundary": "工业数据安全保护机制",
+    "human_review": "制造业专家审核机制",
+    "operation_mechanism": "制造企业与AI企业合作",
+    "expected_impact": "生产效率提升25%以上"
+  },
+  {
+    "card_id": "SC-007",
+    "title": "AI+环境保护",
+    "description": "利用AI技术进行环境监测和治理",
+    "space_location": "京张遗址公园生态监测区",
+    "user_group": "环保部门、科研机构",
+    "data_requirements": "环境监测数据、污染源数据",
+    "privacy_boundary": "环境数据安全保护机制",
+    "human_review": "环保专家审核机制",
+    "operation_mechanism": "环保部门与AI企业合作",
+    "expected_impact": "环境监测准确率95%以上"
+  },
+  {
+    "card_id": "SC-008",
+    "title": "AI+文化旅游",
+    "description": "通过AI技术提升旅游体验和文化传承",
+    "space_location": "京张遗址公园文化体验区",
+    "user_group": "游客、文化研究者",
+    "data_requirements": "游客行为数据、文化资源数据",
+    "privacy_boundary": "游客隐私保护机制",
+    "human_review": "文化专家审核机制",
+    "operation_mechanism": "文旅部门与AI企业合作",
+    "expected_impact": "游客满意度提升30%以上"
+  },
+  {
+    "card_id": "SC-009",
+    "title": "AI+农业智能",
+    "description": "利用AI技术提升农业生产效率和质量",
+    "space_location": "中关村科技服务翼农业科技区",
+    "user_group": "农民、农业企业",
+    "data_requirements": "农田数据、作物生长数据",
+    "privacy_boundary": "农业数据安全保护机制",
+    "human_review": "农业专家审核机制",
+    "operation_mechanism": "农业企业与AI企业合作",
+    "expected_impact": "农业生产效率提升20%以上"
+  },
+  {
+    "card_id": "SC-010",
+    "title": "AI+健康养老",
+    "description": "通过AI技术提升养老服务质量和效率",
+    "space_location": "北京AI原点社区养老服务中心",
+    "user_group": "老年人、护理人员",
+    "data_requirements": "健康数据、行为数据",
+    "privacy_boundary": "健康数据隐私保护机制",
+    "human_review": "医疗专家审核机制",
+    "operation_mechanism": "养老机构与AI企业合作",
+    "expected_impact": "养老服务效率提升35%以上"
+  }
+]
