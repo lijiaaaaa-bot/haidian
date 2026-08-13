@@ -377,16 +377,26 @@ def _call_deepseek(system: str, evidence: dict, statute: dict,
         img_sizes = [len(i) for i in images]
         parts.append(f"### 图片元数据\n共 {len(images)} 张 PNG 图纸文件，base64 编码大小: {img_sizes} 字节。图纸质量请基于文件大小、维度和提交包整体质量推断。")
     msg_content = [{"type": "text", "text": "\n\n".join(parts)}]
-    try:
-        resp = client.messages.create(
-            model=DEEPSEEK_MODEL, max_tokens=4096, system=system,
-            messages=[{"role": "user", "content": msg_content}],
-            thinking={"type": "disabled"},  # V4-Flash: disable thinking for judging
-            timeout=timeout)
-        txt = "".join(b.text for b in resp.content if hasattr(b, "text"))
-        return {"message": {"content": txt}}
-    except Exception as e:
-        return {"message": {"content": f'{{"refuted":true,"blocking":"none","confidence":"low","reasoning":"DeepSeek error: {e}"}}'}}
+    # Retry transient server/transport errors (e.g. HTTP/2 stream INTERNAL_ERROR)
+    # with exponential backoff; keep fail-closed JSON verdict if retries are exhausted.
+    import time
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            resp = client.messages.create(
+                model=DEEPSEEK_MODEL, max_tokens=4096, system=system,
+                messages=[{"role": "user", "content": msg_content}],
+                thinking={"type": "disabled"},  # V4-Flash: disable thinking for judging
+                timeout=timeout)
+            txt = "".join(b.text for b in resp.content if hasattr(b, "text"))
+            return {"message": {"content": txt}}
+        except Exception as e:
+            last_error = e
+            if attempt < 2:
+                delay = 1.0 * (3 ** attempt)  # 1s, 3s
+                print(f"  [deepseek] attempt {attempt + 1} failed: {e}; retry in {delay:.0f}s")
+                time.sleep(delay)
+    return {"message": {"content": f'{{"refuted":true,"blocking":"none","confidence":"low","reasoning":"DeepSeek error: {last_error}"}}'}}
 
 
 def _call_judge(system: str, evidence: dict, statute: dict, model: str,

@@ -174,6 +174,25 @@ def call_deepseek(prompt: str) -> dict:
         raise
 
 
+# 白名单：模型输出可写的顶层目录与根级文件（与 build_prompt 的输出约定一致）。
+# 防路径穿越：拒绝绝对路径、`..`/`.` 段，以及白名单外的任何路径。
+ALLOWED_TOP_LEVEL_DIRS = {"geometry", "assets", "report", "visual"}
+ALLOWED_ROOT_FILES = {"proposal.md", "metrics.json"}
+
+
+def _safe_relative_path(raw: str) -> Path | None:
+    """Validate a model-returned path: relative, no traversal segments, whitelisted top level."""
+    p = Path(raw)
+    if p.is_absolute():
+        return None
+    parts = p.parts
+    if not parts or any(seg in ("", ".", "..") for seg in parts):
+        return None
+    if len(parts) == 1:
+        return p if parts[0] in ALLOWED_ROOT_FILES else None
+    return p if parts[0] in ALLOWED_TOP_LEVEL_DIRS else None
+
+
 def write_submission(data: dict, submission: Path) -> None:
     """Write all generated files to the submission directory."""
     files = data.get("files", {})
@@ -184,9 +203,25 @@ def write_submission(data: dict, submission: Path) -> None:
         if isinstance(data, dict):
             files = {k: v for k, v in data.items() if isinstance(v, (str, dict))}
 
+    submission_root = submission.resolve()
     written = 0
+    skipped = 0
     for path, content in files.items():
-        full_path = submission / path
+        rel = _safe_relative_path(str(path))
+        if rel is None:
+            skipped += 1
+            print(
+                f"  ✗ blocked {path}: outside whitelist "
+                f"(allowed: {sorted(ALLOWED_ROOT_FILES)} or under {sorted(ALLOWED_TOP_LEVEL_DIRS)})"
+            )
+            continue
+        full_path = (submission_root / rel).resolve()
+        try:
+            full_path.relative_to(submission_root)
+        except ValueError:
+            skipped += 1
+            print(f"  ✗ blocked {path}: escapes submission root")
+            continue
         full_path.parent.mkdir(parents=True, exist_ok=True)
 
         if isinstance(content, (dict, list)):
@@ -196,8 +231,10 @@ def write_submission(data: dict, submission: Path) -> None:
 
         full_path.write_text(text, encoding="utf-8")
         written += 1
-        print(f"  ✓ {path} ({len(text)} chars)")
+        print(f"  ✓ {rel} ({len(text)} chars)")
 
+    if skipped:
+        print(f"  (blocked {skipped} path(s) outside whitelist)")
     print(f"\nWrote {written} files to {submission}")
 
 

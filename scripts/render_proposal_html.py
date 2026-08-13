@@ -46,6 +46,7 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
 def render_inline(text: str) -> str:
     escaped = html.escape(text)
     escaped = INLINE_CODE_RE.sub(lambda m: f"<code>{html.escape(m.group(1))}</code>", escaped)
+    escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
 
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
@@ -59,6 +60,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     blocks: list[str] = []
     paragraph: list[str] = []
     in_list = False
+    skip_first_h1 = True  # hero section 已输出 title 作为 h1，跳过正文首个顶层标题避免重复
 
     def flush_paragraph() -> None:
         nonlocal paragraph
@@ -72,11 +74,42 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             blocks.append("</ul>")
             in_list = False
 
-    for raw_line in markdown.splitlines():
-        line = raw_line.rstrip()
+    def is_table_sep(text: str) -> bool:
+        s = text.strip().strip("|")
+        if not s:
+            return False
+        return all(re.fullmatch(r"\s*:?-{2,}:?\s*", cell.strip()) for cell in s.split("|"))
+
+    lines = markdown.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
         if not line.strip():
             flush_paragraph()
             close_list()
+            i += 1
+            continue
+
+        # Markdown 表格块：当前行含 | 且下一行是分隔行
+        if "|" in line and i + 1 < len(lines) and is_table_sep(lines[i + 1]):
+            flush_paragraph()
+            close_list()
+            header = [c.strip() for c in line.strip().strip("|").split("|")]
+            i += 2
+            rows: list[list[str]] = []
+            while i < len(lines) and lines[i].strip():
+                cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
+                rows.append(cells)
+                i += 1
+            header_html = "".join(f"<th>{render_inline(c)}</th>" for c in header)
+            body_html = "".join(
+                "<tr>" + "".join(f"<td>{render_inline(c)}</td>" for c in row) + "</tr>"
+                for row in rows
+            )
+            blocks.append(
+                f'<table><thead><tr>{header_html}</tr></thead>'
+                f"<tbody>{body_html}</tbody></table>"
+            )
             continue
 
         image_match = IMAGE_RE.fullmatch(line.strip())
@@ -91,6 +124,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 f"<figcaption>{alt}</figcaption>"
                 "</figure>"
             )
+            i += 1
             continue
 
         if line.startswith("#"):
@@ -98,7 +132,12 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             close_list()
             level = min(len(line) - len(line.lstrip("#")), 4)
             title = line[level:].strip()
+            if level == 1 and skip_first_h1:
+                skip_first_h1 = False
+                i += 1
+                continue
             blocks.append(f"<h{level}>{render_inline(title)}</h{level}>")
+            i += 1
             continue
 
         if line.startswith("- "):
@@ -107,9 +146,11 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 blocks.append("<ul>")
                 in_list = True
             blocks.append(f"<li>{render_inline(line[2:].strip())}</li>")
+            i += 1
             continue
 
         paragraph.append(line.strip())
+        i += 1
 
     flush_paragraph()
     close_list()
