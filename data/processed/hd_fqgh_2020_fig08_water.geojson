@@ -1,0 +1,317 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_surface",
+    "label_zh": "水域（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.33669700000002,
+       40.015669
+      ],
+      [
+       116.345845,
+       40.000122999999995
+      ],
+      [
+       116.362584,
+       39.982715000000006
+      ],
+      [
+       116.36302300000001,
+       39.98351300000001
+      ],
+      [
+       116.337759,
+       40.01778599999999
+      ],
+      [
+       116.33669700000002,
+       40.015669
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_surface",
+    "label_zh": "水域（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.340556,
+       39.96561200000001
+      ],
+      [
+       116.36598,
+       39.971545
+      ],
+      [
+       116.36618800000001,
+       39.97207699999999
+      ],
+      [
+       116.340377,
+       39.97152499999999
+      ],
+      [
+       116.340556,
+       39.96561200000001
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_surface",
+    "label_zh": "水域（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.34015,
+       39.963704
+      ],
+      [
+       116.340464,
+       39.95894499999999
+      ],
+      [
+       116.34080200000001,
+       39.958721
+      ],
+      [
+       116.34093100000001,
+       39.96486
+      ],
+      [
+       116.34015,
+       39.963704
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_surface",
+    "label_zh": "水域（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.36369,
+       39.942348
+      ],
+      [
+       116.36452200000001,
+       39.944663999999996
+      ],
+      [
+       116.359371,
+       39.94511200000001
+      ],
+      [
+       116.360665,
+       39.943352
+      ],
+      [
+       116.36369,
+       39.942348
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_main_channel",
+    "label_zh": "主河道/深水（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.387152,
+       40.02894899999999
+      ],
+      [
+       116.326575,
+       40.017085
+      ],
+      [
+       116.32179300000001,
+       40.01587600000001
+      ],
+      [
+       116.321019,
+       40.01488400000001
+      ],
+      [
+       116.37946,
+       40.023506
+      ],
+      [
+       116.385569,
+       40.02665300000001
+      ],
+      [
+       116.387821,
+       40.028370000000024
+      ],
+      [
+       116.387152,
+       40.02894899999999
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_main_channel",
+    "label_zh": "主河道/深水（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.340678,
+       39.94874299999999
+      ],
+      [
+       116.33833100000001,
+       39.94795
+      ],
+      [
+       116.333048,
+       39.941213999999995
+      ],
+      [
+       116.335556,
+       39.941178
+      ],
+      [
+       116.3382,
+       39.942913000000004
+      ],
+      [
+       116.34265700000002,
+       39.948479
+      ],
+      [
+       116.340678,
+       39.94874299999999
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "layer": "OFFICIAL_ZONATION_BG",
+    "category": "official_water_main_channel",
+    "label_zh": "主河道/深水（官方河湖水系图）",
+    "source": "DATA-SRC-HAIDIAN-DISTRICT-PLAN-2017-2035",
+    "source_figure": "图08 河湖水系规划图",
+    "official_boundary": false,
+    "usable_for_formal": "background_only",
+    "precision_note": "栅格公示图矢量化，配准中误差约百米级；仅作背景参考，不作几何/面积依据"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.38755500000002,
+       39.947568
+      ],
+      [
+       116.355505,
+       39.948279
+      ],
+      [
+       116.343548,
+       39.94756499999999
+      ],
+      [
+       116.342975,
+       39.94614500000001
+      ],
+      [
+       116.344424,
+       39.94497599999999
+      ],
+      [
+       116.34707700000001,
+       39.94495899999999
+      ],
+      [
+       116.38755500000002,
+       39.947568
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

@@ -64,6 +64,7 @@ FIG03 = {
     "output": "hd_fqgh_2020_fig03_sanzone.geojson",
     "fig_label": "图03 两线三区规划图",
     "legend_band": 0.75,
+    "img_bbox": (106, 322, 1134, 1382),
     "legend": {
         "concentrated_construction": {  # 集中建设区（橙）
             "anchor": (240, 192, 104), "label_zh": "集中建设区（官方三区图）",
@@ -123,11 +124,15 @@ def mask_to_polygons(mask_2d, min_area_px=60, simplify_px=2.0):
     return polys
 
 
-def run_fig(source: str, output: str, fig_label: str, legend_band: float, legend: dict) -> int:
+def run_fig(source: str, output: str, fig_label: str, legend_band: float, legend: dict,
+             img_bbox: tuple | None = None, min_area_px: int = 60) -> int:
     img_path = REPO / "data" / "sources" / "fqgh" / source
     if not img_path.exists():
         print(f"missing source image: {img_path}", file=sys.stderr)
         return 2
+    global IMG_X0, IMG_Y0, IMG_X1, IMG_Y1
+    if img_bbox is not None:
+        IMG_X0, IMG_Y0, IMG_X1, IMG_Y1 = img_bbox
     a = np.array(Image.open(img_path).convert("RGB")).astype(int)
     h, w, _ = a.shape
     region_mask = np.zeros((h, w), dtype=bool)
@@ -147,7 +152,7 @@ def run_fig(source: str, output: str, fig_label: str, legend_band: float, legend
         # drop near-white fragments
         px &= (np.abs(a - 255).sum(axis=2) > 60)
         counts[key] = int(px.sum())
-        polys = mask_to_polygons(px)
+        polys = mask_to_polygons(px, min_area_px=min_area_px)
         for poly in polys:
             coords = []
             for x, y in poly.exterior.coords[:-1]:
@@ -209,7 +214,16 @@ def main() -> int:
     if rc:
         return rc
     rc = run_fig(FIG03["source"], FIG03["output"], FIG03["fig_label"],
-                 FIG03["legend_band"], FIG03["legend"])
+                 FIG03["legend_band"], FIG03["legend"], img_bbox=FIG03.get("img_bbox"))
+    if rc:
+        return rc
+    rc = run_fig("p093_fig08_water.png", "hd_fqgh_2020_fig08_water.geojson",
+                 "图08 河湖水系规划图", 0.80, {
+        "water_surface": {"anchor": (160, 192, 240), "label_zh": "水域（官方河湖水系图）",
+                          "name": "official_water_surface", "tolerance": 45},
+        "water_deep": {"anchor": (0, 96, 176), "label_zh": "主河道/深水（官方河湖水系图）",
+                       "name": "official_water_main_channel", "tolerance": 60},
+    })
     return rc
 
 

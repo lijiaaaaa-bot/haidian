@@ -37,12 +37,10 @@ import json
 import os
 import re
 import shutil
-import ssl
 import subprocess
 import sys
 import tempfile
 import urllib.parse
-import urllib.request
 
 LIST_API = "https://yewu.ghzrzyw.beijing.gov.cn/zkdncms/tdgltdsc/tdzpgxm/esSearchList"
 GGZYFW_BASE = "https://ggzyfw.beijing.gov.cn"
@@ -276,7 +274,12 @@ def extract_rows_pymupdf(path, colmap, tol=14.0):
             x0, y0, x1, y1, txt = w[0], w[1], w[2], w[3], w[4]
             yk = round(y0 / 6)
             key = (pno, yk)
+            num = None
             if NUM_RE.fullmatch(txt):
+                num = txt
+            elif re.fullmatch(r"\d+(?:\.\d*)?%", txt):
+                num = txt[:-1]  # “30%” 之类绿地率值
+            if num is not None:
                 bcol = None
                 bd = tol + 1
                 for col, ax in colmap.items():
@@ -285,7 +288,7 @@ def extract_rows_pymupdf(path, colmap, tol=14.0):
                         bd = d
                         bcol = col
                 if bcol is not None:
-                    rows.setdefault(key, {})[bcol] = txt
+                    rows.setdefault(key, {})[bcol] = num
             else:
                 if not (60 < y0 < 500) or not CODE_RE.match(txt):
                     continue

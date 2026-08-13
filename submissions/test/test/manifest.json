@@ -71,7 +71,7 @@
       "path": "proposal.md",
       "role": "narrative",
       "required": true,
-      "sha256": "27228aa950748004af6501f66ae49a5977677112453fd707289b27a4ae22b266"
+      "sha256": "5a140268fa02cbfc395f96a2925c510de5fa1369968c19cb71548ab261ca01e6"
     },
     {
       "path": "report/copyright_statement.md",
@@ -89,7 +89,7 @@
       "path": "report/proposal.html",
       "role": "rendered_proposal_html",
       "required": true,
-      "sha256": "bbf7cc9c000ce3db7b1f6e5405f7518df8c8d76e3d6376b22bc74eed0d88c834"
+      "sha256": "f91d74d2e8ff77d3020a02811e6a2fb336bd17870e6ed61de1edd2d5ea62b2da"
     },
     {
       "path": "visual/index.html",

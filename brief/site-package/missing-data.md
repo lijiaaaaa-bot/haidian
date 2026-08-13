@@ -2,6 +2,17 @@
 
 这些数据没有从当前公开资料中取得，AI agent 不得自行编造。拿到后应进入 `brief/site-package/`，并记录来源、日期、许可和公开性审查结论。
 
+## 2026-08-13 进展（已落地数据）
+
+以下数据已取得并登记（来源登记见 `data/source_registry.json`），AI agent 可引用：
+
+- **采信通告全文**（official）：《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划（草案）公示采信情况的通告》，确认控规名称（HD00-1601 等街区 2022—2035）、公示期（2024-12-19~2025-01-19）、5 条意见全部采纳。原文：`data/sources/caixin-tonggao-hd1601-20250208.html`，要点：`data/processed/caixin-tonggao-hd1601-notes.md`。
+- **走廊内地块控规指标实测库**（official，部分闭环 GAP-CONTROL-001）：从海淀区土地招拍挂公告附件「多规合一审核意见函」提取，`data/processed/konggui_parcel_indicators.csv`（36 行）；走廊内 8 地块（五塔寺 HD00-2002-10、蓝景丽家 HD00-1603-01/03A、清河站北-安宁庄、学院路北端 A/B/C/J）含容积率、建筑高度、绿地率、用地规模、地上建筑规模；证据 PDF 在 `data/sources/land-transfer/`。注意：多规合一函不含建筑密度（非控制指标）；未出让地块无官方指标。
+- **天地图 WFS 背景矢量**（background_reference）：六图层（道路/铁路/水系/境界）3,148 要素，`data/processed/tianditu_wfs_beijing.geojson`，EPSG:4326。
+- **依申请公开申请包**（待提交）：`docs/info-disclosure-application-2026-08-13.md` 含完整申请文书与渠道核验（规自委海淀分局窗口海淀区徐庄路9号院1号楼121室、010-67412068；线上需实名登录）。申请人身份信息字段留待用户本人填写后提交。
+
+仍缺口（维持 provisional 纪律）：控规图则/用地规划图原件（公示条目已下架，走依申请公开）、三层范围与三重点区 official polygon、京张公园红线、清华园车站旧址文保范围、未出让地块指标。
+
 ## 必须补齐
 
 - 三个空间层次的精确官方 polygon：统筹研究范围、总体设计范围、重点区域范围。

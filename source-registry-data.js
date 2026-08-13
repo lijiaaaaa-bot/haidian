@@ -3,18 +3,18 @@ window.HAIDIAN_SOURCE_REGISTRY = {
   "updatedDate": "2026-08-13",
   "registryPath": "data/source_registry.json",
   "counts": {
-    "total": 9,
+    "total": 11,
     "by_review_status": {
-      "approved": 8,
+      "approved": 10,
       "provisional": 1
     },
     "by_usable_for_formal": {
-      "yes": 6,
+      "yes": 8,
       "provisional_only": 1,
       "background_only": 2
     },
     "by_authority_level": {
-      "A0": 5,
+      "A0": 7,
       "CLEARED_USER_DOCUMENT": 1,
       "PROVISIONAL_REPOSITORY": 1,
       "A1": 1,
@@ -163,6 +163,57 @@ window.HAIDIAN_SOURCE_REGISTRY = {
         "claim as the call's official boundary polygon"
       ],
       "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/fqgh/202002/t20200213_1630027.html"
+    },
+    {
+      "source_id": "DATA-SRC-CAIXIN-TONGGAO-HD1601-20250208",
+      "title": "关于《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划（草案）公示采信情况的通告（HD00-1601 等街区控规 2022—2035）",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "topics": [
+        "konggui_caixin_tonggao",
+        "hd00_1601",
+        "jingzhang_railway_park",
+        "planning_publicity"
+      ],
+      "allowed_uses": [
+        "官方确认控规名称与规划期（HD00-1601 等街区，2022—2035）",
+        "官方确认公示期（2024-12-19~2025-01-19）与公示机关",
+        "公示采信意见详情（道路立交形式、京包路等级与红线、知春路下穿、明光村道路命名等）"
+      ],
+      "prohibited_uses": [
+        "地块级精确 polygon 或红线",
+        "未公示地块的控规指标推导",
+        "作为三层范围 official boundary"
+      ],
+      "url": "https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html"
+    },
+    {
+      "source_id": "DATA-SRC-LAND-TRANSFER-KONGGUI-INDICATORS-20260813",
+      "title": "海淀区土地招拍挂公告及多规合一审核意见函（走廊内地块控规指标实测库）",
+      "publisher": "北京市规划和自然资源委员会海淀分局 / 北京市土地交易市场",
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "topics": [
+        "land_transfer",
+        "duoguiheyi_han",
+        "planning_conditions",
+        "konggui_indicators",
+        "corridor_parcels"
+      ],
+      "allowed_uses": [
+        "已出让地块的官方控规指标（容积率、建筑高度、建筑密度、绿地率、用地规模、地上建筑规模）",
+        "走廊控规指标实测库（data/processed/konggui_parcel_indicators.csv）",
+        "城市设计指标佐证与合规性校核"
+      ],
+      "prohibited_uses": [
+        "未出让地块的指标推导",
+        "三层范围 official polygon",
+        "道路红线整体线位"
+      ],
+      "url": "https://ggzyfw.beijing.gov.cn/zpgcrgg/20260108/5398628.html"
     }
   ],
   "background": [

@@ -305,10 +305,12 @@
         "data/sources/fqgh/p088_fig03_sanzone.png",
         "data/sources/fqgh/p090_fig05_zonation.png",
         "data/processed/hd_fqgh_2020_fig03_sanzone.geojson",
-        "data/processed/hd_fqgh_2020_fig05_zonation.geojson"
+        "data/processed/hd_fqgh_2020_fig05_zonation.geojson",
+        "data/sources/fqgh/p093_fig08_water.png",
+        "data/processed/hd_fqgh_2020_fig08_water.geojson"
       ],
       "vectorization_note": "图03(两线三区)/图05(国土空间规划分区) 栅格公示图经颜色分类+边界轮廓+区bbox仿射配准矢量化；配准中误差百米级，仅背景参考",
-      "validation_note": "交叉验证: 项目site与集中建设区叠合≥80%；fig03集中建设区(235.8km²)与fig05城镇建设用地(184.1km²)叠合75.6%"
+      "validation_note": "交叉验证: 项目site与官方集中建设区叠合92.5%（fig03，独立配准）；fig03集中建设区(277km²)与fig05城镇建设用地(184km²)互证；fig08官方水系与site交集约1.2km²（清河/小月河位置吻合）；各图独立区域bbox配准（fig03: x106-1134；fig05/fig08: x68-1171）"
     },
     {
       "source_id": "DATA-SRC-OSM",
@@ -342,6 +344,94 @@
         "urban_context",
         "site_context"
       ]
+    },
+    {
+      "source_id": "DATA-SRC-CAIXIN-TONGGAO-HD1601-20250208",
+      "title": "关于《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划（草案）公示采信情况的通告（HD00-1601 等街区控规 2022—2035）",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "source_kind": "official_announcement",
+      "url": "https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html",
+      "published_date": "2025-02-08",
+      "accessed_date": "2026-08-13",
+      "file_type": "html",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "public_local_snapshot",
+      "license_summary": "政府主动公开的采信通告，全文快照留存可引用；不含涉密内容",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "官方确认控规名称与规划期（HD00-1601 等街区，2022—2035）",
+        "官方确认公示期（2024-12-19~2025-01-19）与公示机关",
+        "公示采信意见详情（道路立交形式、京包路等级与红线、知春路下穿、明光村道路命名等）",
+        "证明该控规已依法公示并取得采信反馈"
+      ],
+      "prohibited_uses": [
+        "地块级精确 polygon 或红线",
+        "未公示地块的控规指标推导",
+        "作为三层范围 official boundary"
+      ],
+      "topics": [
+        "konggui_caixin_tonggao",
+        "hd00_1601",
+        "jingzhang_railway_park",
+        "planning_publicity"
+      ],
+      "local_paths": [
+        "data/sources/caixin-tonggao-hd1601-20250208.html",
+        "data/processed/caixin-tonggao-hd1601-notes.md",
+        "data/processed/konggui-plan-search-notes.md"
+      ],
+      "notes_zh": "2026-08-13 实测：京张控规草案公示条目已从规自委公示系统下架（10 组关键词检索均 0 命中、对照组正常），原文图件与指标表需走依申请公开；采信通告正文确认 5 条意见全部采纳。",
+      "validation_note": "curl HTTP 200 静态直取，HTML 完整闭合（1168 行）；正文与标题核验一致"
+    },
+    {
+      "source_id": "DATA-SRC-LAND-TRANSFER-KONGGUI-INDICATORS-20260813",
+      "title": "海淀区土地招拍挂公告及多规合一审核意见函（走廊内地块控规指标实测库）",
+      "publisher": "北京市规划和自然资源委员会海淀分局 / 北京市土地交易市场",
+      "source_kind": "official_announcement",
+      "url": "https://ggzyfw.beijing.gov.cn/zpgcrgg/20260108/5398628.html",
+      "published_date": null,
+      "accessed_date": "2026-08-13",
+      "file_type": "pdf",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "public_url",
+      "license_summary": "政府主动公开的挂牌公告与供地审批文件；多规合一函所列指标为该地块官方规划条件，可用于指标佐证；函件仅供研究参考，不作再分发",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "已出让地块的官方控规指标（容积率、建筑高度、建筑密度、绿地率、用地规模、地上建筑规模）",
+        "走廊控规指标实测库（data/processed/konggui_parcel_indicators.csv）",
+        "城市设计指标佐证与合规性校核"
+      ],
+      "prohibited_uses": [
+        "未出让地块的指标推导",
+        "三层范围 official polygon",
+        "道路红线整体线位",
+        "宗地权属结论"
+      ],
+      "topics": [
+        "land_transfer",
+        "duoguiheyi_han",
+        "planning_conditions",
+        "konggui_indicators",
+        "corridor_parcels"
+      ],
+      "local_paths": [
+        "data/processed/konggui_parcel_indicators.csv",
+        "data/sources/land-transfer/dghy_026001.pdf",
+        "data/sources/land-transfer/dghy_025051.pdf",
+        "data/sources/land-transfer/dghy_024015.pdf",
+        "data/sources/land-transfer/gpfile_023073.pdf",
+        "data/sources/land-transfer/gpfile_024015.pdf",
+        "data/sources/land-transfer/gpfile_025051.pdf",
+        "data/sources/land-transfer/gpfile_026001.pdf",
+        "data/sources/land-transfer/plancond_023073.pdf",
+        "scripts/extract_land_transfer_indicators.py"
+      ],
+      "notes_zh": "2026-08-13 从海淀区招拍挂列表（county=110108，84 条公告）逐条提取，附件 PDF 全部 file 验真；走廊内 4 个公告 8 地块完整指标 + 14 行非走廊地块指标。五塔寺 HD00-2002-10（供审函〔2025〕0004号）容积率 4.20/控制高度 45m/绿地率 10% 与公示信息核对一致。建筑密度多规合一函未列为控制指标；2010-2019 年历史公告无详情页链接，仅记录公告编号与日期。",
+      "validation_note": "全部数值经下载 PDF 文本提取并人工复核，零编造；提取逻辑沉淀为 scripts/extract_land_transfer_indicators.py（可复用）"
     }
   ]
 }
