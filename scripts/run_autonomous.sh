@@ -9,8 +9,10 @@
 cd "$(dirname "$0")/.."
 
 export HAIDIAN_MLX=true
-export HAIDIAN_WRITER_MODEL="${HAIDIAN_WRITER_MODEL:-mlx-community/Qwen3.5-35B-A3B-4bit}"
-export HAIDIAN_CODER_MODEL="${HAIDIAN_CODER_MODEL:-lmstudio-community/Qwen3-Coder-30B-A3B-Instruct-MLX-4bit}"
+export HAIDIAN_WRITER_MODEL="${HAIDIAN_WRITER_MODEL:-/Users/lijia/.cache/mlx/Qwen3.8-27B-4bit}"
+# 工具调用专用模型(coder):ToolAgent(JSON 格式 tool_call);Qwen3.8-27B 实测
+# 多轮工具调用退化(只读不写),不适合当 agent 循环里的 coder
+export HAIDIAN_CODER_MODEL="${HAIDIAN_CODER_MODEL:-Indelwin/Qwen3-ToolAgent-GRPO-MLX}"
 # Ollama restart no longer needed with MLX
 OMIT_OLLAMA_RESTART=true
 

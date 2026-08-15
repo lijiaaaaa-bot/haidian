@@ -1312,7 +1312,7 @@ TOOL_HANDLERS = {
 MLX_MODE = os.environ.get("HAIDIAN_MLX") == "true"
 MODELS = {
     "writer": os.environ.get("HAIDIAN_WRITER_MODEL",
-        "mlx-community/Qwen3.5-35B-A3B-4bit" if MLX_MODE else "qwen3.6:35b-a3b"),
+        "/Users/lijia/.cache/mlx/Qwen3.8-27B-4bit" if MLX_MODE else "qwen3.6:35b-a3b"),
     "coder":  os.environ.get("HAIDIAN_CODER_MODEL",
         "Indelwin/Qwen3-ToolAgent-GRPO-MLX" if MLX_MODE else "qwen3-coder:30b"),
     "agent":  os.environ.get("HAIDIAN_AGENT_MODEL", "muse-glimmer:30b-mlx"),
@@ -2527,44 +2527,44 @@ def main():
         "C-SANITY": "必需指标未在 metrics.json 中声明:在 metrics 对象里补上声明即可(值未知就用 status=unknown + reason,不必伪造数值)。planning_limits.json 已给区间",
         "C-CLAIM": "声明为 known 的指标缺证据:补非空 formula,并让 source_files 指向提交包内真实存在的文件",
         "C-PACKAGE": "包完整性。检查 manifest.json 文件列表、self_check.json 状态、package_state",
-    }
+        }
 
-    def _build_constraint_hints(failures) -> str:
-        seen = set()
-        hints = []
-        for r in failures:
-            prefix = r.constraint_id.split("-")[0] + "-" + r.constraint_id.split("-")[1] if "-" in r.constraint_id else r.constraint_id
-            if prefix not in seen:
-                seen.add(prefix)
-                for key, hint in sorted(constraint_hints.items()):
-                    if r.constraint_id.startswith(key):
-                        hints.append(f"  {prefix}*: {hint}")
-                        break
-        return "\n".join(hints) if hints else ""
+        def _build_constraint_hints(failures) -> str:
+            seen = set()
+            hints = []
+            for r in failures:
+                prefix = r.constraint_id.split("-")[0] + "-" + r.constraint_id.split("-")[1] if "-" in r.constraint_id else r.constraint_id
+                if prefix not in seen:
+                    seen.add(prefix)
+                    for key, hint in sorted(constraint_hints.items()):
+                        if r.constraint_id.startswith(key):
+                            hints.append(f"  {prefix}*: {hint}")
+                            break
+            return "\n".join(hints) if hints else ""
 
-    if not _stall_break_msg and last_failures is not None:
-        ids = {r.constraint_id for r in last_failures}
-        now = {r.constraint_id for r in failures}
-        fixed = ids - now
-        still = ids & now
-        if fixed or still or single_model:
-            parts = ["修复以下失败项（每个 FAIL 后附修复说明，不要查 registry，直接修）："]
+        if not _stall_break_msg and last_failures is not None:
+            ids = {r.constraint_id for r in last_failures}
+            now = {r.constraint_id for r in failures}
+            fixed = ids - now
+            still = ids & now
+            if fixed or still or single_model:
+                parts = ["修复以下失败项（每个 FAIL 后附修复说明，不要查 registry，直接修）："]
+                for r in failures:
+                    parts.append(f"  FAIL {r.constraint_id} [{r.severity}]: {r.detail}")
+                hints = _build_constraint_hints(failures)
+                if hints:
+                    parts.append(f"\n修复指南（按约束前缀）：\n{hints}")
+                if fixed:
+                    parts.insert(1, f"✓ 已修复 {len(fixed)} 条，继续保持。")
+                inject = "\n".join(parts)
+        elif not _stall_break_msg and single_model and failures:
+            parts = ["修复以下失败项（每个 FAIL 后附修复说明）："]
             for r in failures:
                 parts.append(f"  FAIL {r.constraint_id} [{r.severity}]: {r.detail}")
             hints = _build_constraint_hints(failures)
             if hints:
                 parts.append(f"\n修复指南（按约束前缀）：\n{hints}")
-            if fixed:
-                parts.insert(1, f"✓ 已修复 {len(fixed)} 条，继续保持。")
             inject = "\n".join(parts)
-    elif not _stall_break_msg and single_model and failures:
-        parts = ["修复以下失败项（每个 FAIL 后附修复说明）："]
-        for r in failures:
-            parts.append(f"  FAIL {r.constraint_id} [{r.severity}]: {r.detail}")
-        hints = _build_constraint_hints(failures)
-        if hints:
-            parts.append(f"\n修复指南（按约束前缀）：\n{hints}")
-        inject = "\n".join(parts)
 
         # 5. inject validation helper (don't mock — use the real engine)
         if inject:
