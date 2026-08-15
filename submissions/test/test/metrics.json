@@ -41,7 +41,7 @@
       "value": 43609232.558,
       "unit": "sqm",
       "source_files": [
-        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001"
+        "geometry/key_areas.geojson"
       ],
       "formula": "polygon_area(PROV-RESEARCH-001, EPSG:4548)",
       "confidence": "medium",
@@ -54,7 +54,7 @@
       "value": 3692893.005,
       "unit": "sqm",
       "source_files": [
-        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-SCOPE-001"
+        "geometry/key_areas.geojson"
       ],
       "formula": "sum(polygon_area(PROV-KEY-001..003, EPSG:4548))",
       "confidence": "medium",
@@ -67,7 +67,7 @@
       "value": 1929201.877,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson#PROV-KEY-001"
+        "geometry/key_areas.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
       "confidence": "medium",
@@ -80,7 +80,7 @@
       "value": 1043236.909,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson#PROV-KEY-002"
+        "geometry/key_areas.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
       "confidence": "medium",
@@ -93,7 +93,7 @@
       "value": 720454.221,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson#PROV-KEY-003"
+        "geometry/key_areas.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
       "confidence": "medium",
@@ -141,7 +141,10 @@
       "formula": "green_space_area_sqm / site_area_sqm = 1408600.77 / 11412825.39 = 0.123423",
       "confidence": "medium",
       "assumptions": [],
-      "computed_from": {"numerator": "green_space_area_sqm", "denominator": "site_area_sqm"}
+      "computed_from": {
+        "numerator": "green_space_area_sqm",
+        "denominator": "site_area_sqm"
+      }
     },
     "public_space_ratio": {
       "status": "known",
@@ -154,7 +157,10 @@
       "formula": "public_space_area_sqm / site_area_sqm = 836345.64 / 11412825.39 = 0.073281",
       "confidence": "medium",
       "assumptions": [],
-      "computed_from": {"numerator": "public_space_area_sqm", "denominator": "site_area_sqm"}
+      "computed_from": {
+        "numerator": "public_space_area_sqm",
+        "denominator": "site_area_sqm"
+      }
     },
     "floor_area_ratio": {
       "status": "unknown",
