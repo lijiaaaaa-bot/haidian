@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "name": "PROV-KEY-003",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PROV-KEY-003",
+      "properties": {
+        "id": "PROV-KEY-003",
+        "layer": "KEY_AREA",
+        "parent_scope_id": "key_detailed_design_area",
+        "area_id": "dazhongsi_ai_industry_cluster",
+        "name_zh": "大钟寺AI产业聚集区粗略范围",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "medium",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "announced_area_sqm": 720000,
+        "area_sqm_calculated": 720454.221,
+        "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
+        "source_title": "依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围",
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.342,
+              39.944
+            ],
+            [
+              116.355,
+              39.944
+            ],
+            [
+              116.355,
+              39.94984
+            ],
+            [
+              116.342,
+              39.94984
+            ],
+            [
+              116.342,
+              39.944
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -41,7 +41,7 @@
       "value": 43609232.558,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson"
+        "geometry/PROV-RESEARCH-001.geojson"
       ],
       "formula": "polygon_area(PROV-RESEARCH-001, EPSG:4548)",
       "confidence": "medium",
@@ -67,7 +67,7 @@
       "value": 1929201.877,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson"
+        "geometry/PROV-KEY-001.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
       "confidence": "medium",
@@ -80,7 +80,7 @@
       "value": 1043236.909,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson"
+        "geometry/PROV-KEY-002.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
       "confidence": "medium",
@@ -93,7 +93,7 @@
       "value": 720454.221,
       "unit": "sqm",
       "source_files": [
-        "geometry/key_areas.geojson"
+        "geometry/PROV-KEY-003.geojson"
       ],
       "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
       "confidence": "medium",
