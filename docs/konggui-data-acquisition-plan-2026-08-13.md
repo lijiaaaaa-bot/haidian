@@ -53,7 +53,7 @@
 |---|---|---|---|
 | 1 | 采信通告 `ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html` | 200 静态直取 | 正文确认公示期 2024-12-19~2025-01-19、5 条意见采纳详情、来源"规自委海淀分局"（2025-02-08）；无附件。**立即归档登记** |
 | 2 | 公示系统后端 API `POST yewu.ghzrzyw.beijing.gov.cn/zkdncms/cxghpqgsghlgs/esSearchList`（参数 page/limit/gjz/qxName；`qxName=110108` 返回海淀 189 条公示） | 200 可直接调 | 列表与详情（`GET …/esSearchDetail/{id}`）均可用；**京张控规条目已归档下架**（`gjz=京张` 检索为空）——需从公示期抓包记录/转载文找回 `{id}` |
-| 3 | 土地招拍挂链路（**全链路实测打通**）`POST …/zkdncms/tdgltdsc/tdzpgxm/esSearchList`（`county=110108`）→ `ggzyfw.beijing.gov.cn/zpgcrgg/…` 详情 → 附件 PDF | 200 | 挂牌公告附件含**多规合一审核意见函 PDF = 官方单地块控规指标**。实测样例：五塔寺 HD00-2002-10 地块（京规自（海）供审函〔2025〕0004号）容积率 4.20 / 控制高度 45m / 绿地率 10% / 地上规模 65366.217㎡ / 用地规模 15563.385㎡；"宗地位置图.pdf""多规合一函附图"可作 georeference 底图 |
+| 3 | 土地招拍挂链路（**全链路实测打通**）`POST …/zkdncms/tdgltdsc/tdzpgxm/esSearchList`（`county=110108`；须**表单编码 + X-Requested-With 头**，JSON body 会 404）→ `ggzyfw.beijing.gov.cn/zpgcrgg/…` 详情 → 附件 PDF | 200 | 挂牌公告附件含**多规合一审核意见函 PDF = 官方单地块控规指标**。实测样例：五塔寺 HD00-2002-10 地块（京规自（海）供审函〔2025〕0004号）容积率 4.20 / 控制高度 45m / 绿地率 10% / 地上规模 65366.217㎡ / 用地规模 15563.385㎡；"宗地位置图.pdf""多规合一函附图"可作 georeference 底图。**2026-08-14 已全量提取 84 条公告（v2：119 行，含六郎庄与成交信息）** |
 | 4 | 天地图 WFS `gisserver.tianditu.gov.cn/TDTService/wfs` | 200 实测取数 | GetFeature 实测返回 EPSG:4326 JSON；10 图层：BOUA/BOUL（境界）、HYDA/HYDL（水系）、LRDL/LRRL（道路铁路）、RESA/RESP（居民地）、AANP/AGNP（注记）——背景参考层 |
 | 5 | 分区规划 PDF、2023 三区三线 PDF（ghzrzyw.beijing.gov.cn） | 已确认 | 见 `docs/official-data-acquisition-brief.md`，含城镇开发边界/集中建设区图件 |
 | 6 | 京张一二期公告文字（园林局一期、海淀区政府二期 53.09万㎡/9km/南起西直门北至北五环） | 200 静态 | 文字范围，不能直接作红线 |
@@ -63,7 +63,7 @@
 
 | # | 渠道 | 状态 | 说明 |
 |---|---|---|---|
-| 8 | 天地图·北京 `beijing.tianditu.gov.cn/bzdt/` | GET 200（HEAD 403） | 支持 JPG/EPS/TIF/PDF 下载，审图号京S(2025)004号；下载按钮 JS 触发，需浏览器。**标准地图 EPS/TIF = 最佳 georeference 底图** |
+| 8 | 天地图·北京 `beijing.tianditu.gov.cn/bzdt/` | GET 200（HEAD 403） | standardmap.do 接口**匿名直链**下载（zip 内 JPG+PDF，无 EPS/TIF）；地图本体审图号**京S(2025)041号**（页面页脚 004 号仅为网站版权号）。**2026-08-14 已下载**：海淀 1:12万 / 中心城区 1:9万 / 北京 1:50万 → `data/sources/tianditu-bzdt/`。**标准地图 = 最佳 georeference 底图** |
 | 9 | 公示系统历史条目 | JS 渲染 | 已下架的京张控规原文，需从抓包记录/第三方转载找 `{id}` 后直调详情 API |
 | 10 | 建设工程规划许可公示 `yewu…/cxghjsgcgh/jsgcgh.html` | 需登录 | API 返回 `1001 用户未登录`；登录后同款 esSearchList 可取单项目建筑规模等 |
 | 11 | webmap.cn 官方矢量（1:100万/1:25万 CGCS2000） | 需注册登录 | 宏观背景层，精度 100–500m |

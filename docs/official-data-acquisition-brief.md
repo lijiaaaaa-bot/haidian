@@ -31,7 +31,7 @@
 | 2023《落实"三区三线"修改成果》PDF | ✅ 可直接下载 | `https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/fqgh/202304/P020230411651126706395.pdf`（5页，最新边界） |
 | 规自委分区规划栏目 | ✅ | `https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/fqgh/` |
 | 京张沿线 HD00-1601 街区控规草案 | ⚠️ 需浏览器（JS 渲染） | 公示系统入口 `https://yewu.ghzrzyw.beijing.gov.cn/gwxxfb/cxghghlgs/ghlgs.html`；采信通告 `https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html` |
-| 天地图·北京 标准地图（含海淀区，审图号京S(2025)004号） | ✅ | `https://beijing.tianditu.gov.cn/bzdt/`（免费下载 EPS/TIF/PDF，配准基准） |
+| 天地图·北京 标准地图（含海淀区，地图本体审图号京S(2025)041号；页面页脚004号为网站版权号） | ✅ 已下载（2026-08-14） | `https://beijing.tianditu.gov.cn/bzdt/`（standardmap.do 匿名直链，zip 内 JPG+PDF；海淀1:12万/中心城区1:9万/北京1:50万入 `data/sources/tianditu-bzdt/`，配准基准） |
 | webmap.cn 官方矢量（1:100万/1:25万，CGCS2000） | ✅ | `https://www.webmap.cn/commres.do?method=result100W`（境界/水系/路网/居民地，免费，宏观背景层，精度100-500m） |
 | 天地图 WFS 数据 API | ✅ 实测可用 | `http://gisserver.tianditu.gov.cn/TDTService/wfs`（HYDA水系/LRDL道路/BOUA境界等，无需key） |
 | 北京城市总体规划 2016-2035 附图 | ✅ | `https://www.beijing.gov.cn/gongkai/guihua/wngh/csztgh/201907/t20190701_100008.html`（24张JPG附图：两线三区/中心城区结构等） |
