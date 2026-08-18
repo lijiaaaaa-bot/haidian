@@ -102,6 +102,16 @@ class ConstraintExtractor:
                         "geometry_source": scope.get("provisional_geometry_path", ""),
                         "scope_label": scope["label_zh"],
                         "geometry_status": scope.get("geometry_status", ""),
+                        # metrics.json key the engine cross-checks against the
+                        # projected geometry (commit 8cf6409/0ef3638 pointed the
+                        # hand-edited registry at real geometry via this key).
+                        # Convention: the metric key is `{id}_sqm` when the id
+                        # already ends in `_area`, else `{id}_area_sqm`.
+                        "metric_key": (
+                            f"{scope_id}_sqm"
+                            if scope_id.endswith("_area")
+                            else f"{scope_id}_area_sqm"
+                        ),
                     },
                     "severity": "high",
                     "enabled": True,
@@ -127,6 +137,11 @@ class ConstraintExtractor:
                         "geometry_source": ka.get("provisional_geometry_path", ""),
                         "scope_label": ka["label_zh"],
                         "geometry_status": ka.get("geometry_status", ""),
+                        "metric_key": (
+                            f"{ka['area_id']}_sqm"
+                            if ka["area_id"].endswith("_area")
+                            else f"{ka['area_id']}_area_sqm"
+                        ),
                     },
                     "severity": "high",
                     "enabled": True,
@@ -604,10 +619,18 @@ class ConstraintExtractor:
     def generate_registry(self, output_path: Path | None = None) -> dict:
         """Generate the full constraint registry JSON and optionally write to file."""
         constraints = self.extract_all()
+        # C-SM state-machine entries are code-defined (not derived from data
+        # files), so they live in state_machine_checks, not extract_all. Merge
+        # them here to keep regeneration idempotent against the committed
+        # registry (1af177d had hand-appended them to registry.json, which a
+        # naive regen would drop).
+        from constraints.state_machine_checks import STATE_MACHINE_REGISTRY_ENTRIES
+
+        constraints.extend(STATE_MACHINE_REGISTRY_ENTRIES)
         registry = {
             "schema_version": "1.0",
             "generated_from": "repo physical data files",
-            "generation_note": "此文件由 constraints/extractors.py 从 repo 数据文件自动生成。手动添加的约束应在 manual_overrides 中。",
+            "generation_note": "此文件由 constraints/extractors.py 从 repo 数据文件自动生成；C-SM* 条目来自 constraints/state_machine_checks.py 的代码定义。手动添加的约束应在 manual_overrides 中。",
             "total_constraints": len(constraints),
             "constraints": constraints,
             "manual_overrides": [],

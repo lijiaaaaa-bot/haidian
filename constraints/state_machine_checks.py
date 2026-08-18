@@ -455,6 +455,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "critical",
         "description": "用地分类状态机校验: 每个 land_use feature 的地类代码符合国土空间规划分类标准",
         "check_function": "check_land_use_classification",
+        "check_type": "CODE",
         "enabled": True,
         "params": {},
     },
@@ -465,6 +466,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "high",
         "description": "三区三线概念校验: proposal 必须提及生态保护红线/永久基本农田/城镇开发边界",
         "check_function": "check_three_lines_awareness",
+        "check_type": "CODE",
         "enabled": True,
         "params": {},
     },
@@ -475,6 +477,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "high",
         "description": "几何有效性校验: 每个 land_use feature 的几何必须有效（面积>0、不自交、环闭合）",
         "check_function": "check_land_use_geometry_valid",
+        "check_type": "CODE",
         "enabled": True,
         "params": {},
     },
@@ -485,6 +488,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "high",
         "description": "建筑高度校验: building 图层每个 feature 必须带高度字段，且高度在 1-500m 合理范围",
         "check_function": "check_building_height",
+        "check_type": "CODE",
         "enabled": True,
         "params": {
             "min_height_m": 1,
@@ -499,6 +503,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "high",
         "description": "路网完整性校验: roads 图层至少 3 条道路（拒绝单线脚手架）",
         "check_function": "check_road_network",
+        "check_type": "CODE",
         "enabled": True,
         "params": {
             "min_roads": 3,
@@ -511,6 +516,7 @@ STATE_MACHINE_REGISTRY_ENTRIES = [
         "severity": "high",
         "description": "绿地率校验: 用实际几何计算绿地率，须在 0.05-0.80 合理范围（不读声明值）",
         "check_function": "check_green_ratio",
+        "check_type": "CODE",
         "enabled": True,
         "params": {
             "min_ratio": 0.05,
