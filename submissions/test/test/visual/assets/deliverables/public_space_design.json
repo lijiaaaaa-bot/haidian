@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-06-07",
+  "design_principles": [
+    "以人为本",
+    "科技融合",
+    "文化传承",
+    "开放共享"
+  ],
+  "space_types": [
+    {
+      "type": "京张遗址公园",
+      "description_zh": "融合历史文脉与未来科技的公共空间",
+      "features": [
+        "历史展示区",
+        "互动体验区",
+        "智慧广场"
+      ]
+    },
+    {
+      "type": "AI原点社区广场",
+      "description_zh": "AI创新生态的核心公共空间",
+      "features": [
+        "创新展示区",
+        "交流互动区",
+        "休闲娱乐区"
+      ]
+    },
+    {
+      "type": "众智园科技公园",
+      "description_zh": "产学研融合的科技型公共空间",
+      "features": [
+        "研发展示区",
+        "实验体验区",
+        "交流洽谈区"
+      ]
+    }
+  ],
+  "design_elements": [
+    {
+      "element": "智能交互装置",
+      "description_zh": "通过AI技术实现人机互动"
+    },
+    {
+      "element": "数据可视化展示",
+      "description_zh": "将城市运行数据以可视化方式呈现"
+    },
+    {
+      "element": "历史元素融合",
+      "description_zh": "在现代设计中体现京张铁路文化"
+    }
+  ]
+}

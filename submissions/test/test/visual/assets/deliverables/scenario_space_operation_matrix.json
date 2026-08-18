@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-06-07",
+  "matrix_entries": [
+    {
+      "scenario_id": "smart_traffic_management",
+      "space_type": "城市道路",
+      "operation_mechanism": "智能信号灯控制系统、交通流量预测模型",
+      "required_infrastructure": [
+        "传感器网络",
+        "数据处理中心"
+      ]
+    },
+    {
+      "scenario_id": "smart_community_service",
+      "space_type": "社区公共空间",
+      "operation_mechanism": "智能服务平台、社区服务机器人",
+      "required_infrastructure": [
+        "物联网设备",
+        "移动应用平台"
+      ]
+    },
+    {
+      "scenario_id": "ai_medical_diagnosis",
+      "space_type": "医疗机构",
+      "operation_mechanism": "AI辅助诊断系统、医疗影像分析",
+      "required_infrastructure": [
+        "医疗设备",
+        "数据存储系统"
+      ]
+    },
+    {
+      "scenario_id": "smart_education_platform",
+      "space_type": "学校、在线平台",
+      "operation_mechanism": "个性化学习推荐、智能教学助手",
+      "required_infrastructure": [
+        "学习管理系统",
+        "AI算法平台"
+      ]
+    },
+    {
+      "scenario_id": "digital_cultural_experience",
+      "space_type": "博物馆、文化场馆",
+      "operation_mechanism": "虚拟现实展示、互动体验系统",
+      "required_infrastructure": [
+        "VR设备",
+        "内容制作平台"
+      ]
+    }
+  ]
+}

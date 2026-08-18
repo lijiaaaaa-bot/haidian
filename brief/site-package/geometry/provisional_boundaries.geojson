@@ -141,7 +141,9 @@
         "source_title": "依据三处重点片区临时 polygon 汇总形成的重点区域范围",
         "area_sqm_declared": 3684000,
         "area_sqm_calculated": 3692893.005,
-        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official detailed-design boundary、审批依据或精确面积复算依据。三处重点片区仍以 PROV-KEY-001/002/003 分别表达。"
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official detailed-design boundary、审批依据或精确面积复算依据。三处重点片区仍以 PROV-KEY-001/002/003 分别表达。",
+        "anchor_corrected": true,
+        "anchor_correction_note": "汇总 multipolygon 子多边形随 PROV-KEY-002/003 同步平移（2026-08-14 锚点修正）"
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -173,23 +175,23 @@
           [
             [
               [
+                116.331,
+                39.9835
+              ],
+              [
                 116.342,
                 39.9835
-              ],
-              [
-                116.353,
-                39.9835
-              ],
-              [
-                116.353,
-                39.9935
               ],
               [
                 116.342,
                 39.9935
               ],
               [
-                116.342,
+                116.331,
+                39.9935
+              ],
+              [
+                116.331,
                 39.9835
               ]
             ]
@@ -197,24 +199,24 @@
           [
             [
               [
-                116.342,
-                39.944
+                116.3319,
+                39.9649
               ],
               [
-                116.355,
-                39.944
+                116.34490000000001,
+                39.9649
               ],
               [
-                116.355,
-                39.94984
+                116.34490000000001,
+                39.97074
               ],
               [
-                116.342,
-                39.94984
+                116.3319,
+                39.97074
               ],
               [
-                116.342,
-                39.944
+                116.3319,
+                39.9649
               ]
             ]
           ]
@@ -284,33 +286,44 @@
         "official_boundary": false,
         "boundary_precision": "provisional_rough",
         "announced_area_sqm": 1043000,
-        "area_sqm_calculated": 1043236.909,
         "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
         "source_title": "依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围",
-        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。",
+        "area_sqm_calculated": 1042052.799,
+        "anchor_corrected": true,
+        "anchor_correction": {
+          "date": "2026-08-14",
+          "basis": "五道口（railway/station，116.33170, 39.99148）",
+          "reported_offset": "多边形偏东约 1km；五道口站距旧多边形 895m",
+          "shift_deg": "lon -0.0110",
+          "residual_notes": "西移后多边形西界约 116.331，五道口站约 60m 入界；多边形东界 116.342 仍在学院路（≈116.347）以西；多边形超出 SITE（总体设计范围）西界约 0.009°（SITE 西界本身为文字四至粗略边界，待 official 矢量替换）",
+          "method": "rigid translation preserving shape and area",
+          "source": "data/processed/anchors_geocoded.geojson（© OpenStreetMap contributors, ODbL 1.0）",
+          "still_provisional": true
+        }
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              116.342,
+              116.33100000000002,
               39.9835
             ],
             [
-              116.353,
+              116.34200000000001,
               39.9835
             ],
             [
-              116.353,
+              116.34200000000001,
               39.9935
             ],
             [
-              116.342,
+              116.33100000000002,
               39.9935
             ],
             [
-              116.342,
+              116.33100000000002,
               39.9835
             ]
           ]
@@ -332,34 +345,45 @@
         "official_boundary": false,
         "boundary_precision": "provisional_rough",
         "announced_area_sqm": 720000,
-        "area_sqm_calculated": 720454.221,
         "source_id": "PROVISIONAL-BOUNDARY-TEXT-AND-BBOX",
         "source_title": "依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围",
-        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"
+        "usage_note": "仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。",
+        "area_sqm_calculated": 719423.579,
+        "anchor_corrected": true,
+        "anchor_correction": {
+          "date": "2026-08-14",
+          "basis": "大钟寺/古钟博物馆（amenity/place_of_worship，116.33199, 39.96783）",
+          "reported_offset": "多边形南移约 1.8km（旧多边形 lat 39.944–39.94984，大钟寺本体 ≈39.968）",
+          "shift_deg": "lat +0.0209, lon -0.0101",
+          "residual_notes": "平移后大钟寺本体落于多边形纬度居中、经度近西界内；明光村（39.9566, 116.3460）仍在多边形以南（纬度界外）；多边形西移后西界约 116.3319，与 SITE（总体设计范围）西界（约 116.340）重叠区外溢约 0.008°——SITE 西界本身为文字四至粗略边界，待 official 矢量替换",
+          "method": "rigid translation preserving shape and area",
+          "source": "data/processed/anchors_geocoded.geojson（© OpenStreetMap contributors, ODbL 1.0）",
+          "still_provisional": true
+        }
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              116.342,
-              39.944
+              116.3319,
+              39.96489999999999
             ],
             [
-              116.355,
-              39.944
+              116.34490000000001,
+              39.96489999999999
             ],
             [
-              116.355,
-              39.94984
+              116.34490000000001,
+              39.97073999999999
             ],
             [
-              116.342,
-              39.94984
+              116.3319,
+              39.97073999999999
             ],
             [
-              116.342,
-              39.944
+              116.3319,
+              39.96489999999999
             ]
           ]
         ]

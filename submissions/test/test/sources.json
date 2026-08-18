@@ -29,7 +29,7 @@
       "id": "KEY-AREA-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
       "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional). Used in geometry/key_area.geojson."
+      "usage": "Three required detailed-design key area boundaries (provisional). Used in geometry/key_areas.geojson."
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
@@ -42,6 +42,18 @@
       "path": "brief/site-package/agent_taskbook.json",
       "source_type": "user_provided_cleared",
       "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+    },
+    {
+      "id": "TIANDITU-WFS",
+      "path": "data/processed/tianditu_wfs_beijing.geojson",
+      "source_type": "official_open_data",
+      "usage": "底图/背景参考：天地图 1:100万公众版基础地理数据（NGCC），用于地图底图、路网/水系/铁路背景；位置中误差约100-500m，不作精确几何依据。"
+    },
+    {
+      "id": "HAIDIAN-DISTRICT-PLAN",
+      "path": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/fqgh/202002/t20200213_1630027.html",
+      "source_type": "official_open_data",
+      "usage": "官方规划背景参考：海淀分区规划 2017-2035 及 2023 三区三线修改成果（城镇开发边界/生态控制线/集中建设区图件），作边界背景参考，非征集项目红线。"
     }
   ]
 }

@@ -1,0 +1,228 @@
+{
+  "type": "FeatureCollection",
+  "name": "jingzhang_corridor_anchors_geocoded",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "metadata": {
+    "title": "京张走廊 AI 创新带锚点地理编码结果（Nominatim/Overpass 实测）",
+    "generated_at": "2026-08-14",
+    "method": "Nominatim search API（https://nominatim.openstreetmap.org/search，countrycodes=cn，limit=1）逐点查询，限速 1 req/s；两处歧义锚点（清华园车站、学院路北端）用细化查询词/Overpass 补测",
+    "license_attribution": "地理编码结果数据 © OpenStreetMap contributors，ODbL 1.0（https://osm.org/copyright）。Nominatim 使用条款：限速 ≤1 req/s、需带有效 User-Agent 注明用途、成果需署名 © OpenStreetMap contributors。本项目用于城市设计方案锚点核验，非商业用途",
+    "purpose": "核验 provisional 边界锚点坐标与文字四至的一致性（统筹研究范围：北至北五环/东至京藏高速/南至西直门外大街/西至万泉河路；总体设计范围：北至北五环/东至学院路西土城路/南至西直门外大街/西至大钟寺东路荷清路）",
+    "authority": "background_reference（公开底图级参考，不构成 official 红线）",
+    "note_degree_precision": "OSM 城市地名坐标精度一般 5-20m，不得用于红线/审批级精度用途"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ANCH-001",
+      "properties": {
+        "name": "五道口",
+        "query": "五道口",
+        "matched_name": "五道口",
+        "lat": 39.9914779,
+        "lon": 116.3317017,
+        "display_name": "五道口, 成府路, 五道口, 中关村街道, 海淀区, 北京市, 100190, 中国",
+        "type": "railway/station",
+        "osm_ref": "node 5442237543",
+        "source": "nominatim",
+        "note": "京张铁路遗址公园沿线五道口站（保留站房），命中精确"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3317017,
+          39.9914779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-002",
+      "properties": {
+        "name": "大钟寺",
+        "query": "大钟寺",
+        "matched_name": "大钟寺",
+        "lat": 39.9678257,
+        "lon": 116.3319879,
+        "display_name": "大钟寺, 大钟寺东路, 中关村街道, 海淀区, 北京市, 100098, 中国",
+        "type": "amenity/place_of_worship",
+        "osm_ref": "way 42411602",
+        "source": "nominatim",
+        "note": "大钟寺（古钟博物馆）本体，对应大钟寺 AI 产业聚集区（PROV-KEY-003 位于其西侧/北侧）"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3319879,
+          39.9678257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-003",
+      "properties": {
+        "name": "清华园车站",
+        "query": "清华园车站",
+        "matched_name": "清华园车站站房",
+        "lat": 39.9902365,
+        "lon": 116.3256019,
+        "display_name": "清华园车站站房, 三才堂路, 三才堂, 中关村街道, 海淀区, 北京市, 100190, 中国",
+        "type": "tourism/museum",
+        "osm_ref": "（名称查询'清华园车站旧址'命中）",
+        "source": "nominatim",
+        "note": "首查'清华园车站'被外省'清华苑'住宅区误匹配；改查'清华园车站旧址'命中清华园车站站房旧址博物馆。GAP-HERITAGE-001 相关锚点"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3256019,
+          39.9902365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-004",
+      "properties": {
+        "name": "五塔寺",
+        "query": "五塔寺",
+        "matched_name": "真觉寺（五塔寺）",
+        "lat": 39.9436383,
+        "lon": 116.3237501,
+        "display_name": "真觉寺, 五塔寺路, 北下关街道, 海淀区, 北京市, 100835, 中国",
+        "type": "amenity/place_of_worship",
+        "osm_ref": "way 352165031",
+        "source": "nominatim",
+        "note": "五塔寺=真觉寺（官方名称），位于五塔寺路北侧、长河以南；邻近西直门外大街"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3237501,
+          39.9436383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-005",
+      "properties": {
+        "name": "明光村",
+        "query": "明光村",
+        "matched_name": "明光村",
+        "lat": 39.9566321,
+        "lon": 116.3459685,
+        "display_name": "明光村, 学院南路, 北太平庄街道, 海淀区, 北京市, 100082, 中国",
+        "type": "highway/bus_stop",
+        "osm_ref": "node 9699362435",
+        "source": "nominatim",
+        "note": "明光村公交站（学院南路），村域代表锚点；明光村地区位于总体设计范围南段东侧"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3459685,
+          39.9566321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-006",
+      "properties": {
+        "name": "知春路",
+        "query": "知春路",
+        "matched_name": "知春路",
+        "lat": 39.9751375,
+        "lon": 116.3217358,
+        "display_name": "知春路, 知春东里社区, 中关村街道, 海淀区, 北京市, 100086, 中国",
+        "type": "highway/tertiary",
+        "osm_ref": "way 1218791620（路段代表点）",
+        "source": "nominatim",
+        "note": "返回道路段代表点（西段，近知春路地铁站），非全路中心；京张公园一期北端接知春路"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3217358,
+          39.9751375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-007",
+      "properties": {
+        "name": "清河站",
+        "query": "清河站",
+        "matched_name": "清河",
+        "lat": 40.0400025,
+        "lon": 116.3090931,
+        "display_name": "清河, 京新高速, 清河街道, 海淀区, 北京市, 100085, 中国",
+        "type": "railway/station",
+        "osm_ref": "node 7116372190",
+        "source": "nominatim",
+        "note": "京张高铁清河站（OSM 名'清河'），位于统筹研究范围东北方向、北五环以北；走廊北端参考锚点"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3090931,
+          40.0400025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-008",
+      "properties": {
+        "name": "西直门外大街",
+        "query": "西直门外大街",
+        "matched_name": "西直门外大街",
+        "lat": 39.9374451,
+        "lon": 116.3379012,
+        "display_name": "西直门外大街, 展览路街道, 首都功能核心区, 西城区, 北京市, 100032, 中国",
+        "type": "highway/tertiary",
+        "osm_ref": "way 211706213（路段代表点）",
+        "source": "nominatim",
+        "note": "统筹研究范围南至=西直门外大街；返回路段代表点位于展览路街道段（西城界内），边界一致性参照"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3379012,
+          39.9374451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ANCH-009",
+      "properties": {
+        "name": "学院路北端",
+        "query": "学院路北端",
+        "matched_name": "学院路（OSM 命名道路北端）/ 学清路北端",
+        "lat": 39.9997012,
+        "lon": 116.3468248,
+        "display_name": "学院路北端=学院桥（学院路与北四环交叉，OSM 命'学院路'道路的最北节点 lat=39.999701 lon=116.346825）；北四环以北延续为学清路，其最北节点（近北五环上清桥）lat=40.022415 lon=116.344781",
+        "type": "highway/road",
+        "osm_ref": "overpass way 146451492 / 26679350",
+        "source": "overpass",
+        "note": "Nominatim 直接查'学院路北端'误匹配广东肇庆公交站；改用 Overpass 取'学院路'命名道路最北节点=学院桥，及延续路'学清路'最北节点=近上清桥。总体设计范围东至学院路/西土城路、北至北五环，此两点作东-北衔接校验参照"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3468248,
+          39.9997012
+        ]
+      }
+    }
+  ]
+}

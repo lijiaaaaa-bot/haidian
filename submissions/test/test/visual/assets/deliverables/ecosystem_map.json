@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_date": "2026-06-07",
+  "ecosystem_nodes": [
+    {
+      "id": "research_institution",
+      "name_zh": "研究机构",
+      "description_zh": "基础研究和前沿技术探索",
+      "related_areas": [
+        "beijing_ai_origin_community",
+        "zhongzhiyuan_ai_acceleration_area"
+      ]
+    },
+    {
+      "id": "innovation_hub",
+      "name_zh": "创新中心",
+      "description_zh": "技术转化和产业孵化平台",
+      "related_areas": [
+        "zhongzhiyuan_ai_acceleration_area"
+      ]
+    },
+    {
+      "id": "industry_cluster",
+      "name_zh": "产业集群",
+      "description_zh": "AI产业生态链和应用场景",
+      "related_areas": [
+        "dazhongsi_ai_industry_cluster"
+      ]
+    },
+    {
+      "id": "talent_pool",
+      "name_zh": "人才库",
+      "description_zh": "全球AI人才聚集和培养",
+      "related_areas": [
+        "beijing_ai_origin_community",
+        "zhongzhiyuan_ai_acceleration_area",
+        "dazhongsi_ai_industry_cluster"
+      ]
+    },
+    {
+      "id": "funding_mechanism",
+      "name_zh": "资金机制",
+      "description_zh": "风险投资、政府支持和产业基金",
+      "related_areas": [
+        "beijing_ai_origin_community",
+        "zhongzhiyuan_ai_acceleration_area",
+        "dazhongsi_ai_industry_cluster"
+      ]
+    },
+    {
+      "id": "data_platform",
+      "name_zh": "数据平台",
+      "description_zh": "数据共享和开放平台",
+      "related_areas": [
+        "beijing_ai_origin_community",
+        "zhongzhiyuan_ai_acceleration_area",
+        "dazhongsi_ai_industry_cluster"
+      ]
+    },
+    {
+      "id": "scenario_enabler",
+      "name_zh": "场景赋能",
+      "description_zh": "AI应用场景的开发和验证",
+      "related_areas": [
+        "beijing_ai_origin_community",
+        "zhongzhiyuan_ai_acceleration_area",
+        "dazhongsi_ai_industry_cluster"
+      ]
+    }
+  ],
+  "ecosystem_links": [
+    {
+      "from": "research_institution",
+      "to": "innovation_hub",
+      "relationship_zh": "研究成果转化为创新平台"
+    },
+    {
+      "from": "innovation_hub",
+      "to": "industry_cluster",
+      "relationship_zh": "创新成果落地为产业集群"
+    },
+    {
+      "from": "talent_pool",
+      "to": "research_institution",
+      "relationship_zh": "人才支撑研究机构"
+    },
+    {
+      "from": "talent_pool",
+      "to": "innovation_hub",
+      "relationship_zh": "人才支撑创新中心"
+    },
+    {
+      "from": "talent_pool",
+      "to": "industry_cluster",
+      "relationship_zh": "人才支撑产业集群"
+    },
+    {
+      "from": "funding_mechanism",
+      "to": "research_institution",
+      "relationship_zh": "资金支持基础研究"
+    },
+    {
+      "from": "funding_mechanism",
+      "to": "innovation_hub",
+      "relationship_zh": "资金支持技术转化"
+    },
+    {
+      "from": "funding_mechanism",
+      "to": "industry_cluster",
+      "relationship_zh": "资金支持产业发展"
+    },
+    {
+      "from": "data_platform",
+      "to": "research_institution",
+      "relationship_zh": "数据支撑研究工作"
+    },
+    {
+      "from": "data_platform",
+      "to": "innovation_hub",
+      "relationship_zh": "数据支持技术转化"
+    },
+    {
+      "from": "data_platform",
+      "to": "industry_cluster",
+      "relationship_zh": "数据赋能产业发展"
+    },
+    {
+      "from": "scenario_enabler",
+      "to": "research_institution",
+      "relationship_zh": "场景需求驱动研究方向"
+    },
+    {
+      "from": "scenario_enabler",
+      "to": "innovation_hub",
+      "relationship_zh": "场景验证支持转化"
+    },
+    {
+      "from": "scenario_enabler",
+      "to": "industry_cluster",
+      "relationship_zh": "场景应用促进产业发展"
+    }
+  ]
+}

@@ -2,6 +2,6 @@
   "agent_id": "goal-driven-agent",
   "agent_name": "Dual-Model",
   "role": "ai_agent_submission_author",
-  "model": "agent-declared-model",
-  "generated_with": "scripts/scaffold_ai_submission.py"
+  "model": "qwen3.6:35b-a3b (writer) + qwen3-coder:30b (coder), dual-model",
+  "generated_with": "scripts/scaffold_ai_submission.py + scripts/goal_driven_loop.py (goal-driven-agent)"
 }

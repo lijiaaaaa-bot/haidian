@@ -19,14 +19,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -53,7 +52,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "three_level_scope_framework",
@@ -73,14 +73,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -107,7 +106,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "overall_spatial_structure",
@@ -127,14 +127,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -161,7 +160,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "land_use_layout",
@@ -181,14 +181,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -215,7 +214,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "development_intensity_controls",
@@ -235,14 +235,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -269,7 +268,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "height_massing_character",
@@ -289,14 +289,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -323,7 +322,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "retain_renovate_demolish",
@@ -343,14 +343,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -377,7 +376,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "traffic_rail_slow_parking",
@@ -397,14 +397,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -431,7 +430,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "municipal_new_infrastructure",
@@ -451,14 +451,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -485,7 +484,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "blue_green_public_space",
@@ -505,14 +505,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -539,7 +538,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "three_key_area_detailed_design",
@@ -559,14 +559,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -593,7 +592,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "renewal_project_list",
@@ -613,14 +613,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -647,7 +646,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "phasing_implementation",
@@ -667,14 +667,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -701,7 +700,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "metrics_recalculation",
@@ -721,14 +721,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -755,7 +754,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     },
     {
       "item_id": "risk_missing_data",
@@ -775,14 +775,13 @@
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson",
-        "geometry/key_area.geojson",
+        "geometry/key_areas.geojson",
         "geometry/land_use.geojson",
-        "geometry/building_footprint.geojson",
-        "geometry/road_centerline.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
         "geometry/green_space.geojson",
         "geometry/public_space.geojson",
-        "geometry/phase.geojson",
-        "geometry/constraints.geojson"
+        "geometry/phasing.geojson"
       ],
       "metric_refs": [
         "site_area_sqm",
@@ -809,7 +808,8 @@
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
       ],
-      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。"
+      "evidence_summary_zh": "本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。",
+      "status_note": "结构与引用完整（harness formal 门槛要求 status=complete）；几何为 provisional 占位，专业深度待几何真实化后补全——该注记与 self_check/manifest 的 provisional 声明一致"
     }
   ]
 }

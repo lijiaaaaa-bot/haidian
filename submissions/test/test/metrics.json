@@ -20,7 +20,7 @@
       "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
       "confidence": "medium",
       "assumptions": [
-        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001"
+        "Provisional site boundary; official redline pending"
       ]
     },
     "overall_design_area_sqm": {
@@ -46,7 +46,7 @@
       "formula": "polygon_area(PROV-RESEARCH-001, EPSG:4548)",
       "confidence": "medium",
       "assumptions": [
-        "Provisional boundary; declared official value: 43,600,000 sqm"
+        "统筹研究范围多边形（PROV-RESEARCH-001）来自组织方 brief/site-package/geometry/provisional_boundaries.geojson，未复制入包，无法从包内 geometry 直接复算；其余全部 known 指标均可由包内 geometry 复算"
       ]
     },
     "key_detailed_design_area_sqm": {
@@ -103,36 +103,46 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 271500.0,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "16 个建筑体块 EPSG:4548 复算；高度/体量 provisional，待控规确认"
+      ]
     },
     "green_space_area_sqm": {
       "status": "known",
-      "value": 1408600.77,
+      "value": 1193687.058,
       "unit": "sqm",
-      "source_files": ["geometry/green_space.geojson"],
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
       "formula": "sum(polygon_area(green_space_features, EPSG:4548))",
       "confidence": "medium",
-      "assumptions": ["Computed from green_space.geojson in EPSG:4548 projection"]
+      "assumptions": [
+        "5 个绿地要素 EPSG:4548 复算"
+      ]
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 836345.64,
+      "value": 1711888.588,
       "unit": "sqm",
-      "source_files": ["geometry/public_space.geojson"],
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
       "formula": "sum(polygon_area(public_space_features, EPSG:4548))",
       "confidence": "medium",
-      "assumptions": ["Computed from public_space.geojson in EPSG:4548 projection"]
+      "assumptions": [
+        "5 个公共空间要素 EPSG:4548 复算"
+      ]
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.123423,
+      "value": 0.104592,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -140,7 +150,9 @@
       ],
       "formula": "green_space_area_sqm / site_area_sqm = 1408600.77 / 11412825.39 = 0.123423",
       "confidence": "medium",
-      "assumptions": [],
+      "assumptions": [
+        "green_space_area_sqm / site_area_sqm"
+      ],
       "computed_from": {
         "numerator": "green_space_area_sqm",
         "denominator": "site_area_sqm"
@@ -148,7 +160,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.073281,
+      "value": 0.149997,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -156,7 +168,9 @@
       ],
       "formula": "public_space_area_sqm / site_area_sqm = 836345.64 / 11412825.39 = 0.073281",
       "confidence": "medium",
-      "assumptions": [],
+      "assumptions": [
+        "public_space_area_sqm / site_area_sqm"
+      ],
       "computed_from": {
         "numerator": "public_space_area_sqm",
         "denominator": "site_area_sqm"
@@ -166,9 +180,7 @@
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
+      "source_files": [],
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
@@ -184,6 +196,83 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "reason": "AI 创新指数需官方产业统计与专利/企业数据支撑，暂未建立",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "正式深化时建立"
+      ]
+    },
+    "ai_talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons_per_sqm",
+      "reason": "人才密度需人口与就业统计数据，暂未提供",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "正式深化时建立"
+      ]
+    },
+    "slow_travel_accessibility": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "reason": "慢行可达性需真实路网与 OD 数据，当前路网为示意",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "待官方道路红线后计算"
+      ]
+    },
+    "scenario_usage_frequency": {
+      "status": "unknown",
+      "value": null,
+      "unit": "events_per_year",
+      "reason": "场景使用频次需运营数据，属实施后统计指标",
+      "source_files": [],
+      "confidence": "unknown",
+      "assumptions": [
+        "实施后统计"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 2921251.337,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "assumptions": [
+        "PHASE-001 EPSG:4548 复算（provisional）"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "assumptions": [
+        "PHASE-002 EPSG:4548 复算（provisional）"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 6108435.33,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "assumptions": [
+        "PHASE-003 EPSG:4548 复算（provisional）"
+      ]
     }
   },
   "ratio": null,
