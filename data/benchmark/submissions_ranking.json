@@ -1,0 +1,384 @@
+{
+  "generated_at": "remote-fetch",
+  "source": "open-city-ai/haidian@main",
+  "stats": {
+    "total_packages": 923,
+    "all_pass": 890,
+    "ready_for_review": 923,
+    "metrics_land_use_populated": 27,
+    "figure_count_modes": [
+      [
+        10,
+        457
+      ],
+      [
+        5,
+        241
+      ],
+      [
+        15,
+        26
+      ],
+      [
+        12,
+        25
+      ],
+      [
+        14,
+        22
+      ]
+    ]
+  },
+  "top30": [
+    {
+      "login": "SAGIRIxr",
+      "slug": "jingzhang-switchback-ai-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 123,
+      "buildings": 76,
+      "roads": null,
+      "figure_kb": 2252.3
+    },
+    {
+      "login": "shenglihalisen",
+      "slug": "centennial-jingzhang-ai-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 121,
+      "buildings": null,
+      "roads": 54,
+      "figure_kb": 973.9
+    },
+    {
+      "login": "KevinJH82",
+      "slug": "origin-city-of-agents",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": false,
+      "figures": 5,
+      "land_use": 89,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 3512.6
+    },
+    {
+      "login": "Clay-HHK",
+      "slug": "agent-habitat-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 30,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 1635.8
+    },
+    {
+      "login": "LiuXiu233",
+      "slug": "switchback-belt-jingzhang",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": false,
+      "figures": 10,
+      "land_use": 48,
+      "buildings": 38,
+      "roads": 14,
+      "figure_kb": 1635.2
+    },
+    {
+      "login": "shgdym",
+      "slug": "jingzhang-proof-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 52,
+      "land_use": 14,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 3912.5
+    },
+    {
+      "login": "wms2537",
+      "slug": "jingzhang-city-model-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 9,
+      "land_use": 15,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 1527.9
+    },
+    {
+      "login": "csy777qaz",
+      "slug": "jingzhang-citys-due",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 12,
+      "land_use": 15,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 1411.0
+    },
+    {
+      "login": "Weichenleeeee123",
+      "slug": "zhongguancun-railway-ai-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 22,
+      "buildings": null,
+      "roads": 12,
+      "figure_kb": 1140.8
+    },
+    {
+      "login": "LelandJin",
+      "slug": "centennial-ai-commons-loop",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 36,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 549.0
+    },
+    {
+      "login": "Regulus44",
+      "slug": "jingzhang-synapse-loop",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 21,
+      "buildings": 14,
+      "roads": 8,
+      "figure_kb": 545.1
+    },
+    {
+      "login": "Komeiji-Shiki",
+      "slug": "visible-city-civic-ai-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 15,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 783.5
+    },
+    {
+      "login": "miyuuteshima984",
+      "slug": "jingzhang-ai-civic-infrastructure",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 13,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 621.9
+    },
+    {
+      "login": "Johnxmj",
+      "slug": "jingzhang-ai-commons-spine",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 15,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 509.1
+    },
+    {
+      "login": "DuanYuFi",
+      "slug": "jingzhang-room-for-error",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 18,
+      "buildings": null,
+      "roads": null,
+      "figure_kb": 393.1
+    },
+    {
+      "login": "Yachiyo1680",
+      "slug": "yachiyo-moon-rail",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 8,
+      "buildings": 8,
+      "roads": 6
+    },
+    {
+      "login": "RichardGuan1",
+      "slug": "jingzhang-ren-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 9,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "FoxBai",
+      "slug": "jingzhang-public-baseline",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": 7,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "houxysection",
+      "slug": "jingzhang-attention-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 7,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "mmmmxxkk",
+      "slug": "jingzhang-time-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 6,
+      "land_use": 6,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "ilylty",
+      "slug": "railverse-ai-greenbelt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 5,
+      "buildings": null,
+      "roads": 4
+    },
+    {
+      "login": "vanddccd",
+      "slug": "verifiable-city-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": false,
+      "figures": 5,
+      "land_use": 38,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "FA555",
+      "slug": "jingzhang-chrono-commons",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": 4,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "Last-emo-boy",
+      "slug": "jingzhang-open-challenges",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": null,
+      "buildings": null,
+      "roads": 13
+    },
+    {
+      "login": "wenkang-xie",
+      "slug": "city-as-interface",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": false,
+      "figures": 10,
+      "land_use": 35,
+      "buildings": null,
+      "roads": null
+    },
+    {
+      "login": "Alumin-Hydro",
+      "slug": "roche-jingzhang-ai-belt",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": null,
+      "buildings": null,
+      "roads": 7
+    },
+    {
+      "login": "CHneger",
+      "slug": "jingzhang-commons-loop",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": null,
+      "buildings": null,
+      "roads": 6
+    },
+    {
+      "login": "liberty-z",
+      "slug": "jingzhang-ai-loop",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 5,
+      "land_use": null,
+      "buildings": null,
+      "roads": 6
+    },
+    {
+      "login": "xyh202131",
+      "slug": "jingzhang-commons-loop-v1",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 10,
+      "land_use": null,
+      "buildings": null,
+      "roads": 4
+    },
+    {
+      "login": "007xf",
+      "slug": "everyday-jingzhang",
+      "title": null,
+      "package_state": "ready_for_review",
+      "all_pass": true,
+      "figures": 14,
+      "land_use": null,
+      "buildings": null,
+      "roads": null
+    }
+  ],
+  "methodology": {
+    "figure_kb": "sum of 5 core PNG HTTP GET sizes",
+    "land_use": "metrics.json land_use_feature_count (often null)",
+    "accuracy": "see docs/subprojects/top1-breakdown.md"
+  }
+}
