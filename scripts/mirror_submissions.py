@@ -96,7 +96,7 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def download_one(rel_path: str, dest: Path, expected_size: int) -> dict:
+def download_one(rel_path: str, dest: Path, expected_size: int, retries: int = 5) -> dict:
     dest.parent.mkdir(parents=True, exist_ok=True)
     if dest.is_file():
         local_size = dest.stat().st_size
@@ -106,20 +106,30 @@ def download_one(rel_path: str, dest: Path, expected_size: int) -> dict:
             return {"path": rel_path, "status": "skipped", "bytes": local_size}
 
     url = f"{BASE}/{rel_path}"
-    try:
-        data = fetch(url, binary=True)
-    except urllib.error.HTTPError as e:
-        return {"path": rel_path, "status": "error", "error": f"HTTP {e.code}"}
-    except Exception as e:
-        return {"path": rel_path, "status": "error", "error": str(e)[:200]}
-
-    dest.write_bytes(data)
-    return {
-        "path": rel_path,
-        "status": "ok",
-        "bytes": len(data),
-        "sha256": hashlib.sha256(data).hexdigest(),
-    }
+    last_err = ""
+    for attempt in range(retries):
+        try:
+            data = fetch(url, binary=True)
+            dest.write_bytes(data)
+            return {
+                "path": rel_path,
+                "status": "ok",
+                "bytes": len(data),
+                "sha256": hashlib.sha256(data).hexdigest(),
+            }
+        except urllib.error.HTTPError as e:
+            last_err = f"HTTP {e.code}"
+            if e.code in (403, 429) and attempt + 1 < retries:
+                time.sleep(2 ** attempt)
+                continue
+            break
+        except Exception as e:
+            last_err = str(e)[:200]
+            if attempt + 1 < retries:
+                time.sleep(min(2 ** attempt, 8))
+                continue
+            break
+    return {"path": rel_path, "status": "error", "error": last_err}
 
 
 def copy_local_package(src: Path, mirror_root: Path, login: str, slug: str) -> None:
@@ -135,7 +145,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Mirror upstream submission packages locally")
     parser.add_argument("--mirror-root", type=Path, default=DEFAULT_MIRROR)
     parser.add_argument("--tier", choices=("analysis", "full"), default="full")
-    parser.add_argument("--workers", type=int, default=24)
+    parser.add_argument("--workers", type=int, default=16)
     parser.add_argument("--refresh-tree", action="store_true")
     parser.add_argument("--include-local", type=Path, default=None,
                         help="Copy a local submission into mirror/packages/<login>/<slug>")
