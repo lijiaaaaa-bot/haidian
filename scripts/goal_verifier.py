@@ -2,10 +2,15 @@
 """Deterministic goal-driven verifier for haidian.
 
 Usage:
-    python3.13 scripts/goal_verifier.py [--submission submissions/test/test]
+    python3 scripts/goal_verifier.py [--submission submissions/test/test]
+    python3 scripts/goal_verifier.py --full   # same as acceptance.py (default now)
 
 Prints the number of failing constraints (the loop's target number, goal=0).
 Also prints each FAIL id + detail so the driver can pick one to fix.
+
+For the unified acceptance criteria (CODE + content + self_check), prefer:
+    python3 scripts/acceptance.py --submission ...
+
 Must be deterministic — no LLM, no network. The agent under test must NOT
 edit this file, constraints/, scripts/, brief/, schema/, or templates/.
 """
@@ -16,27 +21,23 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from constraints.engine import CheckOutcome, ConstraintEngine  # noqa: E402
-import scripts.goal_driven_loop as g  # noqa: E402
+from scripts.acceptance import evaluate_acceptance, print_report  # noqa: E402
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--submission", default="submissions/test/test")
+    ap.add_argument(
+        "--code-only",
+        action="store_true",
+        help="Legacy: CODE constraints only (omit content floors and self_check)",
+    )
     args = ap.parse_args()
 
-    engine = ConstraintEngine(str(ROOT))
-    engine.load_registry()
     sub = (ROOT / args.submission).resolve()
-
-    results = engine.validate(sub.relative_to(ROOT))
-    failures = [r for r in results if r.outcome in (CheckOutcome.FAIL, CheckOutcome.ERROR)]
-    failures += g._missing_required_metrics(engine, sub)
-
-    print(f"FAILURES {len(failures)}")
-    for r in failures:
-        print(f"FAIL {r.constraint_id} | {getattr(r, 'detail', '') or ''}")
-    return 0
+    failures, vector = evaluate_acceptance(sub, code_only=args.code_only)
+    print_report(failures, vector)
+    return 0 if vector.total_failures == 0 else 1
 
 
 if __name__ == "__main__":

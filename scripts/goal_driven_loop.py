@@ -28,6 +28,7 @@ import textwrap
 import time
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -1914,12 +1915,18 @@ def _metric_claim_gaps(submission: Path) -> list:
     return gaps
 
 
+def acceptance_check(submission: Path) -> tuple[bool, list, Any]:
+    """Unified acceptance: CODE + content floors + self_check."""
+    from scripts.acceptance import evaluate_acceptance
+
+    failures, vector = evaluate_acceptance(submission)
+    return len(failures) == 0, failures, vector
+
+
 def criteria_met(engine: ConstraintEngine, submission: Path) -> tuple[bool, list]:
-    results = engine.validate(submission.relative_to(ROOT))
-    failures = [r for r in results if r.outcome in (CheckOutcome.FAIL, CheckOutcome.ERROR)]
-    failures += _missing_required_metrics(engine, submission)
-    failures += _metric_claim_gaps(submission)
-    return len(failures) == 0, failures
+    """Backward-compatible wrapper — returns (ok, failures) without vector."""
+    ok, failures, _ = acceptance_check(submission)
+    return ok, failures
 
 
 def _manifest_fresh(submission: Path) -> bool:
@@ -2050,14 +2057,12 @@ def _restore_snapshot(submission: Path) -> None:
 
 
 def _load_loop_state(submission_key: str = "default") -> dict:
-    """Load persisted ratchet state (best_failures) from .goal-driven/loop-state.json.
+    """Load persisted ratchet state from .goal-driven/loop-state.json."""
+    from scripts.acceptance import load_ratchet_vector
 
-    Survives crash/restart cycles so a supervisor relaunch of the loop
-    (run_autonomous.sh) starts from the same best-known failure count instead
-    of treating the regressed-on-disk state as the baseline.
-
-    Keyed by submission path so different submissions don't share ratchet state.
-    """
+    vec = load_ratchet_vector(submission_key)
+    if vec is not None:
+        return {"best_failures": vec.total_failures, "best_vector": vec}
     fp = STATE_DIR / "loop-state.json"
     try:
         if fp.exists():
@@ -2090,30 +2095,33 @@ def _save_loop_state(best_failures: int, submission_key: str = "default") -> Non
         pass  # in-memory ratchet still works; persistence is best-effort
 
 
-def _ratchet(engine: ConstraintEngine, submission: Path,
-             failures: list, best_failures: int) -> tuple[bool, list, int]:
-    """Enforce the ratchet: the submission never regresses below its
-    best-known failure count.
+def _ratchet(submission: Path,
+             failures: list, vector: Any,
+             best_vector: Any | None) -> tuple[bool, list, Any | None]:
+    """Enforce vector ratchet: failures must not rise; content must not collapse."""
+    from scripts.acceptance import save_ratchet_vector
 
-      fewer failures than best  → promote: save snapshot, new best
-      more failures than best   → roll back: restore snapshot, re-validate
-      equal                     → nothing
+    key = str(submission.relative_to(ROOT))
+    promote = best_vector is None or vector.dominates(best_vector)
 
-    Returns (ok, failures, best_failures).  failures (and thus ok) are
-    re-fetched after a restore because the submission was overwritten.
-    """
-    n = len(failures)
-    if n < best_failures:
-        _save_snapshot(submission)
-        best_failures = n
-        log(f"ratchet: {n} failures (new best) — snapshot saved")
-    elif n > best_failures:
-        log(f"ratchet: {n} failures > best {best_failures} — restoring best-known state")
+    if promote:
+        if best_vector is None or vector.total_failures < best_vector.total_failures:
+            _save_snapshot(submission)
+            log(f"ratchet: {vector.total_failures} failures (new best) — snapshot saved")
+        elif best_vector is not None and vector.total_failures == best_vector.total_failures:
+            log(f"ratchet: {vector.total_failures} failures (tie, content ok)")
+        best_vector = vector
+        save_ratchet_vector(key, vector)
+    else:
+        prev = best_vector.total_failures if best_vector else "?"
+        log(f"ratchet: {vector.total_failures} failures vs best {prev} — restoring best-known state")
         _restore_snapshot(submission)
-        ok, failures = criteria_met(engine, submission)
-        log(f"ratchet: restored state has {len(failures)} failures")
-    _save_loop_state(best_failures, str(submission.relative_to(ROOT)))
-    return len(failures) == 0, failures, best_failures
+        _, failures, vector = acceptance_check(submission)
+        log(f"ratchet: restored state has {vector.total_failures} failures")
+        if best_vector is not None:
+            save_ratchet_vector(key, best_vector)
+
+    return len(failures) == 0, failures, best_vector
 
 
 STATE_DIR = ROOT / ".goal-driven"
@@ -2390,8 +2398,12 @@ def main():
     engine.load_registry()
 
     if args.dry_run:
-        ok, failures = criteria_met(engine, submission)
-        print(f"dry-run: {len(failures)} failures")
+        ok, failures, vector = acceptance_check(submission)
+        print(
+            f"dry-run: {vector.total_failures} failures "
+            f"(code={vector.code_failures} content={vector.content_failures} "
+            f"self_check={vector.self_check_failures})"
+        )
         for r in failures:
             print(f"  {r.constraint_id}  {r.detail}")
         return 0 if ok else 1
@@ -2404,17 +2416,16 @@ def main():
     stall_count = 0
     STALL_MAX = 3  # reset session after N identical rounds
 
-    # Ratchet state — best_failures is persisted in .goal-driven/loop-state.json
-    # across crash/restart cycles.  With no persisted best, the current state
-    # is the baseline: snapshot it so even the first regression can roll back.
+    # Ratchet state — vector persisted in .goal-driven/loop-state.json
     sub_key = str(submission.relative_to(ROOT))
-    best_failures = _load_loop_state(sub_key).get("best_failures")
-    if best_failures is None:
-        _, first_failures = criteria_met(engine, submission)
-        best_failures = len(first_failures)
+    loaded = _load_loop_state(sub_key)
+    best_vector = loaded.get("best_vector")
+    if best_vector is None:
+        _, first_failures, best_vector = acceptance_check(submission)
         _save_snapshot(submission)
-        _save_loop_state(best_failures, sub_key)
-        log(f"ratchet: baseline {best_failures} failures — snapshot saved")
+        from scripts.acceptance import save_ratchet_vector
+        save_ratchet_vector(sub_key, best_vector)
+        log(f"ratchet: baseline {best_vector.total_failures} failures — snapshot saved")
 
     gate2_seen = False  # once Gate 2 fires, don't ratchet-restore (quality tradeoffs)
     _stall_break_msg = ""  # set by stall detection, consumed by inject builder
@@ -2426,8 +2437,8 @@ def main():
             log(f"MAX_HOURS ({MAX_HOURS}h) reached — escalating")
             return 1
 
-        # 2. criteria check — Gate 1 (CODE)
-        ok, failures = criteria_met(engine, submission)
+        # 2. unified acceptance (CODE + content floors + self_check)
+        ok, failures, vector = acceptance_check(submission)
 
         # 3. stall detection — must run BEFORE ratchet so stall-break can
         #    prevent the ratchet from erasing the agent's current work
@@ -2446,8 +2457,9 @@ def main():
                 )
                 for r in failures:
                     _stall_break_msg += f"  FAIL {r.constraint_id}: {r.detail}\n"
-                    if r.evidence:
-                        _stall_break_msg += f"    → {r.evidence}\n"
+                    evidence = getattr(r, "evidence", "") or ""
+                    if evidence:
+                        _stall_break_msg += f"    → {evidence}\n"
                 stall_count = 0
                 last_failures = None  # force inject rebuild for this round
                 _skip_ratchet = True  # keep current state so agent can inspect it
@@ -2458,11 +2470,13 @@ def main():
         if _skip_ratchet:
             _skip_ratchet = False  # one-shot
         elif not gate2_seen:
-            ok, failures, best_failures = _ratchet(engine, submission, failures, best_failures)
-        elif len(failures) < best_failures:
-            best_failures = len(failures)
+            ok, failures, best_vector = _ratchet(submission, failures, vector, best_vector)
+        elif vector.total_failures < best_vector.total_failures:
+            best_vector = vector
             _save_snapshot(submission)
-            log(f"ratchet: {best_failures} failures (new best after Gate 2)")
+            from scripts.acceptance import save_ratchet_vector
+            save_ratchet_vector(sub_key, best_vector)
+            log(f"ratchet: {best_vector.total_failures} failures (new best after Gate 2)")
 
         if ok:
             # Refresh the manifest before Gate 2: the panel's package_integrity
