@@ -65,6 +65,30 @@
       "assumptions": [],
       "reason": "Approved FAR controls and official site boundary are not present in the public site package."
     },
+    "height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height_m from buildings.geojson)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Building heights not yet declared in buildings.geojson; provisional scaffold."
+    },
+    "ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "derived ratio metric per planning_limits schema_sanity_bounds",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Ratio not yet computed from geometry; provisional scaffold."
+    },
     "key_area_count": {
       "status": "known",
       "value": 3,
