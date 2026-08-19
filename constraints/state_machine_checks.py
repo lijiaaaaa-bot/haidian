@@ -25,6 +25,7 @@ from constraints.state_machines.land_use_validator import (
 )
 
 from constraints.engine import CheckOutcome
+from constraints.engine import _to_projected as _engine_to_projected
 
 
 def _read_geojson(path: Path) -> dict | None:
@@ -307,24 +308,11 @@ def check_road_network(sub_path: Path, params: dict) -> tuple[CheckOutcome, str,
 
 
 def _to_projected(geom: Any) -> Any:
-    """Reproject geometry to EPSG:4548 (area-calculation CRS) for planar areas.
+    """Reproject geometry to the project's area-calculation CRS.
 
-    Exchange GeoJSON is EPSG:4326 lat/lon; planar areas in degrees are wrong.
-    If pyproj is unavailable, or the input already looks projected (coordinate
-    magnitudes > 180/90), fall back to the raw geometry.
+    Delegates to the engine so every spatial check measures in one CRS.
     """
-    if geom is None or geom.is_empty:
-        return geom
-    try:
-        x, y = geom.centroid.x, geom.centroid.y
-        if abs(x) > 180 or abs(y) > 90:
-            return geom  # already projected
-        from shapely.ops import transform as _shapely_transform
-        from pyproj import Transformer
-        _PROJ_4548 = Transformer.from_crs("EPSG:4326", "EPSG:4548", always_xy=True)
-        return _shapely_transform(lambda xi, yi: _PROJ_4548.transform(xi, yi), geom)
-    except Exception:  # noqa: BLE001 — pyproj/shapely.ops 不可用则用原几何
-        return geom
+    return _engine_to_projected(geom)
 
 
 def check_green_ratio(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:

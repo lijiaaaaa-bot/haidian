@@ -627,6 +627,12 @@ class ConstraintExtractor:
         from constraints.state_machine_checks import STATE_MACHINE_REGISTRY_ENTRIES
 
         constraints.extend(STATE_MACHINE_REGISTRY_ENTRIES)
+        # Same story for the declared-vs-recomputed consistency entries.
+        from constraints.geometry_consistency import (
+            GEOMETRY_CONSISTENCY_REGISTRY_ENTRIES,
+        )
+
+        constraints.extend(GEOMETRY_CONSISTENCY_REGISTRY_ENTRIES)
         registry = {
             "schema_version": "1.0",
             "generated_from": "repo physical data files",
