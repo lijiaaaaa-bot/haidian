@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "name": "constraints_scaffold",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CONSTRAINTS",
+      "properties": {
+        "id": "CONSTRAINTS",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "constraint_type": "provisional_data_gap",
+        "name_zh": "待官方控规与红线确认区",
+        "usage_note": "概念约束标记，非 official redline"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.346,
+              39.985
+            ],
+            [
+              116.349,
+              39.985
+            ],
+            [
+              116.349,
+              39.987
+            ],
+            [
+              116.346,
+              39.987
+            ],
+            [
+              116.346,
+              39.985
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
