@@ -37,7 +37,7 @@
         "source_type": "agent_generated_design",
         "confidence": "medium",
         "geometry_role": "design_proposal",
-        "road_class": "local_artery",
+        "road_class": "arterial",
         "name_zh": "AI产业主干道"
       },
       "geometry": {
@@ -63,7 +63,7 @@
         "source_type": "agent_generated_design",
         "confidence": "medium",
         "geometry_role": "design_proposal",
-        "road_class": "access_road",
+        "road_class": "branch",
         "name_zh": "社区服务支路"
       },
       "geometry": {
