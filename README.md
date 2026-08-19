@@ -288,6 +288,18 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
 
+维护者/研究者做 **autoresearch 迭代**（统一 CODE + 内容 + self_check 失败数）时使用：
+
+```bash
+# 单次验收（canonical）
+python3 scripts/acceptance.py --submission submissions/test/autoresearch
+
+# Cursor / Cloud Agent 协议见 repo 根目录 program.md
+bash scripts/run_autonomous.sh
+```
+
+归档的 MLX 重型循环与 6-phase FSM 见 [`archive/README.md`](archive/README.md)。
+
 exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
 进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
 

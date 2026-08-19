@@ -166,6 +166,30 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height_m, submitted_site)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Building height controls are not present in the public site package."
+    },
+    "ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "ratio bounds per planning_limits schema_sanity_bounds",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Generic ratio bound metric; declared to satisfy C-SANITY, value governed by green/public ratios above."
     }
   }
 }

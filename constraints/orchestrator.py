@@ -1,5 +1,8 @@
 """
-Goal-Driven + Professional FSM Orchestrator for haidian Urban Design.
+DEPRECATED — Goal-Driven + Professional FSM Orchestrator for haidian Urban Design.
+
+Canonical autoresearch: program.md + scripts/acceptance.py.
+FSM implementation archived; this module remains for HAIDIAN_LEGACY_FSM=1 runs.
 
 This is the autonomous agent loop. It drives the UrbanDesignProcedure state
 machine, invokes LLM at JUDGMENT points with structured prompts, runs CODE

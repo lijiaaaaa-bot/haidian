@@ -1,8 +1,43 @@
 # Goal-Driven 入口程序设计（lidangzzz 模式）
 
-**日期**：2026-08-07
-**状态**：设计稿（未实现）
-**范围**：为百年京张AI创新带城市设计项目设计新的自主生成入口程序。取代 Phase/FSM 编排思路（`constraints/orchestrator.py`、`run_pipeline.py` 不在本设计内，保持原样不动）。
+**日期**：2026-08-07  
+**状态**：**已收敛（2026-08-19）** — canonical 入口为 `program.md` + `scripts/acceptance.py`；下文为历史设计档案。
+
+---
+
+## Canonical 入口（2026-08-19）
+
+| 用途 | 入口 |
+|---|---|
+| Cursor / Cloud Agent 轻量循环 | [`program.md`](../program.md) + `python3 scripts/acceptance.py --submission …` |
+| 单次验收 | `bash scripts/run_autonomous.sh` |
+| 归档说明 | [`archive/README.md`](../archive/README.md) |
+
+**已弃用（opt-in legacy）：**
+
+- `scripts/goal_driven_loop.py` — `HAIDIAN_LEGACY_LOOP=1`
+- `run_pipeline.py` + `constraints/procedure.py` FSM — `HAIDIAN_LEGACY_FSM=1` / `archive/`
+
+---
+
+## 实现与分歧说明（2026-08-13 归档备注，部分已过时）
+
+本设计已经落地为 haidian 的重型自主路径，但**实际实现与设计稿有以下分歧**，读代码时以 **program.md + acceptance.py** 为准：
+
+| 设计稿 | 实际实现 |
+|---|---|
+| `scripts/llm_client.py`（§5.1） | **未按此拆分**。实际 LLM 客户端是 `scripts/mlx_client.py`（`mlx_chat`），且支持本地 MLX 与 DeepSeek 双后端 |
+| `scripts/submission_tools.py`（§5.1 四工具） | **未单独成文件**。工具逻辑内联在 `scripts/goal_driven_loop.py` 内 |
+| `scripts/panel_runner.py`（§5.1） | 未落地；Reflection Panel 仍走 `review-panel/` 的独立评审流程 |
+| `scripts/goal_driven_loop.py`（设计估 ~300 行） | **已实现，但膨胀到 ~2600 行** — **2026-08-19 标记 deprecated** |
+| `docs/goal-driven-entry.md` | 本文件 |
+
+~~**权威入口**：`bash scripts/run_autonomous.sh` → `goal_driven_loop.py`~~  
+**权威入口（2026-08-19）**：`program.md` + `scripts/acceptance.py`
+
+~~**规范裁决（2026-08-13）**：goal_driven_loop 是 canonical~~  
+**规范裁决（2026-08-19）**：轻量 acceptance 循环是 canonical；monolith 与 FSM 归档至 `archive/`。
+
 
 ---
 

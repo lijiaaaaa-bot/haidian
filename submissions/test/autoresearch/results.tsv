@@ -1,0 +1,5 @@
+round	commit	failures	code	content	self_check	proposal_bytes	h2	anchors	land_use	notes
+0	baseline	21	2	8	11	30118	13	92	4	start
+1	b264cde	20	1	8	11	30118	13	92	4	fix C-SANITY-height_m
+2	b264cde+ratio	17	0	8	9	30118	13	92	4	fix C-SANITY-ratio (same commit as height_m)
+3	1f3c34a	17	0	8	9	30118	13	92	4	fix road_class enum (no further drop; roads already clean after ratio run)

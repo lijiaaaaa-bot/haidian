@@ -216,6 +216,8 @@ class ConstraintEngine:
             "check_building_height": _check_sm_building_height,
             "check_road_network": _check_sm_road_network,
             "check_green_ratio": _check_sm_green_ratio,
+            # declared-vs-recomputed consistency
+            "verify_metric_matches_geometry": _check_metric_matches_geometry,
         })
 
     # ── Reporting ───────────────────────────────────────────────────
@@ -277,6 +279,54 @@ class ConstraintEngine:
 #
 # These are PURE — no LLM, no randomness, same input → same output.
 # ═══════════════════════════════════════════════════════════════════════
+
+# Exchange GeoJSON is EPSG:4326 (lon/lat degrees). Every area/length comparison
+# below must therefore project first: at Beijing's latitude 1 deg² ≈ 9,492 km²,
+# so an absolute threshold applied to degree-squared areas can never be reached
+# by anything on Earth. EPSG:4548 is the project's declared area-calculation CRS
+# (see brief/site-package/design_brief.json), the same one scripts/spatial_review.py
+# uses — sharing it is what keeps the two gates from contradicting each other.
+AREA_CRS = "EPSG:4548"
+
+# Projection is non-linear, so an edge drawn straight in degrees becomes slightly
+# curved in metres. Two layers that share a boundary but densify it with
+# different vertex counts therefore produce thin lens-shaped slivers along every
+# shared edge — a geometric artifact of the CRS change, not a design error.
+# Tolerances are expressed in projected m² and scale with the geometry being
+# measured, so they absorb that artifact without ever forgiving a real gap: on
+# the 11.4 km² project site the coverage tolerance is ~5,700 m², while the
+# packages this was written for were short by 5.37 km².
+GEOMETRY_TOLERANCE_SQM = 100.0
+COVERAGE_TOLERANCE_FRACTION = 0.0005  # 0.05% of the site
+FEATURE_TOLERANCE_FRACTION = 0.001  # 0.1% of the feature
+
+_PROJECTOR: Any = None
+
+
+def _to_projected(geom: Any) -> Any:
+    """Reproject a geometry from EPSG:4326 to AREA_CRS for planar measurement.
+
+    Geometries already in projected coordinates (magnitudes beyond lon/lat
+    range) are returned unchanged. Raises if pyproj is unavailable — a silent
+    fallback to degrees is what made the spatial checks unfailable.
+    """
+    global _PROJECTOR
+    if geom is None or geom.is_empty:
+        return geom
+    x, y = geom.centroid.x, geom.centroid.y
+    if abs(x) > 180 or abs(y) > 90:
+        return geom
+    from shapely.ops import transform as _shapely_transform
+    if _PROJECTOR is None:
+        from pyproj import Transformer
+        _PROJECTOR = Transformer.from_crs("EPSG:4326", AREA_CRS, always_xy=True)
+    return _shapely_transform(_PROJECTOR.transform, geom)
+
+
+def _sliver_tolerance(reference_area: float) -> float:
+    """Area below which a discrepancy is projection noise rather than a defect."""
+    return max(GEOMETRY_TOLERANCE_SQM, reference_area * COVERAGE_TOLERANCE_FRACTION)
+
 
 # Maintainer-gate canonical geometry filenames (scripts/validate_submission.py,
 # ALLOWED_GEOMETRY_FILES). LAYER-001 accepts either the layer-derived name
@@ -366,26 +416,62 @@ def _check_features_within_boundary(sub_path: Path, params: dict) -> tuple[Check
     site = boundaries[0]
     for b in boundaries[1:]:
         site = site.union(b)
+    site = _to_projected(site)
 
-    # Check each generated layer
-    generated_layers = params.get("generated_layers", [])
+    # Collect the features to check by walking every file in geometry/ and
+    # reading each feature's own `layer` property, rather than deriving a
+    # filename from the layer name. Deriving guessed BUILDING_FOOTPRINT ->
+    # building_footprint.geojson while packages ship buildings.geojson, and the
+    # `continue` on a missing file turned that miss into a silent PASS — 7 of 10
+    # editable layers were never examined. Layer presence is LAYER-001's job, so
+    # an absent optional layer is still not penalized here.
+    generated_layers = set(params.get("generated_layers", []))
+    canonical_files = {
+        MAINTAINER_GEOMETRY_FILENAMES.get(name, f"{name.lower()}.geojson")
+        for name in generated_layers
+    }
+    geometry_dir = sub_path / "geometry"
+
     violations = []
-    for layer_name in generated_layers:
-        layer_file = sub_path / "geometry" / f"{layer_name.lower()}.geojson"
-        if not layer_file.exists():
+    checked_layers: set[str] = set()
+    checked_features = 0
+    for layer_file in sorted(geometry_dir.glob("*.geojson")):
+        if layer_file.name == "site_boundary.geojson":
             continue
-        layer_data = json.loads(layer_file.read_text(encoding="utf-8"))
+        try:
+            layer_data = json.loads(layer_file.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
         for feat in layer_data.get("features", []):
+            props = feat.get("properties", {}) or {}
+            layer_name = props.get("layer", "")
+            # Fall back to the filename when a feature carries no layer property.
+            if layer_name not in generated_layers and layer_file.name not in canonical_files:
+                continue
             geom = feat.get("geometry")
             if not geom:
                 continue
             try:
-                g = shape(geom)
-                if not site.contains(g):
-                    feat_id = feat.get("properties", {}).get("id", feat.get("id", "?"))
-                    violations.append(f"{layer_name}/{feat_id}")
+                g = _to_projected(shape(geom))
             except Exception:
-                pass
+                continue
+            checked_layers.add(layer_name or layer_file.stem)
+            checked_features += 1
+            outside = g.difference(site)
+            # Lines and points carry no area; measure them in their own dimension.
+            if g.area > 0:
+                excess, tolerance = outside.area, max(
+                    GEOMETRY_TOLERANCE_SQM, g.area * FEATURE_TOLERANCE_FRACTION
+                )
+            elif g.length > 0:
+                excess, tolerance = outside.length, max(
+                    10.0, g.length * FEATURE_TOLERANCE_FRACTION
+                )
+            else:
+                excess, tolerance = (0.0 if site.covers(g) else 1.0), 0.5
+            if excess > tolerance:
+                feat_id = props.get("id", feat.get("id", "?"))
+                violations.append(f"{layer_name or layer_file.stem}/{feat_id} (超出 {excess:.0f})")
 
     if violations:
         return (
@@ -393,7 +479,18 @@ def _check_features_within_boundary(sub_path: Path, params: dict) -> tuple[Check
             f"{len(violations)} 个 feature 超出 site_boundary: {', '.join(violations[:10])}",
             f"geometry/: out-of-bound features: {violations[:10]}",
         )
-    return (CheckOutcome.PASS, "所有 feature 在 site_boundary 内", "")
+    if checked_features == 0:
+        return (
+            CheckOutcome.FAIL,
+            f"没有任何 feature 被检查——geometry/ 下没有属于 {sorted(generated_layers)} 的要素，"
+            "边界约束形同虚设",
+            f"geometry/: no features matched generated layers {sorted(generated_layers)}",
+        )
+    return (
+        CheckOutcome.PASS,
+        f"{checked_features} 个 feature（图层 {', '.join(sorted(checked_layers))}）均在 site_boundary 内",
+        "",
+    )
 
 
 def _check_land_use_coverage(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:
@@ -420,6 +517,7 @@ def _check_land_use_coverage(sub_path: Path, params: dict) -> tuple[CheckOutcome
     site = site_polys[0]
     for p in site_polys[1:]:
         site = site.union(p)
+    site = _to_projected(site)
 
     # Union all land use polygons
     lu_polys = []
@@ -427,7 +525,7 @@ def _check_land_use_coverage(sub_path: Path, params: dict) -> tuple[CheckOutcome
         geom = f.get("geometry")
         if geom:
             try:
-                lu_polys.append(shape(geom))
+                lu_polys.append(_to_projected(shape(geom)))
             except Exception:
                 pass
 
@@ -440,14 +538,15 @@ def _check_land_use_coverage(sub_path: Path, params: dict) -> tuple[CheckOutcome
 
     # Check coverage
     gap = site.difference(lu_union)
-    if gap.is_empty or gap.area < 1.0:  # < 1 sqm = acceptable
+    if gap.is_empty or gap.area < _sliver_tolerance(site.area):
         return (CheckOutcome.PASS, "land_use 完全覆盖 site_boundary，无间隙", "")
 
     gap_pct = (gap.area / site.area) * 100
     return (
         CheckOutcome.FAIL,
-        f"land_use 未完全覆盖 site_boundary: 间隙面积约 {gap.area:.0f} m² ({gap_pct:.1f}%)",
-        f"geometry/land_use.geojson: gap area {gap.area:.0f} m²",
+        f"land_use 未完全覆盖 site_boundary: 间隙面积约 {gap.area:.0f} m² "
+        f"({gap_pct:.1f}%)，覆盖率 {100 - gap_pct:.1f}%",
+        f"geometry/land_use.geojson: gap area {gap.area:.0f} m² of site {site.area:.0f} m²",
     )
 
 
@@ -469,23 +568,32 @@ def _check_no_land_use_overlap(sub_path: Path, params: dict) -> tuple[CheckOutco
         geom = f.get("geometry")
         if geom:
             try:
-                polys.append((f.get("properties", {}).get("id", "?"), shape(geom)))
+                polys.append((f.get("properties", {}).get("id", "?"), _to_projected(shape(geom))))
             except Exception:
                 pass
 
     overlaps = []
+    overlapping: list[Any] = []
     for i in range(len(polys)):
         for j in range(i + 1, len(polys)):
             id_i, p_i = polys[i]
             id_j, p_j = polys[j]
             intersection = p_i.intersection(p_j)
-            if not intersection.is_empty and intersection.area > 1.0:
-                overlaps.append(f"{id_i} ∩ {id_j}")
+            tolerance = _sliver_tolerance(min(p_i.area, p_j.area))
+            if not intersection.is_empty and intersection.area > tolerance:
+                overlaps.append(f"{id_i} ∩ {id_j} ({intersection.area:.0f} m²)")
+                overlapping.append(intersection)
 
     if overlaps:
+        # Dissolve before totalling: summing pairs would count an area covered by
+        # three polygons three times.
+        from shapely.ops import unary_union
+
+        overlap_area = unary_union(overlapping).area
         return (
             CheckOutcome.FAIL,
-            f"land_use 存在 {len(overlaps)} 处重叠: {', '.join(overlaps[:5])}",
+            f"land_use 存在 {len(overlaps)} 处重叠，被重复覆盖面积约 {overlap_area:.0f} m²: "
+            f"{', '.join(overlaps[:5])}",
             f"geometry/land_use.geojson: overlaps {overlaps[:5]}",
         )
     return (CheckOutcome.PASS, "land_use 无重叠", "")
@@ -1003,3 +1111,8 @@ def _check_sm_road_network(sub_path: Path, _params: dict) -> tuple[CheckOutcome,
 def _check_sm_green_ratio(sub_path: Path, _params: dict) -> tuple[CheckOutcome, str, str]:
     from constraints.state_machine_checks import check_green_ratio
     return check_green_ratio(sub_path, _params)
+
+
+def _check_metric_matches_geometry(sub_path: Path, params: dict) -> tuple[CheckOutcome, str, str]:
+    from constraints.geometry_consistency import check_metric_matches_geometry
+    return check_metric_matches_geometry(sub_path, params)
