@@ -1,5 +1,8 @@
 # Review Panel for 百年京张AI创新带城市设计
 
+> **2026-08-19**：Autoresearch canonical 入口为 [`program.md`](../program.md) + [`scripts/acceptance.py`](../scripts/acceptance.py)。  
+> 下文 Layer 0 FSM（`procedure.py` / `run_pipeline.py`）已归档，见 [`archive/README.md`](../archive/README.md)。
+
 基于 hardlaw 的 Grok Reflection 架构 + Goal-Driven 循环 + Professional FSM，
 为 haidian 城市设计开源征集提供四层架构：专业状态机 + 约束引擎 + 反射审查。
 
@@ -17,7 +20,7 @@
 │ 每个 Phase: CODE steps (确定性) → JUDGMENT (LLM 局部调用)      │
 │ → Phase Gate (约束引擎验证转换)                                │
 │                                                              │
-│ 运行: python3 run_pipeline.py --submission <path>             │
+│ 运行: HAIDIAN_LEGACY_FSM=1 python3 run_pipeline.py --submission <path>  (archived) │
 └───────────────┬──────────────────────────────────────────────┘
                 │ 每个 Phase 的 CODE exit_checks PASS
                 ▼

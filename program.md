@@ -52,9 +52,9 @@ python3 scripts/acceptance.py --submission submissions/test/autoresearch --code-
 8. 记录到 `results.tsv`
 9. 重复
 
-## 向量棘轮（自动循环时）
+## 向量棘轮
 
-`goal_driven_loop.py` / Cloud Agent 使用向量棘轮：失败数下降但 proposal 字节数跌超 20%、H2 章节变少、证据锚点变少时，改动会被回滚。
+失败数下降但 proposal 字节数跌超 20%、H2 章节变少、证据锚点变少时，改动应回滚（`git reset HEAD~1 --hard`）。`acceptance.py` 的 `AcceptanceVector` 在自动循环里用于判定是否塌缩。
 
 ## 完成条件
 
@@ -64,10 +64,14 @@ python3 scripts/acceptance.py --submission submissions/test/autoresearch --code-
 
 一旦开始就不要停下来问"要不要继续"。改到失败数=0为止。
 
-## 推荐入口
+## 入口（2026-08 P2 收敛后）
 
 | 场景 | 入口 |
 |---|---|
-| 本地/Cursor 轻量循环 | 本文件 + `scripts/acceptance.py` |
-| 本地 MLX 重型循环 | `bash scripts/run_autonomous.sh`（内部已接 acceptance） |
+| **Cursor / Cloud Agent（推荐）** | 本文件 + `scripts/acceptance.py` |
+| 单次验收快检 | `bash scripts/run_autonomous.sh` 或 `python3 scripts/acceptance.py …` |
 | 仅 CODE 快检 | `python3 scripts/goal_verifier.py --code-only` |
+| 本地 MLX 重型循环（已弃用） | `HAIDIAN_LEGACY_LOOP=1 bash scripts/run_autonomous.sh` |
+| 6-phase FSM（已归档） | `HAIDIAN_LEGACY_FSM=1 python3 run_pipeline.py --submission …` |
+
+归档说明见 [`archive/README.md`](archive/README.md)。

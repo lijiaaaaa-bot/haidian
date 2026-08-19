@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Goal-Driven entry for haidian urban design open call.
+"""Goal-Driven entry for haidian urban design open call — DEPRECATED (legacy MLX loop).
+
+.. deprecated::
+    Use ``program.md`` + ``scripts/acceptance.py`` with Cursor / Cloud Agent.
+    This ~2600-line monolith remains for opt-in local MLX runs only:
+    ``HAIDIAN_LEGACY_LOOP=1 bash scripts/run_autonomous.sh``
 
 Pattern: lidangzzz goal-driven (github.com/lidangzzz/goal-driven)
 
@@ -8,12 +13,8 @@ Pattern: lidangzzz goal-driven (github.com/lidangzzz/goal-driven)
     2. check if the subagent is still alive
     3. when subagent claims done, verify criteria
 
-  Master does NOT pass feedback, does NOT format failures, does NOT tell
-  the subagent what to fix.  The subagent reads the repo state itself and
-  decides what to change.
-
-Usage:
-  python3 scripts/goal_driven_loop.py --submission submissions/<login>/<slug>
+Usage (legacy):
+  HAIDIAN_LEGACY_LOOP=1 python3 scripts/goal_driven_loop.py --submission submissions/<login>/<slug>
 """
 
 from __future__ import annotations
@@ -2329,7 +2330,24 @@ def gate2_review(submission: Path, use_panel: bool = False) -> tuple[bool, str]:
 
 
 def main():
-    p = argparse.ArgumentParser(description="Goal-Driven entry for haidian urban design")
+    import warnings
+
+    warnings.warn(
+        "scripts/goal_driven_loop.py is deprecated. "
+        "Use program.md + scripts/acceptance.py (Cursor/Cloud Agent). "
+        "Set HAIDIAN_LEGACY_LOOP=1 to silence this warning.",
+        DeprecationWarning,
+        stacklevel=1,
+    )
+    if os.environ.get("HAIDIAN_LEGACY_LOOP") != "1":
+        print(
+            "DEPRECATED: goal_driven_loop.py — use program.md + acceptance.py instead.\n"
+            "  Re-run with HAIDIAN_LEGACY_LOOP=1 to continue the legacy MLX loop.\n",
+            file=sys.stderr,
+        )
+        return 2
+
+    p = argparse.ArgumentParser(description="Goal-Driven entry for haidian urban design (legacy)")
     p.add_argument("--submission", required=True,
                    help="submission dir, e.g. submissions/<login>/<slug>")
     p.add_argument("--agent-id", default="goal-driven-agent")
