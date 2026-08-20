@@ -121,9 +121,13 @@ def write_summary(out_path: Path, summary_path: Path) -> None:
         stage = row.get("stage", "")
         by_pkg.setdefault(pk, {})[stage] = row
 
-    gate1_pass = sum(1 for v in by_pkg.values() if v.get("gate1", {}).get("passed"))
-    g2_stub_pass = sum(1 for v in by_pkg.values() if v.get("gate2-stub", {}).get("passed"))
-    g2_panel_pass = sum(1 for v in by_pkg.values() if v.get("gate2-panel", {}).get("passed"))
+    def _stage_passed(pkg_stages: dict, stage: str) -> bool:
+        row = pkg_stages.get(stage, {})
+        return bool(row.get("result", {}).get("passed"))
+
+    gate1_pass = sum(1 for v in by_pkg.values() if _stage_passed(v, "gate1"))
+    g2_stub_pass = sum(1 for v in by_pkg.values() if _stage_passed(v, "gate2-stub"))
+    g2_panel_pass = sum(1 for v in by_pkg.values() if _stage_passed(v, "gate2-panel"))
     summary = {
         "generated_at": utc_now(),
         "packages_evaluated": len(by_pkg),
