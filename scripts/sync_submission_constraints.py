@@ -101,7 +101,7 @@ def main() -> int:
             "id": "CONSTRAINTS-001",
             "properties": {
                 "id": "CONSTRAINTS-001",
-                "layer": "REGULATORY_CONTROL",
+                "layer": "ROAD_CENTERLINE",
                 "source_type": "official_open_data",
                 "confidence": "medium",
                 "geometry_role": "provisional_constraint",
@@ -119,7 +119,7 @@ def main() -> int:
             "id": "CONSTRAINTS-002",
             "properties": {
                 "id": "CONSTRAINTS-002",
-                "layer": "REGULATORY_CONTROL",
+                "layer": "ROAD_CENTERLINE",
                 "source_type": "official_open_data",
                 "confidence": "medium",
                 "geometry_role": "provisional_constraint",

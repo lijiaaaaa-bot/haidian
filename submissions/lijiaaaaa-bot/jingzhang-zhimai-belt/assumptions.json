@@ -4,8 +4,40 @@
     {
       "id": "A-CONTROLS-001",
       "status": "pending_professional_confirmation",
+      "statement": "floor_area_ratio, building_height_m, building_density, green_ratio, setback_m: 以上控规条件均未在公开资料中提供。所有开发强度、建筑限高、建筑密度、绿地率、退线相关结论均为概念建议，待正式控规条件确认后方可进入实施阶段。",
+      "impact": "建筑规模、开发强度、空间供给策略只能作为方向性设计。"
+    },
+    {
+      "id": "A-CONTROLS-002",
+      "status": "pending_professional_confirmation",
       "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
       "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "三层范围和重点区 polygon 均为 provisional，基于公告文字四至和道路名称推断。替换 official polygon 后，所有图层和指标需要重新生成和复算。",
+      "impact": "空间边界和面积指标仅供设计讨论和自检，不得作为 official redline 或精确面积依据。"
+    }
+  ],
+  "entries": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "floor_area_ratio, building_height_m, building_density, green_ratio, setback_m: 以上控规条件均未在公开资料中提供。所有开发强度、建筑限高、建筑密度、绿地率、退线相关结论均为概念建议，待正式控规条件确认后方可进入实施阶段。",
+      "impact": "建筑规模、开发强度、空间供给策略只能作为方向性设计。"
+    },
+    {
+      "id": "A-CONTROLS-002",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "三层范围和重点区 polygon 均为 provisional，基于公告文字四至和道路名称推断。替换 official polygon 后，所有图层和指标需要重新生成和复算。",
+      "impact": "空间边界和面积指标仅供设计讨论和自检，不得作为 official redline 或精确面积依据。"
     }
   ]
 }

@@ -79,11 +79,17 @@ def main() -> int:
     key_features = []
     for kid in KEY_IDS:
         kf = deepcopy(feats[kid])
-        kgeom = shape(kf["geometry"]).buffer(0).intersection(site_geom)
+        kgeom_full = shape(kf["geometry"]).buffer(0)
+        kgeom = kgeom_full.intersection(site_geom)
         if kgeom.is_empty:
             print(f"ERROR: {kid} has empty intersection with SITE", file=sys.stderr)
             return 1
+        full_area = area_sqm(kgeom_full)
         clipped_area = area_sqm(kgeom)
+        # Keep full key polygon when site provisional boundary under-covers announced key area
+        if clipped_area < full_area * 0.95:
+            kgeom = kgeom_full
+            clipped_area = full_area
         announced = kf.get("properties", {}).get("announced_area_sqm") or kf.get("properties", {}).get("area_sqm_declared")
         if announced and clipped_area < float(announced) * MIN_AREA_RATIO:
             print(f"ERROR: {kid} clipped area {clipped_area:.0f} m² < 5% of announced {announced}", file=sys.stderr)

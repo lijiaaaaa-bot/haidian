@@ -50,6 +50,8 @@ def main() -> int:
         py, str(SCRIPTS / "generate_design_geometry.py"),
         "--submission-dir", str(sub),
     ])
+    run_step("clip layers to site", [py, str(SCRIPTS / "clip_submission_to_site.py"), str(sub)])
+    run_step("recalc metrics", [py, str(SCRIPTS / "recalc_submission_metrics.py"), str(sub)])
 
     fig_script = SCRIPTS / "generate_submission_figures.py"
     if args.skip_ust_figures:
