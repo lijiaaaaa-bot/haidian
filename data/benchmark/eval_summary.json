@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-08-20T03:33:10Z",
+  "packages_evaluated": 924,
+  "gate1_pass": 0,
+  "gate2_stub_pass": 267,
+  "gate2_panel_pass": 0,
+  "judge_backend": "mlx"
+}

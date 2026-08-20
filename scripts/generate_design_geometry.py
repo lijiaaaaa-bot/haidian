@@ -28,7 +28,8 @@ from shapely.ops import transform, unary_union
 from pyproj import Transformer
 
 REPO = Path(__file__).resolve().parents[1]
-GEO = REPO / "submissions" / "test" / "test" / "geometry"
+DEFAULT_SUBMISSION = REPO / "submissions" / "test" / "test"
+GEO: Path = DEFAULT_SUBMISSION / "geometry"
 
 TR = Transformer.from_crs("EPSG:4326", "EPSG:4548", always_xy=True)
 TR_INV = Transformer.from_crs("EPSG:4548", "EPSG:4326", always_xy=True)
@@ -246,7 +247,30 @@ def write_geojson(name, features):
     (GEO / name).write_text(json.dumps(fc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def parse_args() -> argparse.Namespace:
+    import argparse
+    p = argparse.ArgumentParser(description="Generate design-grade provisional geometry")
+    p.add_argument(
+        "--submission-dir",
+        type=Path,
+        default=DEFAULT_SUBMISSION,
+        help="Submission package root (writes geometry/*.geojson)",
+    )
+    return p.parse_args()
+
+
 def main() -> int:
+    global GEO
+    args = parse_args()
+    sub = args.submission_dir if args.submission_dir.is_absolute() else REPO / args.submission_dir
+    GEO = sub / "geometry"
+    if not (GEO / "site_boundary.geojson").is_file():
+        print(f"ERROR: {GEO / 'site_boundary.geojson'} missing; run sync_submission_boundary.py first", file=sys.stderr)
+        return 1
+    if not (GEO / "constraints.geojson").is_file():
+        print(f"ERROR: {GEO / 'constraints.geojson'} missing; run sync_submission_constraints.py first", file=sys.stderr)
+        return 1
+
     site = site_geom()
     features_landuse = []
     for lid, (code, gb, name, rationale, rings) in LAND_USE.items():
@@ -363,12 +387,21 @@ def main() -> int:
     print(f"phasing: {len(fph)} features")
 
     # ---- topology report ----
-    lu = [shape(f["geometry"]).buffer(0) for f in features_landuse]
-    union = unary_union(lu)
+    lu4326 = [shape(f["geometry"]).buffer(0) for f in features_landuse]
+    lu4548 = [to4548(g) for g in lu4326]
+    union = unary_union(lu4548)
     site4548 = to4548(site)
-    overlap = sum(lu[i].intersection(lu[j]).area for i in range(len(lu)) for j in range(i + 1, len(lu)))
+    overlap = sum(
+        lu4548[i].intersection(lu4548[j]).area
+        for i in range(len(lu4548))
+        for j in range(i + 1, len(lu4548))
+    )
+    gap = site4548.area - union.area
     print(f"topology: union={round(union.area,1)} site={round(site4548.area,1)} "
-          f"gap={round(site4548.area - union.area,1)} overlap={round(overlap,1)}")
+          f"gap={round(gap,1)} overlap={round(overlap,1)}")
+    if abs(gap) > 10.0 or overlap > 10.0:
+        print(f"ERROR: land_use topology |gap|={abs(gap):.1f} m² overlap={overlap:.1f} m² exceeds 10 m² tolerance", file=sys.stderr)
+        return 1
     return 0
 
 
