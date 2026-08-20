@@ -3,14 +3,15 @@
 **PR**: https://github.com/lijiaaaaa-bot/haidian/pull/2  
 **包路径**: `submissions/lijiaaaaa-bot/jingzhang-zhimai-belt/`
 
-## 当前状态（2026-08-20 更新）
+## 当前状态（2026-08-20 Goal 循环第 2 轮）
 
-| 项目 | 状态 | 说明 |
-|------|------|------|
-| **Gate1** | ✅ **0 failures** | metrics 26 项 + 几何 clip + assumptions |
-| Gate2 stub | 进行中 | proposal 去套话 |
-| 几何排名 | 457/924 → 待重算 | figure_kb=110 |
-| UST 出图 | ⏳ Mac | 需 `UST_ROOT` |
+| 项目 | 状态 |
+|------|------|
+| **Gate1** | ✅ 0 failures |
+| **Gate2 stub** | ✅ PASS |
+| **figure_kb** | ✅ **1661 KB**（5 张 geopandas 300dpi 图） |
+| self_check | 部分 metric 引用待补（非阻塞） |
+| UST 私有库 | Cloud 无 UST_ROOT，使用 goal-driven geopandas 渲染器 |
 
 ## Goal 循环（每轮可见产出）
 
